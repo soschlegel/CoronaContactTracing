@@ -21,7 +21,7 @@ To be defined
    1. Test is positive
    2. Created a case file as an action
 7. For each positive Test, we have a case file
-   1. Assign an employee to a case 
+   1. Assign an employee to a case
 8. Part of the case file is a contact list
    1. Persons can be added
    2. An action can change the status
@@ -56,7 +56,11 @@ To be defined
 
 ## Hints
 
-Struct for administrative Data on Table-Level:
+### Links
+
+- [Tutorial by Soeren](https://github.com/soschlegel/abap.livecoding)
+
+### Struct for administrative Data on Table-Level:
 
 ```abap
   created_by            : syuname;  
@@ -65,3 +69,12 @@ Struct for administrative Data on Table-Level:
   last_changed_at       : timestampl;
   local_last_changed_at : timestampl;
 ```
+
+## Naming Conventions
+
+- Table: ZCCT_>>DESCR<<
+- Classes: ZCL_CCT_>>DESCR<<
+- View: ZCCT_I_>>DECSR<<
+- Behaviour-Definition: same like View
+- Service-Definition: ZSD_CCT_>>DESCR<<
+- Service-Binding: ZSB_CCT_>>DESCR<<
