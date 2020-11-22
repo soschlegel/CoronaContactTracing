@@ -15,7 +15,11 @@
 - [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Datum von Testergebnis -> date (Default=UNDEF)
 - [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Zeit von Testergebnis -> time (Default=UNDEF)
 
-### b) [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Action: Testergebnis eintragen + Datum/Zeit
+### b) [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Action: 
+
+- [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Testergebnis positiv eintragen + Datum/Zeit
+
+- [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Testergebnis negativ eintragen + Datum/Zeit
 
 ### c) [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Link erzeugen, um Testergebnis zu verfolgen
 
