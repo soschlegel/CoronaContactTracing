@@ -1,0 +1,21 @@
+managed; // implementation in class zbp_cct_i_test_person unique;
+
+define behavior for ZCCT_I_TEST_PERSON //alias <alias_name>
+persistent table zcct_test_person
+lock master
+//authorization master ( instance )
+//etag master <field_name>
+{
+
+  // semantic key is calculated in a determination
+  field ( readonly, numbering: managed ) MyKey ;
+
+  // mandatory fields that are required to create a travel
+  field ( mandatory ) firstname, lastname, age, gender, county, healthdepartment, status;
+
+  // standard operations for travel entity
+
+  create;
+  update;
+  delete;
+}
