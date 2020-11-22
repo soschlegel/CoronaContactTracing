@@ -8,28 +8,28 @@ To be defined
 
 ## Relevant Processes
 
-1. Maintenance of federal states
+1. Maintenance of federal states **(Group 04)**
    1. Re-Use **I_Country** in the federal state definition
-2. Maintenance of counties
+2. Maintenance of counties **(Group 02)**
    1. Assign a county to a federal state
-3. Maintenance of public health departments
+3. Maintenance of public health departments **(Group 03)**
    1. To clarify: Do we have one health department per county?
-4. Add an Health Department Employee
-5. Add a test person
+4. Add an Health Department Employee **(Group 09)**
+5. Add a test person **(Group 10)**
    1. Assignment of county and health department
-6. Created test result for a test person
+6. Created test result for a test person **(Group 07)**
    1. Test is positive
    2. Created a case file as an action
-7. For each positive Test, we have a case file
+7. For each positive Test, we have a case file **(Group 08)**
    1. Assign an employee to a case
-8. Part of the case file is a contact list
+8. Part of the case file is a contact list **(Group 01)**
    1. Persons can be added
    2. An action can change the status
-9. Notify "contact person"
+9. Notify "contact person" **(Group 05)**
     1. Call any external web-API
-10. Reporting on country-level
-11. Reporting on federal state level
-12. Reporting on county level
+10. Reporting on country-level **(Group 06)**
+11. Reporting on federal state level **(Group 06)**
+12. Reporting on county level **(Group 06)**
 
 ## Data-Model
 
