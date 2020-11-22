@@ -73,10 +73,10 @@ To be defined
 ## Naming Conventions
 
 - Table: ZCCT_>>DESCR<<
-- Classes: ZCL_CCT_>>DESCR<< &rarr; first CL, then CCT is correct!
+- Classes: ZCL_CCT_>>DESCR<< &rarr; first **CL** then **CCT** is correct!
 - View: ZCCT_I_>>DECSR<<
 - Projection-View: ZCCT_I_>>DECSR<<
 - Behavior-Definition: same like View
 - Service-Definition: ZSD_CCT_>>DESCR<<
 - Service-Binding: ZSB_CCT_>>DESCR<<
-- Data-Elements: ZCCT_>>DESCR<<
+- Data-Elements: ZCCT_>>DESCR<< 
