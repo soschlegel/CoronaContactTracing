@@ -1,0 +1,5 @@
+CLASS zbp_cct_i_county_m DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zcct_i_county_m.
+ENDCLASS.
+
+CLASS zbp_cct_i_county_m IMPLEMENTATION.
+ENDCLASS.
