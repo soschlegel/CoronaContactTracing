@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service definition for casefile'
+define service ZSD_CCT_CASEFILE {
+  expose ZCCT_I_CASEFILE as CaseFile;
+}

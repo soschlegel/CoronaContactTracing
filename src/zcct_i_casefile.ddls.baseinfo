@@ -3,10 +3,13 @@
 {
 "FROM":
 [
-"ZCCT_CASEFILE"
+"ZCCT_CASE_FILE"
 ],
 "ASSOCIATED":
-[],
+[
+"ZCCT_I_HEALTHDEPEM",
+"ZCCT_I_TESTCASE"
+],
 "BASE":
 [],
 "ANNO_REF":

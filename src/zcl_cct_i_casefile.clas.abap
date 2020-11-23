@@ -1,0 +1,5 @@
+CLASS zcl_cct_i_casefile DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zcct_i_casefile.
+ENDCLASS.
+
+CLASS zcl_cct_i_casefile IMPLEMENTATION.
+ENDCLASS.
