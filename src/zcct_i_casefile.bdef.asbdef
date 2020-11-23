@@ -1,0 +1,11 @@
+managed implementation in class ZCL_CCT_I_CASEFILE unique;
+
+define behavior for ZCCT_I_CASEFILE alias CASEFILE
+persistent table zcct_casefile
+etag master sysuuid_x16
+lock master
+{
+  create;
+  update;
+  delete;
+}
