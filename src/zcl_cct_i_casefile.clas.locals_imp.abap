@@ -19,8 +19,8 @@ CLASS lhc_casefile IMPLEMENTATION.
   METHOD validateHealthDepEm.
 
     READ ENTITY zcct_i_casefile FROM VALUE #(
-        FOR <root_key> IN keys ( %key-sysuuid_x16   = <root_key>-sysuuid_x16
-                                 %control           = VALUE #( healthdepem = if_abap_behv=>mk-on ) ) )
+        FOR <root_key> IN keys ( %key-casefile_id   = <root_key>-casefile_id
+                                 %control           = VALUE #( healthdepem_id = if_abap_behv=>mk-on ) ) )
         RESULT DATA(lt_casefile).
 
     DATA lt_healthdepem TYPE SORTED TABLE OF zcct_i_healthdepem WITH UNIQUE KEY emplyee_id.
@@ -38,14 +38,14 @@ CLASS lhc_casefile IMPLEMENTATION.
 
     " Raise msg for non existing customer id
     LOOP AT lt_casefile INTO DATA(ls_casefile).
-      IF ls_casefile-healthdepem IS NOT INITIAL AND NOT line_exists( lt_employee_db[ emplyee_id = ls_casefile-healthdepem ] ).
-        APPEND VALUE #(  sysuuid_x16 = ls_casefile-sysuuid_x16 ) TO failed-casefile.
-        APPEND VALUE #(  sysuuid_x16 = ls_casefile-sysuuid_x16
+      IF ls_casefile-healthdepem_id IS NOT INITIAL AND NOT line_exists( lt_employee_db[ emplyee_id = ls_casefile-healthdepem_id ] ).
+        APPEND VALUE #(  casefile_id = ls_casefile-casefile_id ) TO failed-casefile.
+        APPEND VALUE #(  casefile_id = ls_casefile-casefile_id
                          %msg      = new_message( id       = zif_cct_messages=>msgid
                                                   number   = zif_cct_messages=>msgno-employee_not_found
-                                                  v1       = ls_casefile-healthdepem
+                                                  v1       = ls_casefile-healthdepem_id
                                                   severity = if_abap_behv_message=>severity-error )
-                         %element-healthdepem = if_abap_behv=>mk-on ) TO reported-casefile.
+                         %element-healthdepem_id = if_abap_behv=>mk-on ) TO reported-casefile.
       ENDIF.
 
     ENDLOOP.
@@ -53,6 +53,39 @@ CLASS lhc_casefile IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD validateTestCase.
+
+  READ ENTITY zcct_i_casefile FROM VALUE #(
+        FOR <root_key> IN keys ( %key-casefile_id   = <root_key>-casefile_id
+                                 %control           = VALUE #( testcase_id = if_abap_behv=>mk-on ) ) )
+        RESULT DATA(lt_casefile).
+
+    DATA lt_testcase TYPE SORTED TABLE OF zcct_i_testcase WITH UNIQUE KEY testid.
+
+    " Optimization of DB select: extract distinct non-initial customer IDs
+    lt_testcase = CORRESPONDING #( lt_testcase DISCARDING DUPLICATES MAPPING testid = testid EXCEPT * ).
+    DELETE lt_testcase WHERE testid IS INITIAL.
+    CHECK lt_testcase IS NOT INITIAL.
+
+    " Check if customer ID exist
+    SELECT FROM zcct_i_testcase FIELDS testid
+      FOR ALL ENTRIES IN @lt_testcase
+      WHERE testid = @lt_testcase-testid
+      INTO TABLE @DATA(lt_testcase_db).
+
+    " Raise msg for non existing customer id
+    LOOP AT lt_casefile INTO DATA(ls_casefile).
+      IF ls_casefile-testcase_id IS NOT INITIAL AND NOT line_exists( lt_testcase_db[ testid = ls_casefile-testcase_id ] ).
+        APPEND VALUE #(  casefile_id = ls_casefile-casefile_id ) TO failed-casefile.
+        APPEND VALUE #(  casefile_id = ls_casefile-casefile_id
+                         %msg      = new_message( id       = zif_cct_messages=>msgid
+                                                  number   = zif_cct_messages=>msgno-testcase_not_found
+                                                  v1       = ls_casefile-testcase_id
+                                                  severity = if_abap_behv_message=>severity-error )
+                         %element-testcase_id = if_abap_behv=>mk-on ) TO reported-casefile.
+      ENDIF.
+
+    ENDLOOP.
+
   ENDMETHOD.
 
 ENDCLASS.
