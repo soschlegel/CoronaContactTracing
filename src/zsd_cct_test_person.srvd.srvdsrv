@@ -1,4 +1,4 @@
 @EndUserText.label: 'Service definition for test person'
 define service ZSD_CCT_TEST_PERSON {
-  expose ZCCT_I_PROJECTION_TEST_PERSON;
+  expose ZCCT_C_TEST_PERSON as TestedPerson;
 }

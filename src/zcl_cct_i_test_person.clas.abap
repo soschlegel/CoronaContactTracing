@@ -1,0 +1,5 @@
+CLASS zcl_cct_i_test_person DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zcct_i_test_person.
+ENDCLASS.
+
+CLASS zcl_cct_i_test_person IMPLEMENTATION.
+ENDCLASS.

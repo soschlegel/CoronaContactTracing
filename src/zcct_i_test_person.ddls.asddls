@@ -1,6 +1,6 @@
 @EndUserText.label: 'Data model for test person'
 define root view entity ZCCT_I_TEST_PERSON
-  as select from zcct_test_person
+  as select from zcct_testperson
 
   /* Associations */
   //Change to refs to HealthDepartment and County
@@ -8,7 +8,7 @@ define root view entity ZCCT_I_TEST_PERSON
   //association [0..1] to /DMO/I_Customer as _Customer on $projection.customer_id = _Customer.CustomerID
 
 {
-  key mykey,
+  key test_person_id,
       firstname,
       lastname,
       age,

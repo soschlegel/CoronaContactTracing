@@ -1,0 +1,8 @@
+projection;
+
+define behavior for ZCCT_C_TEST_PERSON //alias <alias_name>
+{
+  use create;
+  use update;
+  use delete;
+}
