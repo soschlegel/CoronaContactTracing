@@ -1,0 +1,32 @@
+managed implementation in class zbp_cct_i_healthdep unique;
+
+define behavior for ZCCT_I_HEALTHDEP alias Healthdep
+persistent table zcct_healthdep
+etag master LastChangedAt
+lock master
+{
+
+  field ( readonly, numbering : managed ) HealthdepId;
+
+  field ( readonly ) LastChangedAt, LastChangedBy, CreatedAt, CreatedBy;
+
+  field ( mandatory ) CountyId;
+
+  field ( mandatory ) Name, Address;
+
+  create;
+  update;
+  delete;
+
+
+  validation validateCounty on save { field CountyId; }
+  validation validateLeadingEmployee on save { field LeadingEmployeeId; }
+
+  determination CalculateHealthdepKey on modify
+  {create; }
+
+
+  mapping for zcct_healthdep corresponding;
+
+
+}
