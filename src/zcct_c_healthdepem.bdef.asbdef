@@ -1,9 +1,4 @@
-projection;
-
-define behavior for ZCCT_C_HealthDepEm alias healthDepEmProcessor
-use etag
-{
-  use create;
-  use update;
-  use delete;
-}
+implementation unmanaged ;
+define behavior for ZCCT_C_HEALTHDEPEM
+  {
+  }

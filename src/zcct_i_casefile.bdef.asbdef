@@ -1,23 +1,4 @@
-managed implementation in class ZCL_CCT_I_CASEFILE unique;
-
-define behavior for ZCCT_I_CASEFILE alias CaseFile
-persistent table zcct_case_file
-etag master casefile_id
-lock master
-{
-  field ( readonly, numbering : managed ) casefile_id;
-
-  field ( mandatory ) testcase_id, healthdepem_id;
-
-  create;
-  update;
-  delete;
-
-  // instance action and dynamic action control
-  //action (features:instance) resolveCase result [1] $self;
-
-  // validations
-  validation validateTestCase on save { field testcase_id; }
-  validation validateHealthDepEm on save { field healthdepem_id; }
-
-}
+implementation unmanaged ;
+define behavior for ZCCT_I_CASEFILE
+  {
+  }

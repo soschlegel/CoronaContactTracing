@@ -24,7 +24,7 @@ define root view entity ZCCT_C_TEST_PERSON
         position: 10
       } ]
 
-  key test_person_id as TestPersonId,
+  key test_person_id   as TestPersonId,
 
       @UI:{
       lineItem: [{
@@ -38,7 +38,7 @@ define root view entity ZCCT_C_TEST_PERSON
         label: 'Firstname'
       }]
       }
-      firstname      as Firstname,
+      firstname        as Firstname,
 
       @UI:{
       lineItem: [{
@@ -52,7 +52,7 @@ define root view entity ZCCT_C_TEST_PERSON
         label: 'Lastname'
       }]
       }
-      lastname       as Lastname,
+      lastname         as Lastname,
 
       @UI:{
       lineItem: [{
@@ -66,8 +66,8 @@ define root view entity ZCCT_C_TEST_PERSON
         label: 'Status'
       }]
       }
-      status         as Status,
-      
+      status           as Status,
+
       @UI:{
       lineItem: [{
       position: 40,
@@ -80,8 +80,8 @@ define root view entity ZCCT_C_TEST_PERSON
         label: 'Age'
       }]
       }
-      age         as Age,
-      
+      age              as Age,
+
       @UI:{
       lineItem: [{
       position: 50,
@@ -94,8 +94,8 @@ define root view entity ZCCT_C_TEST_PERSON
         label: 'Gender'
       }]
       }
-      gender as Gender,
-      
+      gender           as Gender,
+
       @UI:{
       lineItem: [{
       position: 60,
@@ -108,8 +108,9 @@ define root view entity ZCCT_C_TEST_PERSON
         label: 'County'
       }]
       }
-      county as County,
-      
+      @Consumption.valueHelpDefinition: [{ entity : {name: 'zcct_I_county_M', element: 'countyname'  } }]
+      county           as County,
+
       @UI:{
       lineItem: [{
       position: 70,
@@ -122,5 +123,9 @@ define root view entity ZCCT_C_TEST_PERSON
         label: 'HealthDepartment'
       }]
       }
-      healthdepartment as HealthDepartment
+      //@Consumption.valueHelpDefinition: [{ entity : {name: 'zcct_healthdep', element: 'name'  } }]
+      healthdepartment as HealthDepartment,
+
+      @UI.hidden: true
+      last_changed_at  as LastChangedAt
 }

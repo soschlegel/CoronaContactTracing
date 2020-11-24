@@ -3,9 +3,9 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <SRVD>
-    <NAME>ZSD_CCT_TEST_PERSON</NAME>
+    <NAME>ZSD_CCT_FED_STATE</NAME>
     <TYPE>SRVD/SRV</TYPE>
-    <DESCRIPTION>Service definition for test person</DESCRIPTION>
+    <DESCRIPTION>service definition for fed state</DESCRIPTION>
     <LANGUAGE>EN</LANGUAGE>
     <LINKS>
      <item>
@@ -13,11 +13,11 @@
        <UNDEFINED_ATTRIBUTES>
         <item>
          <NAME>etag</NAME>
-         <TEXT>19710401000000001text/plain_QfONA0t698YS4/wAz62OyiOMcLA=</TEXT>
+         <TEXT>19710401000000001text/plain_bhwYa98A9WQSwZeyPw2qEqXSxXk=</TEXT>
         </item>
        </UNDEFINED_ATTRIBUTES>
       </COMMON_ATTRIBUTES>
-      <HREF>./zsd_cct_test_person/source/main</HREF>
+      <HREF>./zsd_cct_fed_state/source/main</HREF>
       <REL>http://www.sap.com/adt/relations/source</REL>
       <TYPE>text/plain</TYPE>
       <TITLE>Source Content</TITLE>
@@ -30,19 +30,19 @@
         </item>
        </UNDEFINED_ATTRIBUTES>
       </COMMON_ATTRIBUTES>
-      <HREF>./zsd_cct_test_person/source/main</HREF>
+      <HREF>./zsd_cct_fed_state/source/main</HREF>
       <REL>http://www.sap.com/adt/relations/source</REL>
       <TYPE>text/html</TYPE>
       <TITLE>Source Content (HTML)</TITLE>
      </item>
      <item>
-      <HREF>./zsd_cct_test_person/source/main/versions</HREF>
+      <HREF>./zsd_cct_fed_state/source/main/versions</HREF>
       <REL>http://www.sap.com/adt/relations/versions</REL>
       <TITLE>Historic versions</TITLE>
      </item>
     </LINKS>
     <MASTER_LANGUAGE>EN</MASTER_LANGUAGE>
-    <SOURCE_URI>./zsd_cct_test_person/source/main</SOURCE_URI>
+    <SOURCE_URI>./zsd_cct_fed_state/source/main</SOURCE_URI>
     <SOURCE_TYPE>ABAP_SOURCE</SOURCE_TYPE>
     <SOURCE_ORIGIN_DESCRIPTION>ABAP Development Tools</SOURCE_ORIGIN_DESCRIPTION>
     <SRVD_SOURCE_TYPE>S</SRVD_SOURCE_TYPE>

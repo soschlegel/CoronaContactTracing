@@ -3,11 +3,11 @@
 {
 "FROM":
 [
-"ZCCT_TESTPERSON"
+"ZCCT_FEDSTATE"
 ],
 "ASSOCIATED":
 [
-"ZCCT_I_COUNTY_M"
+"I_COUNTRY"
 ],
 "BASE":
 [],

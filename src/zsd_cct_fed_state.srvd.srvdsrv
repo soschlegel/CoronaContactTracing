@@ -1,0 +1,4 @@
+@EndUserText.label: 'service definition for fed state'
+define service ZSD_CCT_FED_STATE {
+  expose ZCCT_I_FED_STATE as FedStateProcessor;
+}

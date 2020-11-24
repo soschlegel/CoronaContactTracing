@@ -14,12 +14,6 @@
      <MSGNR>001</MSGNR>
      <TEXT>Employee &amp;1 not found.</TEXT>
     </T100>
-    <T100>
-     <SPRSL>E</SPRSL>
-     <ARBGB>ZCCT_MESSAGES</ARBGB>
-     <MSGNR>002</MSGNR>
-     <TEXT>Testcase &amp;1 not found</TEXT>
-    </T100>
    </T100>
   </asx:values>
  </asx:abap>
