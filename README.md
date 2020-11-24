@@ -35,7 +35,7 @@ To be defined
 
 - Federal-State
   - Table-Name: ZCCT_FedState
-  - CDS_View:
+  - CDS_View: ZCCT_I_FED_STATE
 - County
   - Table-Name: ZCCT_County
 - Health-Department
