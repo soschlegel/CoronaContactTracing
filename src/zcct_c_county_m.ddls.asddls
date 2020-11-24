@@ -2,7 +2,13 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 
 @UI: {
- headerInfo: { typeName: 'County', typeNamePlural: 'Counties', title: { type: #STANDARD, value: 'county_id' } } }
+ headerInfo: {
+ imageUrl: 'image_url',
+ typeName: 'County',
+ typeNamePlural: 'Counties',
+ title: { type: #STANDARD, value: 'countyname' }
+ }
+}
 
 @Search.searchable: true
 
@@ -35,11 +41,17 @@ define root view entity ZCCT_C_COUNTY_M
       federal_state_id,
       //_FEDERAL_STATES.Name
 
+
       @UI: {
           lineItem:       [ { position: 30,label:'County Name', importance: #HIGH } ],
           identification: [ { position: 30, label: 'County Name' } ] }
       @Search.defaultSearchElement: true
       countyname,
+        
+      @UI: {
+      identification: [ { position: 40, label: 'County Image Url' } ] }
+      @Search.defaultSearchElement: true
+      image_url,
 
       @UI.hidden: true
       created_by,
