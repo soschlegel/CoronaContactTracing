@@ -1,7 +1,7 @@
 # Aufgabe 5
 
 ## Welche Funktionalität wird von uns bereit gestellt
-unsere Aufgabe war es, eine Blaupause für Testpersonen zu schaffen, mit deren Hilfe beliebig viele Instanzen von Testpersonen in die Datenbank geladen werden können. Testpersonen können erstellt, geändert und gelöscht werden. Sie besitzen folgende Attribute:
+Unsere Aufgabe war es, ein Template für Testpersonen zu schaffen, mit deren Hilfe beliebig viele Instanzen von Testpersonen in die Datenbank geladen werden können. Testpersonen können erstellt, geändert und gelöscht werden. Sie besitzen folgende Attribute:
 
 | Name des Attributs | Beschreibung                                        |  Sichtbar  | 
 | :--------------:   | :-------------------------------------------------: | :------:   |
@@ -29,11 +29,11 @@ Dabei existiert beim Health Department eine Anbindung an die von Aufgabe 3 (Grup
 | :---------------------------------: | :--------------------: | 
 | Service Binding                     | ZSB_CCT_TEST_PERSON    | 
 | Service Definition                  | ZSD_CCT_TEST_PERSON    | 
-| Data Definition (Projection)        | ZCCT_C_Test_person     | 
-| Data Definition (Model)             | ZCCT_I_Test_person     | 
-| Behaviour Definition (Projection)   | ZCCT_C_Test_person     | 
-| Behaviour Definition (Model)        | ZCCT_I_Test_person     | 
-| Data Base Table                     | zcct_testperson        | 
+| Data Definition (Projection)        | ZCCT_C_TEST_PERSON     | 
+| Data Definition (Model)             | ZCCT_I_TEST_PERSON     | 
+| Behaviour Definition (Projection)   | ZCCT_C_TEST_PERSON     | 
+| Behaviour Definition (Model)        | ZCCT_I_TEST_PERSON     | 
+| Data Base Table                     | ZCCT_TESTPERSON        | 
 
 
 
