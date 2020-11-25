@@ -11,15 +11,15 @@
 - [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Employee ID -> int
 - [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Datum von Test -> date
 - [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Zeit von Test -> time
-- [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Testergebnis -> data element/Ampel?(Default=UNDEF)
+- [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Testergebnis -> data element/Ampel (Default=UNDEF)
 - [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Datum von Testergebnis -> date (Default=UNDEF)
 - [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Zeit von Testergebnis -> time (Default=UNDEF)
 
 ### b) [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Action: 
 
-- [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Testergebnis positiv eintragen + Datum/Zeit
+- [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Testergebnis eintragen + Datum/Zeit
 
-- [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Testergebnis negativ eintragen + Datum/Zeit
+- [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) neuen Test anlegen
 
 ### c) [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Link erzeugen, um Testergebnis zu verfolgen
 
