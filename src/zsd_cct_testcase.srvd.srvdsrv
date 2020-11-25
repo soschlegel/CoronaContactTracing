@@ -1,0 +1,6 @@
+@EndUserText.label: 'Service definition for testcase'
+define service ZSD_CCT_TESTCASE {
+  expose ZCCT_C_TESTCASE as testcase;
+  expose ZCCT_I_TEST_PERSON as testperson;
+  expose ZCCT_I_HealthDepEm as employee;
+}
