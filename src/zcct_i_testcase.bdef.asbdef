@@ -1,0 +1,23 @@
+managed implementation in class zbp_cct_i_testcase unique;
+
+define behavior for ZCCT_I_TESTCASE alias testcase
+persistent table zcct_testcase
+etag master last_changed_at
+lock master
+
+{
+//  field ( readonly ) testresult, testresultdate, testresulttime;
+  field ( mandatory ) personid, employeeid, testtype, testdate, testtime;
+  field ( numbering : managed ) testid;
+
+  create;
+  update;
+  delete;
+
+  action ( features : instance ) setPositive result [1] $self;
+  action ( features : instance ) setNegative result [1] $self;
+
+  //validation validateTesttype on save { field testtype; }
+
+
+  }

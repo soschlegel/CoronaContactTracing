@@ -1,0 +1,7 @@
+CLASS zbp_cct_i_testcase DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zcct_i_testcase.
+
+ENDCLASS.
+
+CLASS zbp_cct_i_testcase IMPLEMENTATION.
+
+ENDCLASS.

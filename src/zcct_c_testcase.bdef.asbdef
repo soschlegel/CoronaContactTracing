@@ -1,0 +1,12 @@
+projection;
+define behavior for ZCCT_C_TESTCASE alias testcaseProzessor
+use etag
+{
+  use create;
+  use update;
+  use delete;
+
+  use action setPositive;
+  use action setNegative;
+
+}
