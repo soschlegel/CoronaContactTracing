@@ -1,0 +1,5 @@
+CLASS zbp_cct_i_healthdep DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zcct_i_healthdep.
+ENDCLASS.
+
+CLASS zbp_cct_i_healthdep IMPLEMENTATION.
+ENDCLASS.

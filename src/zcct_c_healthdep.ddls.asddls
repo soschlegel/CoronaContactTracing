@@ -48,9 +48,6 @@ define root view entity ZCCT_C_HEALTHDEP
 
       @ObjectModel.text.element: ['CountyId']
       @Search.defaultSearchElement: true
-      /*
-      @Consumption.valueHelpDefinition: [{ entity : {name: '/DMO/I_Agency', element: 'AgencyID'  } }]
-      @Search.defaultSearchElement: true*/
       CountyId,
 
       @UI:{
@@ -62,7 +59,7 @@ define root view entity ZCCT_C_HEALTHDEP
        }],
        identification: [{
          position: 30,
-         label: 'Status'
+         label: 'Address'
        }]
        }
       Address,
@@ -85,7 +82,19 @@ define root view entity ZCCT_C_HEALTHDEP
       @Search.defaultSearchElement: true
       LeadingEmployeeId,
 
-      @UI.identification: [ { position: 50, label: 'Remarks' } ]
+      
+      @UI:{
+       lineItem: [{
+       position: 50,
+       importance: #MEDIUM,
+       type: #STANDARD,
+       label: 'Additional Information'
+       }],
+       identification: [{
+         position: 50,
+         label: 'Additional Information'
+       }]
+       }
       AdditionalDescription,
 
       @UI.hidden: true

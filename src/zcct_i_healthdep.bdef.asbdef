@@ -23,10 +23,23 @@ lock master
   validation validateLeadingEmployee on save { field LeadingEmployeeId; }
 
   determination CalculateHealthdepKey on modify
-  {create; }
+  { create; }
 
 
-  mapping for zcct_healthdep corresponding;
+  mapping for zcct_healthdep
+  {
+    HealthdepId = healthdep_id;
+    Name = name;
+    CountyId = county_id;
+    Address = address;
+    LeadingEmployeeId = leading_employee_id;
+    AdditionalDescription = additional_description;
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+    LastChangedBy = last_changed_by;
+    LastChangedAt = last_changed_at;
+
+  }
 
 
 }

@@ -12,10 +12,10 @@ define root view entity ZCCT_I_HEALTHDEP
 
   /* Associations */
 
-  
-    association [0..1] to ZCCT_I_COUNTY_M as _County on $projection.CountyId = _County.countyuuid
-    association [0..1] to ZCCT_I_HealthDepEm as _Healthdepem on $projection.LeadingEmployeeId = _Healthdepem.emplyee_id
-  
+
+  association [0..1] to ZCCT_I_COUNTY_M    as _County      on $projection.CountyId = _County.countyuuid
+  association [0..1] to ZCCT_I_HealthDepEm as _Healthdepem on $projection.LeadingEmployeeId = _Healthdepem.emplyee_id
+
 
 {
   key healthdep_id           as HealthdepId,
@@ -32,9 +32,9 @@ define root view entity ZCCT_I_HEALTHDEP
       last_changed_by        as LastChangedBy,
       @Semantics.systemDateTime.lastChangedAt: true
       last_changed_at        as LastChangedAt,
-      
-      
+
+
       _County,
       _Healthdepem
-      
+
 }
