@@ -18,6 +18,7 @@ define root view entity ZCCT_I_COUNTY_M
       county_id,
       federal_state_id,
       countyname,
+      image_url,
 
       /* ADMIN AREA */
       @Semantics.user.createdBy: true
