@@ -4,7 +4,7 @@
 @UI: {
  headerInfo: { typeName: 'Person', typeNamePlural: 'Persons'} }
 
-//@Search.searchable: true
+@Search.searchable: true
 
 define root view entity ZCCT_C_TEST_PERSON
   as projection on ZCCT_I_TEST_PERSON
@@ -38,6 +38,7 @@ define root view entity ZCCT_C_TEST_PERSON
         label: 'Firstname'
       }]
       }
+      @Search.defaultSearchElement: true
       firstname        as Firstname,
 
       @UI:{
@@ -52,21 +53,22 @@ define root view entity ZCCT_C_TEST_PERSON
         label: 'Lastname'
       }]
       }
+      @Search.defaultSearchElement: true
       lastname         as Lastname,
 
-      @UI:{
-      lineItem: [{
-      position: 30,
-      importance: #HIGH,
-      type: #STANDARD,
-      label: 'Status'
-      }],
-      identification: [{
-        position: 30,
-        label: 'Status'
-      }]
-      }
-      status           as Status,
+      //@UI:{
+      //lineItem: [{
+      //position: 30,
+      //importance: #HIGH,
+      //type: #STANDARD,
+      //label: 'Status'
+      //}],
+      //identification: [{
+      //  position: 30,
+      //  label: 'Status'
+      //}]
+      //}
+      //status           as Status,
 
       @UI:{
       lineItem: [{
@@ -109,6 +111,7 @@ define root view entity ZCCT_C_TEST_PERSON
       }]
       }
       @Consumption.valueHelpDefinition: [{ entity : {name: 'zcct_I_county_M', element: 'countyname'  } }]
+      @Search.defaultSearchElement: true
       county           as County,
 
       @UI:{
@@ -123,7 +126,8 @@ define root view entity ZCCT_C_TEST_PERSON
         label: 'HealthDepartment'
       }]
       }
-      //@Consumption.valueHelpDefinition: [{ entity : {name: 'zcct_healthdep', element: 'name'  } }]
+      @Consumption.valueHelpDefinition: [{ entity : {name: 'zcct_I_healthdep', element: 'Name'  } }]
+      @Search.defaultSearchElement: true
       healthdepartment as HealthDepartment,
 
       @UI.hidden: true

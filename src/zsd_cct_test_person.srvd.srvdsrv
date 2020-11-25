@@ -1,6 +1,6 @@
 @EndUserText.label: 'Service definition for test person'
 define service ZSD_CCT_TEST_PERSON {
   expose ZCCT_C_TEST_PERSON as TestedPerson;
-  expose ZCCT_I_HealthDepEm as HealthDepartment;
+  expose ZCCT_I_HEALTHDEP as HealthDepartment;
   expose ZCCT_I_COUNTY_M as County;
 }
