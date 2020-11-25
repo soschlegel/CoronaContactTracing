@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service definition for contactlist'
+define service ZSD_CCT_CONTACLIST {
+  expose ZCCT_C_CONTACTLIST as Contactlist;
+  expose ZCCT_I_COUNTY_M as Casefile;
+}

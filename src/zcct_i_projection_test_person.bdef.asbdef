@@ -1,8 +1,4 @@
-projection;
-
-define behavior for ZCCT_I_PROJECTION_TEST_PERSON //alias <alias_name>
-{
-  use create;
-  use update;
-  use delete;
-}
+implementation unmanaged ;
+define behavior for ZCCT_I_PROJECTION_TEST_PERSON
+  {
+  }

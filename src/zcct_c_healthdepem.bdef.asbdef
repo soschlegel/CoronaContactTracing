@@ -1,4 +1,11 @@
-implementation unmanaged ;
-define behavior for ZCCT_C_HEALTHDEPEM
-  {
-  }
+unmanaged implementation in class zbp_cct_c_healthdepem unique;
+
+define behavior for ZCCT_C_HealthDepEm //alias <alias_name>
+//late numbering
+//lock master
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+}

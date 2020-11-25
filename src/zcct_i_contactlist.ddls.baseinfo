@@ -3,10 +3,12 @@
 {
 "FROM":
 [
-"ZCCT_TEST_PERSON"
+"ZCCT_CONTACTLIST"
 ],
 "ASSOCIATED":
-[],
+[
+"ZCCT_COUNTY"
+],
 "BASE":
 [],
 "ANNO_REF":

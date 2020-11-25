@@ -4,12 +4,13 @@
   <asx:values>
    <SRVB>
     <METADATA>
-     <NAME>ZSB_CCT_HEALTHDEPEM</NAME>
+     <NAME>ZSB_CCT_CONTACTLIST</NAME>
      <TYPE>SRVB/SVB</TYPE>
+     <DESCRIPTION>service binding for contactlist</DESCRIPTION>
      <LANGUAGE>EN</LANGUAGE>
      <LINKS>
       <item>
-       <HREF>/sap/bc/adt/businessservices/odatav2/ZSB_CCT_HEALTHDEPEM</HREF>
+       <HREF>/sap/bc/adt/businessservices/odatav2/ZSB_CCT_CONTACTLIST</HREF>
        <REL>http://www.sap.com/categories/odatav2</REL>
        <TYPE>application/vnd.sap.adt.businessservices.odatav2.v2+xml</TYPE>
        <TITLE>ODATAV2</TITLE>
@@ -25,20 +26,20 @@
     </METADATA>
     <CONTENT>
      <BIND_TYPE_IMPL>
-      <NAME>ZSB_CCT_HEALTHDEPEM</NAME>
+      <NAME>ZSB_CCT_CONTACTLIST</NAME>
      </BIND_TYPE_IMPL>
      <BIND_TYPE>ODATA</BIND_TYPE>
      <BIND_TYPE_VERSION>V2</BIND_TYPE_VERSION>
      <SERVICES>
       <item>
-       <SERVICE_NAME>ZSB_CCT_HEALTHDEPEM</SERVICE_NAME>
+       <SERVICE_NAME>ZSB_CCT_CONTACTLIST</SERVICE_NAME>
        <SERVICE_CONTENT>
         <item>
          <SERVICE_VERSION>0001</SERVICE_VERSION>
          <SRVD_REF>
-          <URI>/sap/bc/adt/ddic/srvd/sources/zsd_cct_healthdepem</URI>
+          <URI>/sap/bc/adt/ddic/srvd/sources/zsd_cct_contaclist</URI>
           <TYPE>SRVD/SRV</TYPE>
-          <NAME>ZSD_CCT_HEALTHDEPEM</NAME>
+          <NAME>ZSD_CCT_CONTACLIST</NAME>
          </SRVD_REF>
         </item>
        </SERVICE_CONTENT>

@@ -4,12 +4,12 @@
 @UI: {
  headerInfo: { typeName: 'Person', typeNamePlural: 'Persons'} }
 
-//@Search.searchable: true
+@Search.searchable: true
 
 define root view entity ZCCT_I_PROJECTION_TEST_PERSON
   as projection on ZCCT_I_TEST_PERSON
 {
-  key test_person_id     as TestPersonId,
+  key mykey     as MyKey,
 
       @UI.lineItem: [{ label: 'Vorname' }]
       firstname as Firstname,

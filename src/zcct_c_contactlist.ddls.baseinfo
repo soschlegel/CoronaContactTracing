@@ -3,7 +3,7 @@
 {
 "FROM":
 [
-"ZCCT_TEST_PERSON"
+"ZCCT_I_CONTACTLIST"
 ],
 "ASSOCIATED":
 [],

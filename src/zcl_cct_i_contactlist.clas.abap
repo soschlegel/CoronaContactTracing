@@ -1,0 +1,5 @@
+CLASS zcl_cct_i_contactlist DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zcct_i_contactlist.
+ENDCLASS.
+
+CLASS zcl_cct_i_contactlist IMPLEMENTATION.
+ENDCLASS.
