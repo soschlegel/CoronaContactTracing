@@ -12,6 +12,9 @@ CLASS lhc_casefile DEFINITION INHERITING FROM cl_abap_behavior_handler.
     METHODS validateTestCase FOR VALIDATE ON SAVE
       IMPORTING keys FOR casefile~validateTestCase.
 
+*    METHODS resolveCase FOR MODIFY
+*      IMPORTING keys FOR ACTION CaseFile~resolveCase RESULT result.
+
 ENDCLASS.
 
 CLASS lhc_casefile IMPLEMENTATION.
@@ -54,10 +57,10 @@ CLASS lhc_casefile IMPLEMENTATION.
 
   METHOD validateTestCase.
 
-  READ ENTITY zcct_i_casefile FROM VALUE #(
-        FOR <root_key> IN keys ( %key-casefile_id   = <root_key>-casefile_id
-                                 %control           = VALUE #( testcase_id = if_abap_behv=>mk-on ) ) )
-        RESULT DATA(lt_casefile).
+    READ ENTITY zcct_i_casefile FROM VALUE #(
+          FOR <root_key> IN keys ( %key-casefile_id   = <root_key>-casefile_id
+                                   %control           = VALUE #( testcase_id = if_abap_behv=>mk-on ) ) )
+          RESULT DATA(lt_casefile).
 
     DATA lt_testcase TYPE SORTED TABLE OF zcct_i_testcase WITH UNIQUE KEY testid.
 
@@ -87,5 +90,34 @@ CLASS lhc_casefile IMPLEMENTATION.
     ENDLOOP.
 
   ENDMETHOD.
+
+*  METHOD resolveCase.
+*
+*    " Modify in local mode: BO-related updates that are not relevant for authorization checks
+*    MODIFY ENTITIES OF zcct_i_casefile IN LOCAL MODE
+*           ENTITY CaseFile
+*              UPDATE FROM VALUE #( FOR key IN keys ( casefile_id = key-casefile_id
+*                                                     casestatus = 'R' " Resolved
+*                                                     %control-casestatus = if_abap_behv=>mk-on ) )
+*           FAILED   failed
+*           REPORTED reported.
+*
+*    " Read changed data for action result
+*    READ ENTITIES OF zcct_i_casefile IN LOCAL MODE
+*         ENTITY CaseFile
+*         FROM VALUE #( FOR key IN keys (  casefile_id = key-casefile_id
+*                                          %control = VALUE #(
+*                                            healthdepem_id       = if_abap_behv=>mk-on
+*                                            testcase_id     = if_abap_behv=>mk-on
+*                                            treatmentend      = if_abap_behv=>mk-on
+*                                            treatmentstart        = if_abap_behv=>mk-on
+*                                            casestatus     = if_abap_behv=>mk-on
+*                                          ) ) )
+*         RESULT DATA(lt_casefile).
+*
+*    result = VALUE #( FOR casefile IN lt_casefile ( casefile_id = casefile-casefile_id
+*                                                %param    = casefile
+*                                              ) ).
+*  ENDMETHOD.
 
 ENDCLASS.
