@@ -1,11 +1,9 @@
-unmanaged implementation in class zbp_cct_c_healthdepem unique;
+projection;
 
-define behavior for ZCCT_C_HealthDepEm //alias <alias_name>
-//late numbering
-//lock master
-//etag master <field_name>
+define behavior for ZCCT_C_HealthDepEm alias healthDepEmProcessor
+use etag
 {
-  create;
-  update;
-  delete;
+  use create;
+  use update;
+  use delete;
 }

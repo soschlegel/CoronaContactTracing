@@ -1,10 +1,20 @@
-unmanaged implementation in class zbp_cct_i_healthdepem unique;
+managed; // implementation in class zbp_cct_i_healthdepem unique;
 
-define behavior for ZCCT_I_HealthDepEm //alias <alias_name>
-//late numbering
-//lock master
-//etag master <field_name>
+define behavior for ZCCT_I_HealthDepEm alias HealthDepEm
+persistent table ZCCT_HEALTHDEPEM
+lock master
+//authorization master ( instance )
+etag master last_changed_at
 {
+  // semantic key is calculated in a determination
+  field ( numbering:managed ) emplyee_id;
+
+  // administrative fields (read only)
+  field ( readonly ) last_changed_at, last_changed_by, created_at, created_by;
+
+  // mandatory fields that are required to create a travel
+  field ( mandatory ) firstname, lastname;
+
   create;
   update;
   delete;
