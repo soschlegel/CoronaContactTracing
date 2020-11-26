@@ -3,7 +3,14 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 
 @UI: {
- headerInfo: { typeName: 'Healthdep', typeNamePlural: 'Healthdeps', title: { type: #STANDARD, value: 'HealthdepId' } } }
+ headerInfo: {
+    typeName: 'Health Department',
+    typeNamePlural: 'Health Departments',
+    title: { type: #STANDARD, value: 'Name' } ,
+    imageUrl: 'ImageUrl' ,
+    description: {label : 'Test1', value: 'LastChangedAt' }
+  }
+}
 
 @Search.searchable: true
 define root view entity ZCCT_C_HEALTHDEP
@@ -47,18 +54,17 @@ define root view entity ZCCT_C_HEALTHDEP
       }],
       selectionField: [ { position: 20 } ]
       }
-      @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_COUNTY_M', element: 'COUNTYUUID'  } }]
+      @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_COUNTY_M', element: 'countyuuid'  } }]
 
-      @ObjectModel.text.element: ['CountyId']
- //     @ObjectModel.text.element: ['CountyName']
+      @ObjectModel.text.element: ['CountyName']
       @Search.defaultSearchElement: true
       CountyId,
-      _County.countyname as CountyName,
+      _County.countyname    as CountyName,
 
       @UI:{
        lineItem: [{
        position: 30,
-       importance: #MEDIUM,
+       importance: #HIGH,
        type: #STANDARD,
        label: 'Address'
        }],
@@ -72,7 +78,7 @@ define root view entity ZCCT_C_HEALTHDEP
       @UI:{
         lineItem: [{
         position: 40,
-        importance: #HIGH,
+        importance: #MEDIUM,
         type: #STANDARD,
         label: 'LeadingEmployee'
         }],
@@ -80,7 +86,7 @@ define root view entity ZCCT_C_HEALTHDEP
           position: 40,
           label: 'LeadingEmployee'
         }],
-      selectionField: [ { position: 40 } ]
+      selectionField: [ { position: 30 } ]
         }
       @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_HEALTHDEPEM', element: 'emplyee_id'  } }]
 
@@ -104,6 +110,22 @@ define root view entity ZCCT_C_HEALTHDEP
        }
       AdditionalDescription,
 
+      @UI:{
+      lineItem: [{
+       position: 60,
+       importance: #LOW,
+       type: #STANDARD,
+       label: 'Image Url'
+       }],
+       identification: [{
+         position: 60,
+         label: 'Image Url'
+       }]
+       }
+      ImageUrl,
+
       @UI.hidden: true
-      LastChangedAt
+      LastChangedAt,
+      @UI.hidden: true
+      LocalLastChangedAt
 }

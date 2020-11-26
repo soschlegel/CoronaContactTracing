@@ -8,7 +8,7 @@ lock master
 
   field ( readonly, numbering : managed ) HealthdepId;
 
-  field ( readonly ) LastChangedAt, LastChangedBy, CreatedAt, CreatedBy;
+  field ( readonly ) LastChangedAt, LastChangedBy, CreatedAt, CreatedBy, LocalLastChangedAt;
 
   field ( mandatory ) CountyId;
 
@@ -34,6 +34,7 @@ lock master
     Address = address;
     LeadingEmployeeId = leading_employee_id;
     AdditionalDescription = additional_description;
+    ImageUrl = image_url;
     CreatedBy = created_by;
     CreatedAt = created_at;
     LastChangedBy = last_changed_by;
