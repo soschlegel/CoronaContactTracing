@@ -10,7 +10,7 @@
 define root view entity ZCCT_I_COUNTY_M
   as select from zcct_county
 
-  /*association [0..1] to ZCCT_FEDERAL_STATES      as _FEDERAL_STATES on $projection.federal_state_id = _FEDERAL_STATES.FEDERAL_STATES_ID*/
+  association [0..1] to ZCCT_M_FED_STATE      as _FEDERAL_STATE on $projection.federal_state_id = _FEDERAL_STATE.id
 
 {
 
@@ -30,9 +30,9 @@ define root view entity ZCCT_I_COUNTY_M
       @Semantics.systemDateTime.lastChangedAt: true
       last_changed_at,
       @Semantics.systemDateTime.localInstanceLastChangedAt: true
-      local_last_changed_at
+      local_last_changed_at,
       
-      /* Public associations */
-      /*_FEDERAL_STATES*/
+       /* Public associations */
+      _FEDERAL_STATE
 
 }

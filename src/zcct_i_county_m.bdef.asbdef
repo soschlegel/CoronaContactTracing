@@ -15,7 +15,6 @@ etag master last_changed_at
   field ( readonly ) last_changed_at, last_changed_by, created_at, created_by;
 
   field ( mandatory ) federal_state_id, countyname;
-  field ( mandatory ) image_url;
 
   create;
   update;

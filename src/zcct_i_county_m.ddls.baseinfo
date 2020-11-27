@@ -6,7 +6,9 @@
 "ZCCT_COUNTY"
 ],
 "ASSOCIATED":
-[],
+[
+"ZCCT_M_FED_STATE"
+],
 "BASE":
 [],
 "ANNO_REF":

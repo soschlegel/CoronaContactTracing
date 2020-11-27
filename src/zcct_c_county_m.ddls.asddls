@@ -7,7 +7,7 @@
  typeName: 'County',
  typeNamePlural: 'Counties',
  title: { type: #STANDARD, value: 'countyname' },
- description: { label: 'Federalstate', value: 'created_at' }
+ description: { label: 'Federalstate', value: 'FederalStateName' }
  }
 }
 
@@ -32,15 +32,17 @@ define root view entity ZCCT_C_COUNTY_M
       @Search.defaultSearchElement: true
       county_id,
 
-      @EndUserText.label: 'Federal State ID'
+      @EndUserText.label: 'Federal State'
       @UI: {
-      lineItem:       [ { position: 20, label:'Federale State ID', importance: #HIGH } ],
+      lineItem:       [ { position: 20, label:'Federale State', importance: #HIGH } ],
       identification: [ { position: 20, label: 'Federal State' } ],
       selectionField: [ { position: 20 } ] }
-      @Consumption.valueHelpDefinition: [{ entity : {name: '/DMO/I_Agency', element: 'AgencyID'  } }]
+      @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_M_FED_STATE', element: 'id'  } }]
+      
+      @ObjectModel.text.element: ['FederalStateName']
       @Search.defaultSearchElement: true
       federal_state_id,
-      //_FEDERAL_STATES.Name
+      _FEDERAL_STATE.name as FederalStateName,
 
       @EndUserText.label: 'County Name'
       @UI: {
