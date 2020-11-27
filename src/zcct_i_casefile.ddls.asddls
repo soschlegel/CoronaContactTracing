@@ -1,12 +1,12 @@
-//@AbapCatalog.viewEnhancementCategory: [#NONE]
+@AbapCatalog.viewEnhancementCategory: [#NONE]
 @AccessControl.authorizationCheck: #NOT_REQUIRED
-//@EndUserText.label: 'data model for case file'
-//@Metadata.ignorePropagatedAnnotations: true
-//@ObjectModel.usageType:{
-//    serviceQuality: #X,
-//    sizeCategory: #S,
-//    dataClass: #MIXED
-//}
+@EndUserText.label: 'data model for case file'
+@Metadata.ignorePropagatedAnnotations: true
+@ObjectModel.usageType:{
+    serviceQuality: #X,
+    sizeCategory: #S,
+    dataClass: #MIXED
+}
 define root view entity ZCCT_I_CASEFILE
   as select from zcct_case_file
   /* Association */

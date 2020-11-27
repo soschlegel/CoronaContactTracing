@@ -19,14 +19,14 @@ define root view entity ZCCT_C_CASEFILE
        @UI: {
            lineItem:       [ { position: 20, importance: #HIGH } ],
            identification: [ { position: 20, label: 'TestCase' } ] }
-//       @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_C_TESTCASE', element: 'testid'  } }]
+       @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_TESTCASE', element: 'testid'  } }]
        @Search.defaultSearchElement: true
        testcase_id    as TestCaseID,
 
        @UI: {
            lineItem:       [ { position: 30, importance: #HIGH } ],
            identification: [ { position: 30, label: 'Employee' } ] }
-//       @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_HealthDepEm', element: 'emplyee_id'  } }]
+       @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_HealthDepEm', element: 'emplyee_id'  } }]
        @Search.defaultSearchElement: true
        healthdepem_id as HealthDepartmentEmployeeID,
 
@@ -44,7 +44,7 @@ define root view entity ZCCT_C_CASEFILE
 
        @UI: {
            lineItem:       [ { position: 60, importance: #HIGH } ],
-           identification: [ { position: 60, label: 'Status' } ] }
+           identification: [ { position: 60, label: 'Status O(pen)A(ctive)C(ancel)R(esolved)' } ] }
        @Search.defaultSearchElement: true
        casestatus     as CaseStatus
 }

@@ -26,7 +26,7 @@ CLASS lhc_casefile IMPLEMENTATION.
                                  %control           = VALUE #( healthdepem_id = if_abap_behv=>mk-on ) ) )
         RESULT DATA(lt_casefile).
 
-    DATA lt_healthdepem TYPE SORTED TABLE OF zcct_i_healthdepem WITH UNIQUE KEY emplyee_id.
+    DATA lt_healthdepem TYPE SORTED TABLE OF ZCCT_I_HealthDepEm WITH UNIQUE KEY emplyee_id.
 
     " Optimization of DB select: extract distinct non-initial customer IDs
     lt_healthdepem = CORRESPONDING #( lt_healthdepem DISCARDING DUPLICATES MAPPING emplyee_id = emplyee_id EXCEPT * ).
