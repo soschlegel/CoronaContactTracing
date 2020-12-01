@@ -16,7 +16,7 @@ lock master
   delete;
 
   // instance action and dynamic action control
-    action ( features : instance ) resolveCase result [1] $self;
+  action ( features : instance ) resolveCase result [1] $self;
 
   // validations
   validation validateTestCase on save { field testcase_id; }

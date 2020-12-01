@@ -115,6 +115,10 @@ CLASS lhc_casefile IMPLEMENTATION.
                                             treatmentend      = if_abap_behv=>mk-on
                                             treatmentstart        = if_abap_behv=>mk-on
                                             casestatus     = if_abap_behv=>mk-on
+                                            created_at = if_abap_behv=>mk-on
+                                            created_by = if_abap_behv=>mk-on
+                                            last_changed_at = if_abap_behv=>mk-on
+                                            last_changed_by = if_abap_behv=>mk-on
                                           ) ) )
          RESULT DATA(lt_casefile).
 

@@ -20,15 +20,19 @@ define root view entity ZCCT_C_CASEFILE
            lineItem:       [ { position: 20, importance: #HIGH } ],
            identification: [ { position: 20, label: 'TestCase' } ] }
        @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_TESTCASE', element: 'testid'  } }]
+       @ObjectModel.text.element: ['TestCaseName']
        @Search.defaultSearchElement: true
        testcase_id    as TestCaseID,
+       _TestCase.testresultdate as TestCaseName,
 
        @UI: {
            lineItem:       [ { position: 30, importance: #HIGH } ],
            identification: [ { position: 30, label: 'Employee' } ] }
        @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_HealthDepEm', element: 'emplyee_id'  } }]
+       @ObjectModel.text.element: ['HealthDepEmName']
        @Search.defaultSearchElement: true
        healthdepem_id as HealthDepartmentEmployeeID,
+       _HealthDepEm.lastname as HealthDepEmName,
 
        @UI: {
            lineItem:       [ { position: 40, importance: #HIGH } ],
