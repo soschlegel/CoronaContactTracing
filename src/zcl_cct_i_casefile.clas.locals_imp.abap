@@ -6,14 +6,17 @@ CLASS lhc_casefile DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
   PRIVATE SECTION.
 
+    METHODS get_instance_features FOR INSTANCE FEATURES
+      IMPORTING keys REQUEST requested_features FOR casefile RESULT result.
+
     METHODS validateHealthDepEm FOR VALIDATE ON SAVE
       IMPORTING keys FOR casefile~validateHealthDepEm.
 
     METHODS validateTestCase FOR VALIDATE ON SAVE
       IMPORTING keys FOR casefile~validateTestCase.
 
-*    METHODS resolveCase FOR MODIFY
-*      IMPORTING keys FOR ACTION CaseFile~resolveCase RESULT result.
+    METHODS resolveCase FOR MODIFY
+      IMPORTING keys FOR ACTION CaseFile~resolveCase RESULT result.
 
 ENDCLASS.
 
@@ -21,8 +24,8 @@ CLASS lhc_casefile IMPLEMENTATION.
 
   METHOD validateHealthDepEm.
 
-    READ ENTITY zcct_i_casefile FROM VALUE #(
-        FOR <root_key> IN keys ( %key-casefile_id   = <root_key>-casefile_id
+    READ ENTITIES OF zcct_i_casefile IN LOCAL MODE ENTITY CaseFile
+        FROM VALUE #( FOR <root_key> IN keys ( %key-casefile_id   = <root_key>-casefile_id
                                  %control           = VALUE #( healthdepem_id = if_abap_behv=>mk-on ) ) )
         RESULT DATA(lt_casefile).
 
@@ -57,8 +60,8 @@ CLASS lhc_casefile IMPLEMENTATION.
 
   METHOD validateTestCase.
 
-    READ ENTITY zcct_i_casefile FROM VALUE #(
-          FOR <root_key> IN keys ( %key-casefile_id   = <root_key>-casefile_id
+    READ ENTITIES OF zcct_i_casefile IN LOCAL MODE ENTITY CaseFile
+        FROM VALUE #( FOR <root_key> IN keys ( %key-casefile_id   = <root_key>-casefile_id
                                    %control           = VALUE #( testcase_id = if_abap_behv=>mk-on ) ) )
           RESULT DATA(lt_casefile).
 
@@ -91,33 +94,53 @@ CLASS lhc_casefile IMPLEMENTATION.
 
   ENDMETHOD.
 
-*  METHOD resolveCase.
-*
-*    " Modify in local mode: BO-related updates that are not relevant for authorization checks
-*    MODIFY ENTITIES OF zcct_i_casefile IN LOCAL MODE
-*           ENTITY CaseFile
-*              UPDATE FROM VALUE #( FOR key IN keys ( casefile_id = key-casefile_id
-*                                                     casestatus = 'R' " Resolved
-*                                                     %control-casestatus = if_abap_behv=>mk-on ) )
-*           FAILED   failed
-*           REPORTED reported.
-*
-*    " Read changed data for action result
-*    READ ENTITIES OF zcct_i_casefile IN LOCAL MODE
-*         ENTITY CaseFile
-*         FROM VALUE #( FOR key IN keys (  casefile_id = key-casefile_id
-*                                          %control = VALUE #(
-*                                            healthdepem_id       = if_abap_behv=>mk-on
-*                                            testcase_id     = if_abap_behv=>mk-on
-*                                            treatmentend      = if_abap_behv=>mk-on
-*                                            treatmentstart        = if_abap_behv=>mk-on
-*                                            casestatus     = if_abap_behv=>mk-on
-*                                          ) ) )
-*         RESULT DATA(lt_casefile).
-*
-*    result = VALUE #( FOR casefile IN lt_casefile ( casefile_id = casefile-casefile_id
-*                                                %param    = casefile
-*                                              ) ).
-*  ENDMETHOD.
+  METHOD resolveCase.
+
+    " Modify in local mode: BO-related updates that are not relevant for authorization checks
+    MODIFY ENTITIES OF zcct_i_casefile IN LOCAL MODE
+           ENTITY CaseFile
+              UPDATE FROM VALUE #( FOR key IN keys ( casefile_id = key-casefile_id
+                                                     casestatus = 'R' " Resolved
+                                                     %control-casestatus = if_abap_behv=>mk-on ) )
+           FAILED   failed
+           REPORTED reported.
+
+    " Read changed data for action result
+    READ ENTITIES OF zcct_i_casefile IN LOCAL MODE
+         ENTITY CaseFile
+         FROM VALUE #( FOR key IN keys (  casefile_id = key-casefile_id
+                                          %control = VALUE #(
+                                            healthdepem_id       = if_abap_behv=>mk-on
+                                            testcase_id     = if_abap_behv=>mk-on
+                                            treatmentend      = if_abap_behv=>mk-on
+                                            treatmentstart        = if_abap_behv=>mk-on
+                                            casestatus     = if_abap_behv=>mk-on
+                                          ) ) )
+         RESULT DATA(lt_casefile).
+
+    result = VALUE #( FOR casefile IN lt_casefile ( casefile_id = casefile-casefile_id
+                                                %param    = casefile
+                                              ) ).
+  ENDMETHOD.
+
+  METHOD get_instance_features.
+
+    "%control-<fieldname> specifies which fields are read from the entities
+
+    READ ENTITIES OF zcct_i_casefile IN LOCAL MODE ENTITY CaseFile
+        FROM VALUE #( FOR keyval IN keys
+                                                      (  %key                    = keyval-%key
+                                                       "  %control-travel_id      = if_abap_behv=>mk-on
+                                                         %control-casestatus = if_abap_behv=>mk-on
+                                                        ) )
+                                RESULT DATA(lt_casefiles).
+
+
+    result = VALUE #( FOR ls_casefile IN lt_casefiles
+                       ( %key                           = ls_casefile-%key
+                         %features-%action-resolveCase = COND #( WHEN ls_casefile-casestatus = 'R'
+                                                                    THEN if_abap_behv=>fc-o-disabled ELSE if_abap_behv=>fc-o-enabled   )
+                      ) ).
+  ENDMETHOD.
 
 ENDCLASS.

@@ -46,5 +46,17 @@ define root view entity ZCCT_C_CASEFILE
            lineItem:       [ { position: 60, importance: #HIGH } ],
            identification: [ { position: 60, label: 'Status O(pen)A(ctive)C(ancel)R(esolved)' } ] }
        @Search.defaultSearchElement: true
-       casestatus     as CaseStatus
+       casestatus     as CaseStatus,
+
+      @UI.hidden: true
+      created_by,
+
+      @UI.hidden: true
+      created_at,
+
+      @UI.hidden: true
+      last_changed_by,
+
+      @UI.hidden: true
+      last_changed_at
 }

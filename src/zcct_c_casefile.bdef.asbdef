@@ -7,5 +7,5 @@ use etag
   use update;
   use delete;
 
-//  use action resolveCase;
+  use action resolveCase;
 }
