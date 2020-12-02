@@ -21,8 +21,6 @@
 
 - [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) neuen Test anlegen
 
-### c) [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Link erzeugen, um Testergebnis zu verfolgen
-
 AGENDA: 
 
 [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/)
