@@ -6,8 +6,8 @@ etag master last_changed_at
 lock master
 
 {
-//  field ( readonly ) testresult, testresultdate, testresulttime;
-  field ( mandatory ) personid, employeeid, testtype, testdate, testtime;
+  field ( readonly ) testresultname , testresultdate, testresulttime;
+  field ( mandatory ) personid, employeename, testtypename, testdate, testtime;
   field ( numbering : managed ) testid;
 
   create;
@@ -17,7 +17,17 @@ lock master
   action ( features : instance ) setPositive result [1] $self;
   action ( features : instance ) setNegative result [1] $self;
 
-  //validation validateTesttype on save { field testtype; }
+  validation validateTesttype on save { field testtype; }
+
+  mapping for zcct_testcase {
+  testid = testid;
+  personid = personid;
+  employeeid = employeeid;
+  testresult = testresult;
+  testdate = testdate;
+  testtime = testtime;
+  testtype = testtype;
+  }
 
 
   }

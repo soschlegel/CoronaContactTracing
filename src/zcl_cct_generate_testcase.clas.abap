@@ -34,8 +34,8 @@ CLASS zcl_cct_generate_testcase IMPLEMENTATION.
 
     itab_testcase = VALUE #(
         ( testid = '1' personid = '2' employeeid = '3' testtype = '1' testdate = '20201125' testtime = '162500' testresultdate = '20201126' testresulttime = '170000' testresult = 'A')
-        ( testid = '2' personid = '3' employeeid = '3' testtype = '2' testdate = '20201125' testtime = '162500' testresultdate = '20201126' testresulttime = '170000' testresult = 'P')
-        ( testid = '3' personid = '5' employeeid = '3' testtype = '3' testdate = '20201125' testtime = '162500' testresultdate = '20201126' testresulttime = '170000' testresult = 'N')
+        ( testid = '2' personid = '3' employeeid = '3' testtype = '2' testdate = '20201125' testtime = '162500' testresultdate = '20201126' testresulttime = '170000' testresult = 'A')
+        ( testid = '3' personid = '5' employeeid = '3' testtype = '3' testdate = '20201125' testtime = '162500' testresultdate = '20201126' testresulttime = '170000' testresult = 'A')
         ).
 
     itab_testperson = VALUE #(

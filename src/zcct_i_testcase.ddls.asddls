@@ -31,7 +31,6 @@ define root view entity ZCCT_I_TESTCASE
         else 0
         end                                                                             as testresultcolor,
 
-
       /* ADMIN AREA */
       @Semantics.user.createdBy: true
       created_by,
