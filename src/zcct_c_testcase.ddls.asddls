@@ -8,18 +8,30 @@ define root view entity ZCCT_C_TESTCASE
       
   key testid,
 
-      @ObjectModel.text.control: #NONE
+      @ObjectModel.text.control: #ASSOCIATED_TEXT_UI_HIDDEN
       @ObjectModel.text.element: ['personname']
       personid,
       personname,
+      
+      @ObjectModel.text.control: #ASSOCIATED_TEXT_UI_HIDDEN
+      @ObjectModel.text.element: ['employeename']
       employeeid,
-//      employeename,
+      employeename,
+      
+      @ObjectModel.text.control: #ASSOCIATED_TEXT_UI_HIDDEN
+      @ObjectModel.text.element: ['testtypename']
       testtype,
-//      testtypename,
+      testtypename,
+      
       testdate,
+      
       testtime,
+      
+      @ObjectModel.text.control: #ASSOCIATED_TEXT_UI_HIDDEN
+      @ObjectModel.text.element: ['testresultname']
       testresult,
-//      testresultname,
+      testresultname,
+      
       testresultcolor,
       testresultdate,
       testresulttime,

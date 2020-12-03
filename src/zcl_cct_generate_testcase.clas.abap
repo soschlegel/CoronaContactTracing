@@ -5,11 +5,15 @@ CLASS zcl_cct_generate_testcase DEFINITION
 
   PUBLIC SECTION.
     INTERFACES if_oo_adt_classrun.
-  PROTECTED SECTION.
-  PRIVATE SECTION.
+protected section.
+private section.
 ENDCLASS.
 
-CLASS zcl_cct_generate_testcase IMPLEMENTATION.
+
+
+CLASS ZCL_CCT_GENERATE_TESTCASE IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
     DATA itab_testtype TYPE TABLE OF zcct_testtype.
     DATA itab_result TYPE TABLE OF zcct_testresult.
@@ -71,5 +75,4 @@ CLASS zcl_cct_generate_testcase IMPLEMENTATION.
     INSERT zcct_healthdepem FROM TABLE @itab_employee.
     out->write( |{ sy-dbcnt } employee entries inserted successfully!| ).
   ENDMETHOD.
-
 ENDCLASS.

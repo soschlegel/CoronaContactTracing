@@ -22,15 +22,13 @@ annotate view ZCCT_C_TESTCASE with
       identification: [ { position: 20, label: 'Mitarbeiter' } ] }
   @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_HealthDepEm', element: 'emplyee_id'  } }]
   @Search.defaultSearchElement: true
-  //  employeename;
   employeeid;
 
   @UI: {
       lineItem:       [ { position: 30, importance: #HIGH, label: 'Testart'} ],
       identification: [ { position: 30, label: 'Testart' } ] }
-  @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_TESTTYPE', element: 'testtypename'  } }]
+  @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_TESTTYPE', element: 'testtypeid'  } }]
   @Search.defaultSearchElement: true
-  //  testtypename;
   testtype;
 
   @UI: {
@@ -49,10 +47,11 @@ annotate view ZCCT_C_TESTCASE with
       lineItem:       [ { position: 100, importance: #HIGH, label: 'Testergebnis', criticality: 'testresultcolor' },
                         { label: '🟢 Negativ', type: #FOR_ACTION, dataAction: 'setNegative' },
                         { label: '🔴 Positiv', type: #FOR_ACTION, dataAction: 'setPositive' } ],
-      identification: [ { position: 35, label: 'Testergebnis', criticality: 'testresultcolor' } ] }
-  @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_TESTRESULT', element: 'testresultname'  } }]
+      identification: [ { position: 35, label: 'Testergebnis', criticality: 'testresultcolor' },
+                        { label: '🟢 Negativ', type: #FOR_ACTION, dataAction: 'setNegative' },
+                        { label: '🔴 Positiv', type: #FOR_ACTION, dataAction: 'setPositive' } ] }
+  @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_TESTRESULT', element: 'testresultid'  } }]
   @Search.defaultSearchElement: true
-  //  testresultname;
   testresult;
 
   @UI: {

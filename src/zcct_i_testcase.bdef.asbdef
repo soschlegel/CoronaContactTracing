@@ -6,9 +6,10 @@ etag master last_changed_at
 lock master
 
 {
-  field ( readonly ) testresultname , testresultdate, testresulttime;
-  field ( mandatory ) personid, employeename, testtypename, testdate, testtime;
+  field ( readonly ) testresult, testresultdate, testresulttime;
+  field ( mandatory ) employeeid, testtype, testdate, testtime;
   field ( numbering : managed ) testid;
+  field ( readonly : update ) personid;
 
   create;
   update;
@@ -19,15 +20,14 @@ lock master
 
   validation validateTesttype on save { field testtype; }
 
-  mapping for zcct_testcase {
-  testid = testid;
-  personid = personid;
-  employeeid = employeeid;
-  testresult = testresult;
-  testdate = testdate;
-  testtime = testtime;
-  testtype = testtype;
+  mapping for zcct_testcase
+  {
+    testid = testid;
+    personid = personid;
+    employeeid = employeeid;
+    testresult = testresult;
+    testdate = testdate;
+    testtime = testtime;
+    testtype = testtype;
   }
-
-
-  }
+}
