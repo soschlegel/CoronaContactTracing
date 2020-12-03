@@ -1,4 +1,10 @@
-implementation unmanaged ;
+implementation managed;
+
 define behavior for ZCCT_I_TEST_PERSON
-  {
-  }
+persistent table zcct_testperson
+lock master
+{
+  create;
+  update;
+  delete;
+}

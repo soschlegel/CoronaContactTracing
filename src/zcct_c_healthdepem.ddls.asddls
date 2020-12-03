@@ -19,7 +19,7 @@ define root view entity ZCCT_C_HealthDepEm
 
       @UI: {
           lineItem:       [ { position: 20, importance: #HIGH } ],
-          identification: [ { position: 20, label: 'firstname' } ] }
+          identification: [ { position: 20, label: 'Firstname' } ] }
       @Search.defaultSearchElement: true
       firstname       as Firstname,
 

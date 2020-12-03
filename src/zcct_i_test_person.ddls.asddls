@@ -15,7 +15,8 @@ define root view entity ZCCT_I_TEST_PERSON
       gender,
       county,
       healthdepartment,
-      status
+      status,
+      last_changed_at
 
       /* Public associations */
       //Add HD and County

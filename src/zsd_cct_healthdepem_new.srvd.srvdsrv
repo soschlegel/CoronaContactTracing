@@ -1,0 +1,4 @@
+@EndUserText.label: 'New Service-Definition for HealthDepEmp'
+define service ZSD_CCT_HEALTHDEPEM_NEW {
+  expose ZCCT_C_HealthDepEm as HealthDepEmployee;
+}

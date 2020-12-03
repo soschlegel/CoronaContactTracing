@@ -5,6 +5,7 @@
    <DDLS>
     <DDLNAME>ZCCT_I_HEALTHDEPEM</DDLNAME>
     <DDLANGUAGE>E</DDLANGUAGE>
+    <DDTEXT>CDS-View for HealthDepartmentEmployee</DDTEXT>
     <SOURCE_TYPE>W</SOURCE_TYPE>
    </DDLS>
   </asx:values>
