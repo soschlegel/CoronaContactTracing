@@ -2,24 +2,48 @@
 @Search.searchable: true
 annotate view ZCCT_C_TESTCASE with
 {
-  @UI.facet: [ { id:              'testcase',
+  @UI.facet: [   { id:              'testcaseheader',
+                   purpose:         #HEADER,
+                   type:            #FIELDGROUP_REFERENCE,
+                   targetQualifier: 'header',
+                   position:        10 },
+                { id:              'testcase',
                    purpose:         #STANDARD,
+                   type:            #COLLECTION,
+                   label:           'Testdetails',
+                   position:        10 },
+                 { id:              'testcasedetail',
                    type:            #IDENTIFICATION_REFERENCE,
-                   label:           'Testcase - Details',
-                   position:        10 } ]
+                   label:           'Allgemeine Informationen',
+                   parentId:        'testcase',
+                   position:        10 },
+                 { id:              'testcaseresult',
+                   type:            #FIELDGROUP_REFERENCE,
+                   label:           'Ergebnis',
+                   targetQualifier: 'testresults',
+                   parentId:        'testcase',
+                   position:        20 },
+                 { id:              'lastChanges',
+                   type:            #FIELDGROUP_REFERENCE,
+                   label:           'Änderungen',
+                   targetQualifier: 'lastChanges',
+                   parentId:        'testcase',
+                   position:        30 } ]
   @UI.hidden: true
   testid;
 
   @UI: {
       lineItem:       [ { position: 10, importance: #HIGH, label: 'Testperson' } ],
-      identification: [ { position: 10, label: 'Testperson' } ]}
+      identification: [ { position: 10, label: 'Testperson' },
+                        { label: '🟢 Negativ', type: #FOR_ACTION, dataAction: 'setNegative' },
+                        { label: '🔴 Positiv', type: #FOR_ACTION, dataAction: 'setPositive' } ] }
   @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_TEST_PERSON', element: 'test_person_id'  } }]
   @Search.defaultSearchElement: true
   personid;
 
   @UI: {
       lineItem:       [ { position: 20, importance: #HIGH , label: 'Mitarbeiter'} ],
-      identification: [ { position: 20, label: 'Mitarbeiter' } ] }
+      identification: [ { position: 20, label: 'Zuständiger Mitarbeiter' } ] }
   @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_HealthDepEm', element: 'emplyee_id'  } }]
   @Search.defaultSearchElement: true
   employeeid;
@@ -46,33 +70,33 @@ annotate view ZCCT_C_TESTCASE with
   @UI: {
       lineItem:       [ { position: 100, importance: #HIGH, label: 'Testergebnis', criticality: 'testresultcolor' },
                         { label: '🟢 Negativ', type: #FOR_ACTION, dataAction: 'setNegative' },
-                        { label: '🔴 Positiv', type: #FOR_ACTION, dataAction: 'setPositive' } ],
-      identification: [ { position: 35, label: 'Testergebnis', criticality: 'testresultcolor' },
-                        { label: '🟢 Negativ', type: #FOR_ACTION, dataAction: 'setNegative' },
                         { label: '🔴 Positiv', type: #FOR_ACTION, dataAction: 'setPositive' } ] }
   @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_TESTRESULT', element: 'testresultid'  } }]
   @Search.defaultSearchElement: true
+  @UI.fieldGroup: [{ qualifier: 'testresults', position: 10, label: 'Testergebnis', criticality: 'testresultcolor' },
+                   { qualifier: 'header', position: 10, label: 'Testergebnis', criticality: 'testresultcolor' }]
   testresult;
 
   @UI: {
-      lineItem:       [ { position: 70, importance: #HIGH, label: 'Testergebnisdatum' } ],
-      identification: [ { position: 70, label: 'Testergebnisdatum' } ] }
+      lineItem:       [ { position: 70, importance: #HIGH, label: 'Testergebnisdatum' } ] }
   @Search.defaultSearchElement: true
+  @UI.fieldGroup: [{ qualifier: 'testresults', position: 20, label: 'Testergebnisdatum' }]
   testresultdate;
 
   @UI: {
-      lineItem:       [ { position: 80, importance: #HIGH, label: 'Testergebniszeit' } ],
-      identification: [ { position: 80, label: 'Testergebniszeit' } ] }
+      lineItem:       [ { position: 80, importance: #HIGH, label: 'Testergebniszeit' } ] }
   @Search.defaultSearchElement: true
+  @UI.fieldGroup: [{ qualifier: 'testresults', position: 30, label: 'Testergebniszeit' }]
   testresulttime;
 
-  @UI.hidden: true
+
+  @UI.fieldGroup: [{qualifier: 'lastChanges', position: 10, label: 'Erstellt von'  }]
   created_by;
-  @UI.hidden: true
+  @UI.fieldGroup: [{qualifier: 'lastChanges', position: 20, label: 'Erstellt am'  }]
   created_at;
-  @UI.hidden: true
+  @UI.fieldGroup: [{qualifier: 'lastChanges', position: 30, label: 'Zuletzt bearbeitet von'  }]
   last_changed_by;
-  @UI.hidden: true
+  @UI.fieldGroup: [{qualifier: 'lastChanges', position: 40, label: 'Zuletzt bearbeitet am'  }]
   last_changed_at;
   @UI.hidden: true
   local_last_changed_at;

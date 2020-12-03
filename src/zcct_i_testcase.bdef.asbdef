@@ -6,7 +6,7 @@ etag master last_changed_at
 lock master
 
 {
-  field ( readonly ) testresult, testresultdate, testresulttime;
+  field ( readonly ) testresult, testresultdate, testresulttime, last_changed_at, last_changed_by, created_at, created_by;
   field ( mandatory ) employeeid, testtype, testdate, testtime;
   field ( numbering : managed ) testid;
   field ( readonly : update ) personid;
@@ -29,5 +29,9 @@ lock master
     testdate = testdate;
     testtime = testtime;
     testtype = testtype;
+    created_by = created_by;
+    created_at = created_at;
+    last_changed_by = last_changed_by;
+    last_changed_at = last_changed_at;
   }
 }
