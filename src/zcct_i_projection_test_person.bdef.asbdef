@@ -1,4 +1,0 @@
-implementation unmanaged ;
-define behavior for ZCCT_I_PROJECTION_TEST_PERSON
-  {
-  }
