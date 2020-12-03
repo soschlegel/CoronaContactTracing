@@ -16,10 +16,13 @@
 - [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Zeit von Testergebnis -> time (Default=UNDEF)
 
 ### b) [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Action: 
+- [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Testergebnis eintragen + Datum/Zeit
+- [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Im positiven Fall: Anlegen eines Testcases
+- [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Eingabe validieren
 
-- [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Testergebnis eintragen + Datum/Zeit
-
-- [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) neuen Test anlegen
+### c) [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Verschönern:
+- [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Icons hinzufügen
+- [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Allgemeine "Verschönerung"
 
 AGENDA: 
 
