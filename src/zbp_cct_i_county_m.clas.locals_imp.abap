@@ -6,8 +6,8 @@ CLASS lhc_ZCCT_I_COUNTY_M DEFINITION INHERITING FROM cl_abap_behavior_handler.
         msgno TYPE symsgno VALUE '001',
       END OF county_unknown.
 
-      methods CalculateNewKeys FOR DETERMINE ON MODIFY
-        importing keys FOR zcct_i_county_m~CalculateNewKeys.
+    METHODS CalculateNewKeys FOR DETERMINE ON MODIFY
+      IMPORTING keys FOR zcct_i_county_m~CalculateNewKeys.
 
     METHODS validateFederalState FOR VALIDATE ON SAVE
       IMPORTING keys FOR zcct_i_county_m~validateFederalState.
@@ -47,18 +47,18 @@ CLASS lhc_ZCCT_I_COUNTY_M IMPLEMENTATION.
 
     DATA lt_fedstate TYPE SORTED TABLE OF zcct_fedstate WITH UNIQUE KEY id.
 
-    " Optimization of DB select: extract distinct non-initial customer IDs
+
     lt_fedstate = CORRESPONDING #( lt_county DISCARDING DUPLICATES MAPPING id = federal_state_id EXCEPT * ).
     DELETE lt_fedstate WHERE id IS INITIAL.
     CHECK lt_fedstate IS NOT INITIAL.
 
-    " Check if customer ID exist
+
     SELECT FROM zcct_fedstate FIELDS id
       FOR ALL ENTRIES IN @lt_fedstate
       WHERE id = @lt_fedstate-id
       INTO TABLE @DATA(lt_fedstate_db).
 
-    " Raise msg for non existing customer id
+
     LOOP AT lt_county INTO DATA(ls_county).
       IF ls_county-federal_state_id IS NOT INITIAL AND NOT line_exists( lt_fedstate_db[ id = ls_county-federal_state_id ] ).
         APPEND VALUE #(  %key-countyuuid = ls_county-county_id ) TO failed-zcct_i_county_m.

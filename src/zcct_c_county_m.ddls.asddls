@@ -51,6 +51,13 @@ define root view entity ZCCT_C_COUNTY_M
           selectionField: [ { position: 30 } ] }
       @Search.defaultSearchElement: true
       countyname,
+      
+      @EndUserText.label: 'Population'
+      @UI: {
+          lineItem:       [ { position: 40,label:'Population', importance: #HIGH } ],
+          identification: [ { position: 40, label: 'Population' } ]
+         }
+      population,
         
       @UI: {
       identification: [ { position: 40, label: 'County Image Url' } ] }
