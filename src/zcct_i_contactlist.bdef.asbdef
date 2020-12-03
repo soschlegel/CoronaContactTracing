@@ -3,8 +3,6 @@ managed implementation in class zcl_cct_i_contactlist unique;
 define behavior for ZCCT_I_CONTACTLIST alias Contactlist
 persistent table zcct_contactlist
 lock master
-//authorization master ( instance )
-//etag master <field_name>
 {
 
   field ( readonly, numbering : managed ) contactlist_id;
@@ -14,7 +12,5 @@ lock master
   delete;
 
 
-
-  //  action (features : instance) notifyContact result [1] $self;
   action notifyContact result [1] $self;
 }

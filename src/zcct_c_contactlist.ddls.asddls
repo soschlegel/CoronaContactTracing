@@ -25,10 +25,10 @@ define root view entity ZCCT_C_CONTACTLIST
       @UI: {
             lineItem:       [ { position: 10, 
                                 importance: #HIGH,
-                                label: 'Casefile ID', 
+                                label: 'Notify contact', 
                                 type: #FOR_ACTION, dataAction: 'notifyContact'  } ],
             identification: [ { position: 10, 
-                                label: 'Casefile ID',
+                                label: 'Notify contact',
                                 type: #FOR_ACTION, dataAction: 'notifyContact'  } ] }
       @Search.defaultSearchElement: true
       @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_COUNTY_M', element: 'CasefileID'  } }]
@@ -79,7 +79,7 @@ define root view entity ZCCT_C_CONTACTLIST
           identification: [ { position: 51, label: 'Telephonenumber3' } ] }
       contact_telephone_number_3  as Telephonenumber3,
       @UI: {
-          lineItem:       [ { position: 52, importance: #MEDIUM } ],
+          lineItem:       [ { position: 52, importance: #MEDIUM , label: 'isNotified' } ],
           identification: [ { position: 52, label: 'isNotified' } ] }
       contact_has_been_notified   as isNotified
 }
