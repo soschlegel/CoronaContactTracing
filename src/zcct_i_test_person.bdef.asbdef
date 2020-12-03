@@ -1,10 +1,20 @@
-implementation managed;
+managed implementation in class ZCL_CCT_I_TEST_PERSON unique;
 
-define behavior for ZCCT_I_TEST_PERSON
+define behavior for ZCCT_I_TEST_PERSON //alias <alias_name>
 persistent table zcct_testperson
 lock master
+//authorization master ( instance )
+//etag master <field_name>
 {
+
+  // semantic key is calculated in a determination
+  field ( readonly, numbering : managed ) test_person_id;
+
+  // mandatory fields that are required to create a test_person
+  field ( mandatory ) firstname, lastname, age, gender, county, healthdepartment;
+
   create;
   update;
   delete;
+
 }

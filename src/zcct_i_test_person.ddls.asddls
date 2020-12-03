@@ -4,8 +4,8 @@ define root view entity ZCCT_I_TEST_PERSON
 
   /* Associations */
   //Change to refs to HealthDepartment and County
-  //association [0..1] to /DMO/I_Agency   as _Agency   on $projection.agency_id = _Agency.AgencyID
-  //association [0..1] to /DMO/I_Customer as _Customer on $projection.customer_id = _Customer.CustomerID
+  association [0..1] to ZCCT_I_HEALTHDEP as _HealthDepartment on $projection.healthdepartment = _HealthDepartment.Name
+  association [0..1] to ZCCT_I_COUNTY_M  as _County           on $projection.county = _County.countyname
 
 {
   key test_person_id,
@@ -15,9 +15,19 @@ define root view entity ZCCT_I_TEST_PERSON
       gender,
       county,
       healthdepartment,
-      status,
-      last_changed_at
+      //status,
+
+      /*-- Admin data --*/
+      @Semantics.user.createdBy: true
+      created_by,
+      @Semantics.systemDateTime.createdAt: true
+      created_at,
+      @Semantics.user.lastChangedBy: true
+      last_changed_by,
+      @Semantics.systemDateTime.lastChangedAt: true
+      last_changed_at,
 
       /* Public associations */
-      //Add HD and County
+      _County,
+      _HealthDepartment
 }
