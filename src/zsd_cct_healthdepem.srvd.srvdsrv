@@ -1,4 +1,0 @@
-@EndUserText.label: 'service definition for healthdepemployee'
-define service ZSD_CCT_HealthDepEm {
-  expose ZCCT_C_HealthDepEm as employeeProcessor;
-}
