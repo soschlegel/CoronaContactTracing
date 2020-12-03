@@ -18,7 +18,8 @@ lock master
   update;
   delete;
 
-
+  validation validateAddress on save { field Address; }
+  validation validateName on save { field Name; }
   validation validateCounty on save { field CountyId; }
   validation validateLeadingEmployee on save { field LeadingEmployeeId; }
 

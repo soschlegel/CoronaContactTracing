@@ -32,6 +32,18 @@
      <MSGNR>004</MSGNR>
      <TEXT>County &amp;1 already assigned</TEXT>
     </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCCT_MESSAGES</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>Please fill the mandatory field: &quot;Name&quot;</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCCT_MESSAGES</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>Please fill the mandatory field: &quot;Address&quot;</TEXT>
+    </T100>
    </T100>
   </asx:values>
  </asx:abap>

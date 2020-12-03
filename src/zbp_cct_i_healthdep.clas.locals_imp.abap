@@ -11,6 +11,11 @@ CLASS lhc_Healthdep DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
     METHODS validateLeadingEmployee FOR VALIDATE ON SAVE
       IMPORTING keys FOR Healthdep~validateLeadingEmployee.
+    METHODS validateAddress FOR VALIDATE ON SAVE
+      IMPORTING keys FOR Healthdep~validateAddress.
+
+    METHODS validateName FOR VALIDATE ON SAVE
+      IMPORTING keys FOR Healthdep~validateName.
 
 ENDCLASS.
 
@@ -116,6 +121,53 @@ CLASS lhc_Healthdep IMPLEMENTATION.
                                                   severity = if_abap_behv_message=>severity-error )
                          %element-LeadingEmployeeId = if_abap_behv=>mk-on ) TO reported-healthdep.
       ENDIF.
+
+    ENDLOOP.
+  ENDMETHOD.
+
+  METHOD validateAddress.
+  READ ENTITY zcct_i_healthdep\\healthdep FROM VALUE #(
+    FOR <root_key> IN keys ( %key-healthdepid     = <root_key>-healthdepid
+                                 %control = VALUE #( LeadingEmployeeId = if_abap_behv=>mk-on ) ) )
+        RESULT DATA(lt_healthdep).
+
+    DATA lt_address TYPE SORTED TABLE OF zcct_c_healthdep WITH UNIQUE KEY address.
+
+    lt_address = CORRESPONDING #( lt_healthdep DISCARDING DUPLICATES MAPPING address = Address EXCEPT * ).
+    DELETE lt_address WHERE Address IS INITIAL.
+    CHECK lt_address IS INITIAL.
+    LOOP AT lt_healthdep INTO DATA(ls_healthdep).
+        APPEND VALUE #(  HealthdepId = ls_healthdep-HealthdepId ) TO failed-healthdep.
+        APPEND VALUE #(  HealthdepId = ls_healthdep-HealthdepId
+                         %msg      = new_message(   id       = zif_cct_messages=>msgid
+                                                  number   = zif_cct_messages=>msgno-address_is_empty
+                                                  v1       = ls_healthdep-LeadingEmployeeId
+                                                  severity = if_abap_behv_message=>severity-error )
+                         %element-Address = if_abap_behv=>mk-on ) TO reported-healthdep.
+
+    ENDLOOP.
+
+  ENDMETHOD.
+
+  METHOD validateName.
+  READ ENTITY zcct_i_healthdep\\healthdep FROM VALUE #(
+    FOR <root_key> IN keys ( %key-healthdepid     = <root_key>-healthdepid
+                                 %control = VALUE #( LeadingEmployeeId = if_abap_behv=>mk-on ) ) )
+        RESULT DATA(lt_healthdep).
+
+    DATA lt_name TYPE SORTED TABLE OF zcct_c_healthdep WITH UNIQUE KEY name.
+
+    lt_name = CORRESPONDING #( lt_healthdep DISCARDING DUPLICATES MAPPING name = Name EXCEPT * ).
+    DELETE lt_name WHERE Name IS INITIAL.
+    CHECK lt_name IS INITIAL.
+    LOOP AT lt_healthdep INTO DATA(ls_healthdep).
+        APPEND VALUE #(  HealthdepId = ls_healthdep-HealthdepId ) TO failed-healthdep.
+        APPEND VALUE #(  HealthdepId = ls_healthdep-HealthdepId
+                         %msg      = new_message(   id       = zif_cct_messages=>msgid
+                                                  number   = zif_cct_messages=>msgno-name_is_empty
+                                                  v1       = ls_healthdep-LeadingEmployeeId
+                                                  severity = if_abap_behv_message=>severity-error )
+                         %element-Name = if_abap_behv=>mk-on ) TO reported-healthdep.
 
     ENDLOOP.
   ENDMETHOD.
