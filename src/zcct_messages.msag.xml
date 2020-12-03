@@ -20,6 +20,18 @@
      <MSGNR>002</MSGNR>
      <TEXT>Testcase &amp;1 not found</TEXT>
     </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCCT_MESSAGES</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>County &amp;1 not found</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCCT_MESSAGES</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>County &amp;1 already assigned</TEXT>
+    </T100>
    </T100>
   </asx:values>
  </asx:abap>

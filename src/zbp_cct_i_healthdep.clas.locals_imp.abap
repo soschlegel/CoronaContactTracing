@@ -65,8 +65,8 @@ CLASS lhc_Healthdep IMPLEMENTATION.
       IF ls_healthdep-CountyId IS NOT INITIAL AND NOT line_exists( lt_county_db[ countyuuid = ls_healthdep-CountyId ] ).
         APPEND VALUE #(  HealthdepId = ls_healthdep-HealthdepId ) TO failed-healthdep.
         APPEND VALUE #(  HealthdepId = ls_healthdep-HealthdepId
-                         %msg      = new_message(  id       = '1'
-                                                  number   = '001'
+                         %msg      = new_message(  id       = zif_cct_messages=>msgid
+                                                  number   = zif_cct_messages=>msgno-county_not_found
                                                   v1       = ls_healthdep-CountyId
                                                   severity = if_abap_behv_message=>severity-error )
                          %element-CountyId = if_abap_behv=>mk-on ) TO reported-healthdep.
@@ -75,8 +75,8 @@ CLASS lhc_Healthdep IMPLEMENTATION.
           IF ls_healthdep-CountyId = ls2_healthdep-CountyId AND  NOT ( ls_healthdep-HealthdepId = ls2_healthdep-HealthdepId ).
             APPEND VALUE #(  HealthdepId = ls_healthdep-HealthdepId ) TO failed-healthdep.
             APPEND VALUE #(  HealthdepId = ls_healthdep-HealthdepId
-                             %msg      = new_message(  id       = '2'
-                                                      number   = '002'
+                             %msg      = new_message(  id       = zif_cct_messages=>msgid
+                                                  number   = zif_cct_messages=>msgno-county_already_assigned
                                                       v1       = ls_healthdep-CountyId
                                                       severity = if_abap_behv_message=>severity-error )
                              %element-CountyId = if_abap_behv=>mk-on ) TO reported-healthdep.
@@ -110,8 +110,8 @@ CLASS lhc_Healthdep IMPLEMENTATION.
       IF ls_healthdep-LeadingEmployeeId IS NOT INITIAL AND NOT line_exists( lt_healthdepem_db[ employee_id = ls_healthdep-LeadingEmployeeId ] ).
         APPEND VALUE #(  HealthdepId = ls_healthdep-HealthdepId ) TO failed-healthdep.
         APPEND VALUE #(  HealthdepId = ls_healthdep-HealthdepId
-                         %msg      = new_message(  id       = '1'
-                                                  number   = '001'
+                         %msg      = new_message(   id       = zif_cct_messages=>msgid
+                                                  number   = zif_cct_messages=>msgno-employee_not_found
                                                   v1       = ls_healthdep-LeadingEmployeeId
                                                   severity = if_abap_behv_message=>severity-error )
                          %element-LeadingEmployeeId = if_abap_behv=>mk-on ) TO reported-healthdep.

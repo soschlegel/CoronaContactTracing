@@ -5,6 +5,8 @@ INTERFACE zif_cct_messages
              BEGIN OF msgno,
                employee_not_found TYPE symsgno VALUE '001',
                testcase_not_found TYPE symsgno VALUE '002',
+               county_not_found TYPE symsgno VALUE '003',
+               county_already_assigned TYPE symsgno VALUE '004',
              END OF msgno.
 
 ENDINTERFACE.
