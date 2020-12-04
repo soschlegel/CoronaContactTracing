@@ -7,7 +7,9 @@ lock master
 {
   field ( readonly, numbering : managed ) casefile_id;
 
-  field ( mandatory : create ) testcase_id, healthdepem_id;
+  field ( readonly: update, mandatory : create ) testcase_id;
+
+  field ( mandatory : create) healthdepem_id;
 
   field ( mandatory ) treatmentstart, casestatus;
 

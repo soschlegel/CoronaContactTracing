@@ -9,6 +9,7 @@ INTERFACE zif_cct_messages
                county_already_assigned TYPE symsgno VALUE '004',
                name_is_empty TYPE symsgno VALUE '005',
                address_is_empty TYPE symsgno VALUE '006',
+               casestatus_not_found TYPE symsgno VALUE '007',
              END OF msgno.
 
 ENDINTERFACE.

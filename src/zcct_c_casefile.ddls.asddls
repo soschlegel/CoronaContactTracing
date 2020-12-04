@@ -8,11 +8,33 @@
 define root view entity ZCCT_C_CASEFILE
   as projection on ZCCT_I_CASEFILE
 {
-       @UI.facet: [ { id:              'CaseFile',
+       @UI.facet: [   {
+                      id:               'CaseFileHeader',
+                      purpose:          #HEADER,
+                      type:             #FIELDGROUP_REFERENCE,
+                      position:         10},
+                      {
+                      id:              'CaseFile',
                       purpose:         #STANDARD,
-                      type:            #IDENTIFICATION_REFERENCE,
+                      type:            #COLLECTION,
                       label:           'CaseFile',
-                      position:        10 } ]
+                      position:        10 
+                      },
+                      {
+                      id:               'CaseFilePersons',
+                      type:             #IDENTIFICATION_REFERENCE,
+                      label:            'Information',
+                      parentId:         'CaseFile',
+                      position:         10
+                      },
+                      {
+                      id:              'CaseDetails',
+                      type:            #FIELDGROUP_REFERENCE,
+                      label:           'Details',
+                      targetQualifier: 'casedetails',
+                      parentId:         'CaseFile',
+                      position:        20
+                      } ]
        @UI.hidden: true
   key  casefile_id              as CaseFileID,
 
@@ -35,23 +57,27 @@ define root view entity ZCCT_C_CASEFILE
        _HealthDepEm.lastname    as HealthDepEmName,
 
        @UI: {
-           lineItem:       [ { position: 40, importance: #HIGH } ],
-           identification: [ { position: 40, label: 'Start' } ] }
+           lineItem:       [ { position: 40, importance: #HIGH } ] }
+//           identification: [ { position: 40, label: 'Start' } ] }
        @Search.defaultSearchElement: true
+       @UI.fieldGroup: [{ qualifier: 'casedetails', label: 'Start' }]
        treatmentstart           as TreatmentStart,
 
        @UI: {
-           lineItem:       [ { position: 50, importance: #HIGH } ],
-           identification: [ { position: 50, label: 'End' } ] }
+           lineItem:       [ { position: 50, importance: #HIGH } ] }
+//           identification: [ { position: 50, label: 'End' } ] }
        @Search.defaultSearchElement: true
+       @UI.fieldGroup: [{ qualifier: 'casedetails', label: 'Ende' }]
        treatmentend             as TreatmentEnd,
 
        @UI: {
+           selectionField: [{ position: 60 }],
            lineItem:       [ { position: 60, importance: #HIGH },
-                             { type: #FOR_ACTION, dataAction: 'resolveCase', label: 'Resolve Case' } ],
-           identification: [ { position: 60, label: 'Status O(pen)A(ctive)C(ancel)R(esolved)' },
                              { type: #FOR_ACTION, dataAction: 'resolveCase', label: 'Resolve Case' } ] }
+//           identification: [ { position: 60, label: 'Status O(pen)A(ctive)C(ancel)R(esolved)' },
+//                             { type: #FOR_ACTION, dataAction: 'resolveCase', label: 'Resolve Case' } ] }
        @Search.defaultSearchElement: true
+       @UI.fieldGroup: [{ qualifier: 'casedetails', label: 'Status O(pen)A(ctive)C(ancel)R(esolved)' }]
        casestatus               as CaseStatus,
 
        @UI.hidden: true

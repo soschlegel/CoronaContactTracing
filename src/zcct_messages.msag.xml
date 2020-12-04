@@ -18,7 +18,7 @@
      <SPRSL>E</SPRSL>
      <ARBGB>ZCCT_MESSAGES</ARBGB>
      <MSGNR>002</MSGNR>
-     <TEXT>Testcase &amp;1 not found</TEXT>
+     <TEXT>Testcase &amp;1 not found.</TEXT>
     </T100>
     <T100>
      <SPRSL>E</SPRSL>
@@ -43,6 +43,12 @@
      <ARBGB>ZCCT_MESSAGES</ARBGB>
      <MSGNR>006</MSGNR>
      <TEXT>Please fill the mandatory field: &quot;Address&quot;</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCCT_MESSAGES</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>No Case Status &amp;1 found.</TEXT>
     </T100>
    </T100>
   </asx:values>
