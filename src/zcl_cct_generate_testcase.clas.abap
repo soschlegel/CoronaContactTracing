@@ -31,15 +31,15 @@ CLASS ZCL_CCT_GENERATE_TESTCASE IMPLEMENTATION.
 
 *   fill internal testresult table (itab)
     itab_result = VALUE #(
-        ( testresultid = 'A' testresultname = 'Ausstehend' )
+        ( testresultid = '' testresultname = 'Ausstehend' )
         ( testresultid = 'P' testresultname = 'Positiv' )
         ( testresultid = 'N' testresultname = 'Negativ' )
         ).
 
     itab_testcase = VALUE #(
-        ( testid = '1' personid = '2' employeeid = '3' testtype = '1' testdate = '20201125' testtime = '162500' testresultdate = '20201126' testresulttime = '170000' testresult = 'A')
-        ( testid = '2' personid = '3' employeeid = '3' testtype = '2' testdate = '20201125' testtime = '162500' testresultdate = '20201126' testresulttime = '170000' testresult = 'A')
-        ( testid = '3' personid = '5' employeeid = '3' testtype = '3' testdate = '20201125' testtime = '162500' testresultdate = '20201126' testresulttime = '170000' testresult = 'A')
+        ( testid = '1' personid = '2' employeeid = '3' testtype = '1' testdate = '20201125' testtime = '162500' testresultdate = '20201126' testresulttime = '170000' testresult = '')
+        ( testid = '2' personid = '3' employeeid = '3' testtype = '2' testdate = '20201125' testtime = '162500' testresultdate = '20201126' testresulttime = '170000' testresult = '')
+        ( testid = '3' personid = '5' employeeid = '3' testtype = '3' testdate = '20201125' testtime = '162500' testresultdate = '20201126' testresulttime = '170000' testresult = '')
         ).
 
     itab_testperson = VALUE #(

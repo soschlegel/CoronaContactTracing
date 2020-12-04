@@ -28,9 +28,9 @@ CLASS lhc_testcase IMPLEMENTATION.
 
     result = VALUE #( FOR ls_testcase IN lt_testcase_result
                        ( %key                           = ls_testcase-%key
-                         %features-%action-setNegative = COND #( WHEN ls_testcase-testresult = 'A'
+                         %features-%action-setNegative = COND #( WHEN ls_testcase-testresult = ''
                                                                     THEN if_abap_behv=>fc-o-enabled ELSE if_abap_behv=>fc-o-disabled   )
-                         %features-%action-setPositive = COND #( WHEN ls_testcase-testresult = 'A'
+                         %features-%action-setPositive = COND #( WHEN ls_testcase-testresult = ''
                                                                     THEN if_abap_behv=>fc-o-enabled ELSE if_abap_behv=>fc-o-disabled   )
                       ) ).
   ENDMETHOD.
