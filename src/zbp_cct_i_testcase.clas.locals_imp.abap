@@ -114,36 +114,35 @@ CLASS lhc_testcase IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD validateTesttype.
-*    READ ENTITIES OF zcct_i_testcase IN LOCAL MODE ENTITY testcase
-*    FROM VALUE #( FOR <root_key> IN keys ( testid   = <root_key>-testid
-*                                    %control     = VALUE #( testtype = if_abap_behv=>mk-on ) ) )
-*      RESULT DATA(lt_testcase).
-*
-*    DATA lt_testtype TYPE SORTED TABLE OF zcct_testtype WITH UNIQUE KEY testtypeid.
-*
-*    " Optimization of DB select: extract distinct non-initial customer IDs
-*    lt_testtype = CORRESPONDING #( lt_testcase DISCARDING DUPLICATES MAPPING testtypeid = testtype EXCEPT * ).
-*    DELETE lt_testtype WHERE testtypeid IS INITIAL.
-*    CHECK lt_testtype IS NOT INITIAL.
-*
-*    " Check if customer ID exist
-*    SELECT FROM zcct_testtype FIELDS testtypeid
-*      FOR ALL ENTRIES IN @lt_testtype
-*      WHERE testtypeid = @lt_testtype-testtypeid
-*      INTO TABLE @DATA(lt_testtype_db).
-*
-*    " Raise msg for non existing customer id
-*    LOOP AT lt_testcase INTO DATA(ls_testcase).
-*      IF ls_testcase-testtype IS NOT INITIAL AND NOT line_exists( lt_testtype_db[ testtypeid = ls_testcase-testtype ] ).
-*        APPEND VALUE #(  testid = ls_testcase-testid ) TO failed-testcase.
-*        APPEND VALUE #(  testid = ls_testcase-testid
-*                         %msg      = new_message( id       = zif_cct_testcase_messages=>msgid
-*                                                  number   = zif_cct_testcase_messages=>msgno-testtype_not_found
-*                                                  v1       = ls_testcase-testtype
-*                                                  severity = if_abap_behv_message=>severity-error )
-*                         %element-testtype = if_abap_behv=>mk-on ) TO reported-testcase.
-*      ENDIF.
-*    ENDLOOP.
-  ENDMETHOD.
+    READ ENTITY zcct_i_testcase\\testcase FROM VALUE #(
+        FOR <root_key> IN keys ( %key-testid     = <root_key>-testid
+                                 %control = VALUE #( testtype = if_abap_behv=>mk-on ) ) )
+        RESULT DATA(lt_testcase).
 
+    DATA lt_testtype TYPE SORTED TABLE OF zcct_testtype WITH UNIQUE KEY testtypeid.
+
+    " Optimization of DB select: extract distinct non-initial customer IDs
+    lt_testtype = CORRESPONDING #( lt_testcase DISCARDING DUPLICATES MAPPING testtypeid = testtype EXCEPT * ).
+    DELETE lt_testtype WHERE testtypeid IS INITIAL.
+    CHECK lt_testtype IS NOT INITIAL.
+
+    " Check if customer ID exist
+    SELECT FROM zcct_testtype FIELDS testtypeid
+      FOR ALL ENTRIES IN @lt_testtype
+      WHERE testtypeid = @lt_testtype-testtypeid
+      INTO TABLE @DATA(lt_testtype_db).
+
+    " Raise msg for non existing customer id
+    LOOP AT lt_testcase INTO DATA(ls_testcase).
+      IF ls_testcase-testtype IS NOT INITIAL AND NOT line_exists( lt_testtype_db[ testtypeid = ls_testcase-testtype ] ).
+        APPEND VALUE #(  testid = ls_testcase-testid ) TO failed-testcase.
+        APPEND VALUE #(  testid = ls_testcase-testid
+                         %msg      = new_message( id       = zif_cct_testcase_messages=>testtype_unknown-msgid
+                                                  number   = zif_cct_testcase_messages=>testtype_unknown-msgno
+                                                  v1       = ls_testcase-testtype
+                                                  severity = if_abap_behv_message=>severity-error )
+                         %element-testtype = if_abap_behv=>mk-on ) TO reported-testcase.
+      ENDIF.
+    ENDLOOP.
+  ENDMETHOD.
 ENDCLASS.
