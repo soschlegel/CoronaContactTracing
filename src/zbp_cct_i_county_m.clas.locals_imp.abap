@@ -4,13 +4,19 @@ CLASS lhc_ZCCT_I_COUNTY_M DEFINITION INHERITING FROM cl_abap_behavior_handler.
       BEGIN OF county_unknown,
         msgid TYPE symsgid VALUE 'ZCCT_COUNTY',
         msgno TYPE symsgno VALUE '001',
-      END OF county_unknown.
+      END OF county_unknown,
+      BEGIN OF county_empty_name,
+        msgid TYPE symsgid VALUE 'ZCCT_COUNTY',
+        msgno TYPE symsgno VALUE '002',
+      END OF county_empty_name.
 
     METHODS CalculateNewKeys FOR DETERMINE ON MODIFY
       IMPORTING keys FOR zcct_i_county_m~CalculateNewKeys.
 
     METHODS validateFederalState FOR VALIDATE ON SAVE
       IMPORTING keys FOR zcct_i_county_m~validateFederalState.
+    METHODS validateCountyName FOR VALIDATE ON SAVE
+      IMPORTING keys FOR zcct_i_county_m~validateCountyName.
 
 ENDCLASS.
 
@@ -45,7 +51,7 @@ CLASS lhc_ZCCT_I_COUNTY_M IMPLEMENTATION.
                                     %control = VALUE #( federal_state_id = if_abap_behv=>mk-on ) ) )
            RESULT DATA(lt_county).
 
-    DATA lt_fedstate TYPE SORTED TABLE OF zcct_fedstate WITH UNIQUE KEY id.
+    DATA lt_fedstate TYPE SORTED TABLE OF zcct_i_fed_state WITH UNIQUE KEY id.
 
 
     lt_fedstate = CORRESPONDING #( lt_county DISCARDING DUPLICATES MAPPING id = federal_state_id EXCEPT * ).
@@ -61,8 +67,8 @@ CLASS lhc_ZCCT_I_COUNTY_M IMPLEMENTATION.
 
     LOOP AT lt_county INTO DATA(ls_county).
       IF ls_county-federal_state_id IS NOT INITIAL AND NOT line_exists( lt_fedstate_db[ id = ls_county-federal_state_id ] ).
-        APPEND VALUE #(  %key-countyuuid = ls_county-county_id ) TO failed-zcct_i_county_m.
-        APPEND VALUE #(  %key-countyuuid = ls_county-county_id
+        APPEND VALUE #(  countyuuid = ls_county-countyuuid ) TO failed-zcct_i_county_m.
+        APPEND VALUE #(  countyuuid = ls_county-countyuuid
                          %msg      = new_message( id       = county_unknown-msgid
                                                   number   = county_unknown-msgno
                                                   v1       = ls_county-federal_state_id
@@ -72,6 +78,29 @@ CLASS lhc_ZCCT_I_COUNTY_M IMPLEMENTATION.
 
     ENDLOOP.
 
+  ENDMETHOD.
+
+  METHOD validateCountyName.
+    READ ENTITY zcct_i_county_m\\zcct_i_county_m FROM VALUE #(
+    FOR <root_key> IN keys ( %key-countyuuid     = <root_key>-countyuuid
+                                 %control = VALUE #( countyuuid = if_abap_behv=>mk-on ) ) )
+        RESULT DATA(lt_county).
+
+    DATA lt_name TYPE SORTED TABLE OF zcct_c_county_m WITH UNIQUE KEY countyname.
+
+    lt_name = CORRESPONDING #( lt_county DISCARDING DUPLICATES MAPPING countyname = countyname EXCEPT * ).
+    DELETE lt_name WHERE countyname IS INITIAL.
+    CHECK lt_name IS INITIAL.
+    LOOP AT lt_county INTO DATA(ls_county).
+      APPEND VALUE #( countyuuid = ls_county-countyuuid ) TO failed-zcct_i_county_m.
+      APPEND VALUE #(  countyuuid = ls_county-countyuuid
+                       %msg      = new_message(   id       = county_empty_name-msgid
+                                                number   = county_empty_name-msgno
+                                                v1       = ls_county-countyuuid
+                                                severity = if_abap_behv_message=>severity-error )
+                       %element-countyname = if_abap_behv=>mk-on ) TO reported-zcct_i_county_m.
+
+    ENDLOOP.
   ENDMETHOD.
 
 ENDCLASS.

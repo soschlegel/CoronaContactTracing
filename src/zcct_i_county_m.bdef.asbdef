@@ -1,6 +1,6 @@
 managed implementation in class zbp_cct_i_county_m unique;
 
-define behavior for ZCCT_I_COUNTY_M //alias <alias_name>
+define behavior for ZCCT_I_COUNTY_M
 persistent table zcct_county
 lock master
 //authorization master ( instance )
@@ -14,7 +14,8 @@ etag master last_changed_at
 
   field ( readonly ) last_changed_at, last_changed_by, created_at, created_by;
 
-  field ( mandatory  ) federal_state_id, countyname;
+  field ( mandatory ) countyname;
+  field ( mandatory ) federal_state_id;
 
   create;
   update;
@@ -23,8 +24,9 @@ etag master last_changed_at
   validation validateFederalState on save
   { field federal_state_id; }
 
-    validation notNull on save
+  validation validateCountyName on save
   { field countyname; }
+
 
 
   determination CalculateNewKeys on modify

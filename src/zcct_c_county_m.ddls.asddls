@@ -41,7 +41,9 @@ define root view entity ZCCT_C_COUNTY_M
       
       @ObjectModel.text.element: ['FederalStateName']
       @Search.defaultSearchElement: true
-      federal_state_id,
+      federal_state_id, 
+      
+       @UI.hidden: true
       _FEDERAL_STATE.name as FederalStateName,
 
       @EndUserText.label: 'County Name'
