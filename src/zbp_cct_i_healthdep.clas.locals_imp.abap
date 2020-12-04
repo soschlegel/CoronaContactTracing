@@ -128,7 +128,7 @@ CLASS lhc_Healthdep IMPLEMENTATION.
   METHOD validateAddress.
   READ ENTITY zcct_i_healthdep\\healthdep FROM VALUE #(
     FOR <root_key> IN keys ( %key-healthdepid     = <root_key>-healthdepid
-                                 %control = VALUE #( LeadingEmployeeId = if_abap_behv=>mk-on ) ) )
+                                 %control = VALUE #( Address = if_abap_behv=>mk-on ) ) )
         RESULT DATA(lt_healthdep).
 
     DATA lt_address TYPE SORTED TABLE OF zcct_c_healthdep WITH UNIQUE KEY address.
@@ -141,7 +141,7 @@ CLASS lhc_Healthdep IMPLEMENTATION.
         APPEND VALUE #(  HealthdepId = ls_healthdep-HealthdepId
                          %msg      = new_message(   id       = zif_cct_messages=>msgid
                                                   number   = zif_cct_messages=>msgno-address_is_empty
-                                                  v1       = ls_healthdep-LeadingEmployeeId
+                                                  v1       = ls_healthdep-Address
                                                   severity = if_abap_behv_message=>severity-error )
                          %element-Address = if_abap_behv=>mk-on ) TO reported-healthdep.
 
@@ -152,7 +152,7 @@ CLASS lhc_Healthdep IMPLEMENTATION.
   METHOD validateName.
   READ ENTITY zcct_i_healthdep\\healthdep FROM VALUE #(
     FOR <root_key> IN keys ( %key-healthdepid     = <root_key>-healthdepid
-                                 %control = VALUE #( LeadingEmployeeId = if_abap_behv=>mk-on ) ) )
+                                 %control = VALUE #( Name = if_abap_behv=>mk-on ) ) )
         RESULT DATA(lt_healthdep).
 
     DATA lt_name TYPE SORTED TABLE OF zcct_c_healthdep WITH UNIQUE KEY name.
@@ -165,7 +165,7 @@ CLASS lhc_Healthdep IMPLEMENTATION.
         APPEND VALUE #(  HealthdepId = ls_healthdep-HealthdepId
                          %msg      = new_message(   id       = zif_cct_messages=>msgid
                                                   number   = zif_cct_messages=>msgno-name_is_empty
-                                                  v1       = ls_healthdep-LeadingEmployeeId
+                                                  v1       = ls_healthdep-Name
                                                   severity = if_abap_behv_message=>severity-error )
                          %element-Name = if_abap_behv=>mk-on ) TO reported-healthdep.
 
