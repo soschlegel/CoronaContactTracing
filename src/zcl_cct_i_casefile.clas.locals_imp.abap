@@ -32,7 +32,7 @@ CLASS lhc_casefile IMPLEMENTATION.
     DATA lt_healthdepem TYPE SORTED TABLE OF ZCCT_I_HealthDepEm WITH UNIQUE KEY emplyee_id.
 
     " Optimization of DB select: extract distinct non-initial customer IDs
-    lt_healthdepem = CORRESPONDING #( lt_healthdepem DISCARDING DUPLICATES MAPPING emplyee_id = emplyee_id EXCEPT * ).
+    lt_healthdepem = CORRESPONDING #( lt_casefile DISCARDING DUPLICATES MAPPING emplyee_id = healthdepem_id EXCEPT * ).
     DELETE lt_healthdepem WHERE emplyee_id IS INITIAL.
     CHECK lt_healthdepem IS NOT INITIAL.
 
@@ -68,7 +68,7 @@ CLASS lhc_casefile IMPLEMENTATION.
     DATA lt_testcase TYPE SORTED TABLE OF zcct_i_testcase WITH UNIQUE KEY testid.
 
     " Optimization of DB select: extract distinct non-initial customer IDs
-    lt_testcase = CORRESPONDING #( lt_testcase DISCARDING DUPLICATES MAPPING testid = testid EXCEPT * ).
+    lt_testcase = CORRESPONDING #( lt_casefile DISCARDING DUPLICATES MAPPING testid = testcase_id EXCEPT * ).
     DELETE lt_testcase WHERE testid IS INITIAL.
     CHECK lt_testcase IS NOT INITIAL.
 
@@ -101,6 +101,7 @@ CLASS lhc_casefile IMPLEMENTATION.
            ENTITY CaseFile
               UPDATE FROM VALUE #( FOR key IN keys ( casefile_id = key-casefile_id
                                                      casestatus = 'R' " Resolved
+                                                     treatmentend = sy-datum
                                                      %control-casestatus = if_abap_behv=>mk-on ) )
            FAILED   failed
            REPORTED reported.

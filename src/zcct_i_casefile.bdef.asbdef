@@ -7,7 +7,7 @@ lock master
 {
   field ( readonly, numbering : managed ) casefile_id;
 
-  field ( mandatory ) testcase_id, healthdepem_id;
+  field ( mandatory : create ) testcase_id, healthdepem_id;
 
   field ( mandatory ) treatmentstart, casestatus;
 
@@ -22,4 +22,10 @@ lock master
   validation validateTestCase on save { field testcase_id; }
   validation validateHealthDepEm on save { field healthdepem_id; }
 
+//  mapping for zcct_case_file {
+//    casefile_id = casefile_id;
+//    testcase_id = testcase_id;
+//    healthdepem_id = healthdepem_id;
+//    casestatus = casestatus;
+//  }
 }
