@@ -6,7 +6,9 @@
 "ZCCT_HEALTHDEPEM"
 ],
 "ASSOCIATED":
-[],
+[
+"ZCCT_HEALTHDEP"
+],
 "BASE":
 [],
 "ANNO_REF":

@@ -28,7 +28,22 @@ define root view entity ZCCT_C_HealthDepEm
           identification: [ { position: 30, label: 'lastname' } ] }
       @Search.defaultSearchElement: true
       lastname        as Lastname,
-
+      
+        @UI: {
+      lineItem:       [ { position: 30, importance: #LOW } ],
+      identification: [ { position: 30, label: 'Healthdepartment_id' } ] }
+//      @UI.hidden: true
+      @Consumption.valueHelpDefinition: [{ entity : {name: 'zcct_I_healthdep', element: 'HealthdepId'  } }]
+      @ObjectModel.text.element: ['HealthDepartment_Name']
+      @Search.defaultSearchElement: true
+      healthdep_id        as Healthdepartment_id,
+       @UI: {
+      lineItem:       [ { position: 30, importance: #LOW } ],
+      identification: [ { position: 30, label: 'Healthdepartment_Name' } ] }
+            @Search.defaultSearchElement: true
+      _HEALTHDEP.name     as HealthDepartment_Name,
+      
+      
       @UI: {
           lineItem:       [ { position: 40, importance: #HIGH } ],
           identification: [ { position: 40, label: 'created by' } ] }
