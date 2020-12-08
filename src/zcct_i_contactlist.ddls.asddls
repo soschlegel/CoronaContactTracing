@@ -8,8 +8,8 @@
     dataClass: #MIXED
 }
 define root view entity ZCCT_I_CONTACTLIST
-  as select from zcct_contactlist as Contaclist
-  association [0..1] to zcct_county as _Casefile on $projection.contactlist_id = _Casefile.countyuuid
+  as select from zcct_contactlist as ContactlistTable
+  association [0..1] to ZCCT_I_CASEFILE as _Casefile on $projection.contactlist_id = _Casefile.casefile_id
 {
   key contactlist_id,
       casefile_id,

@@ -1,6 +1,6 @@
 managed implementation in class zcl_cct_i_contactlist unique;
 
-define behavior for ZCCT_I_CONTACTLIST alias Contactlist
+define behavior for ZCCT_I_CONTACTLIST alias ContactlistEntity
 persistent table zcct_contactlist
 lock master
 {
@@ -13,4 +13,5 @@ lock master
 
 
   action notifyContact result [1] $self;
+  validation validateContactlist on save { field contactlist_id, casefile_id; }
 }
