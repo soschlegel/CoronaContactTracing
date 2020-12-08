@@ -8,7 +8,7 @@
     typeNamePlural: 'Health Departments',
     title: { type: #STANDARD, value: 'Name' } ,
     imageUrl: 'ImageUrl' ,
-    description: {label : 'Test1', value: 'LastChangedAt' }
+    description: { label : 'Last Changed', value: 'LastChangedAt' }
   }
 }
 

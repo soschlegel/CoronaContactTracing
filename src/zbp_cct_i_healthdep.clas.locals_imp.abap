@@ -126,10 +126,10 @@ CLASS lhc_Healthdep IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD validateAddress.
-  READ ENTITY zcct_i_healthdep\\healthdep FROM VALUE #(
-    FOR <root_key> IN keys ( %key-healthdepid     = <root_key>-healthdepid
-                                 %control = VALUE #( Address = if_abap_behv=>mk-on ) ) )
-        RESULT DATA(lt_healthdep).
+    READ ENTITY zcct_i_healthdep\\healthdep FROM VALUE #(
+      FOR <root_key> IN keys ( %key-healthdepid     = <root_key>-healthdepid
+                                   %control = VALUE #( Address = if_abap_behv=>mk-on ) ) )
+          RESULT DATA(lt_healthdep).
 
     DATA lt_address TYPE SORTED TABLE OF zcct_c_healthdep WITH UNIQUE KEY address.
 
@@ -137,23 +137,23 @@ CLASS lhc_Healthdep IMPLEMENTATION.
     DELETE lt_address WHERE Address IS INITIAL.
     CHECK lt_address IS INITIAL.
     LOOP AT lt_healthdep INTO DATA(ls_healthdep).
-        APPEND VALUE #(  HealthdepId = ls_healthdep-HealthdepId ) TO failed-healthdep.
-        APPEND VALUE #(  HealthdepId = ls_healthdep-HealthdepId
-                         %msg      = new_message(   id       = zif_cct_messages=>msgid
-                                                  number   = zif_cct_messages=>msgno-address_is_empty
-                                                  v1       = ls_healthdep-Address
-                                                  severity = if_abap_behv_message=>severity-error )
-                         %element-Address = if_abap_behv=>mk-on ) TO reported-healthdep.
+      APPEND VALUE #(  HealthdepId = ls_healthdep-HealthdepId ) TO failed-healthdep.
+      APPEND VALUE #(  HealthdepId = ls_healthdep-HealthdepId
+                       %msg      = new_message(   id       = zif_cct_messages=>msgid
+                                                number   = zif_cct_messages=>msgno-address_is_empty
+                                                v1       = ls_healthdep-Address
+                                                severity = if_abap_behv_message=>severity-error )
+                       %element-Address = if_abap_behv=>mk-on ) TO reported-healthdep.
 
     ENDLOOP.
 
   ENDMETHOD.
 
   METHOD validateName.
-  READ ENTITY zcct_i_healthdep\\healthdep FROM VALUE #(
-    FOR <root_key> IN keys ( %key-healthdepid     = <root_key>-healthdepid
-                                 %control = VALUE #( Name = if_abap_behv=>mk-on ) ) )
-        RESULT DATA(lt_healthdep).
+    READ ENTITY zcct_i_healthdep\\healthdep FROM VALUE #(
+      FOR <root_key> IN keys ( %key-healthdepid     = <root_key>-healthdepid
+                                   %control = VALUE #( Name = if_abap_behv=>mk-on ) ) )
+          RESULT DATA(lt_healthdep).
 
     DATA lt_name TYPE SORTED TABLE OF zcct_c_healthdep WITH UNIQUE KEY name.
 
@@ -161,13 +161,13 @@ CLASS lhc_Healthdep IMPLEMENTATION.
     DELETE lt_name WHERE Name IS INITIAL.
     CHECK lt_name IS INITIAL.
     LOOP AT lt_healthdep INTO DATA(ls_healthdep).
-        APPEND VALUE #(  HealthdepId = ls_healthdep-HealthdepId ) TO failed-healthdep.
-        APPEND VALUE #(  HealthdepId = ls_healthdep-HealthdepId
-                         %msg      = new_message(   id       = zif_cct_messages=>msgid
-                                                  number   = zif_cct_messages=>msgno-name_is_empty
-                                                  v1       = ls_healthdep-Name
-                                                  severity = if_abap_behv_message=>severity-error )
-                         %element-Name = if_abap_behv=>mk-on ) TO reported-healthdep.
+      APPEND VALUE #(  HealthdepId = ls_healthdep-HealthdepId ) TO failed-healthdep.
+      APPEND VALUE #(  HealthdepId = ls_healthdep-HealthdepId
+                       %msg      = new_message(   id       = zif_cct_messages=>msgid
+                                                number   = zif_cct_messages=>msgno-name_is_empty
+                                                v1       = ls_healthdep-Name
+                                                severity = if_abap_behv_message=>severity-error )
+                       %element-Name = if_abap_behv=>mk-on ) TO reported-healthdep.
 
     ENDLOOP.
   ENDMETHOD.

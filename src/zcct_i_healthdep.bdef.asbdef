@@ -10,9 +10,9 @@ lock master
 
   field ( readonly ) LastChangedAt, LastChangedBy, CreatedAt, CreatedBy, LocalLastChangedAt;
 
-  field ( mandatory ) CountyId;
+  field ( mandatory : create ) CountyId;
 
-  field ( mandatory ) Name, Address;
+  field ( mandatory : create ) Name, Address;
 
   create;
   update;
