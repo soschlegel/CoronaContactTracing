@@ -23,16 +23,19 @@ define root view entity ZCCT_C_CONTACTLIST
   key contactlist_id              as ContactlistUUID,
 
       @UI: {
-            lineItem:       [ { position: 10, 
-                                importance: #HIGH,
-                                label: 'Notify contact', 
+            lineItem:       [ { position: 10, importance: #HIGH, label: 'Casefile' },
+                              { label: 'Notify contact',
                                 type: #FOR_ACTION, dataAction: 'notifyContact'  } ],
-            identification: [ { position: 10, 
-                                label: 'Notify contact',
-                                type: #FOR_ACTION, dataAction: 'notifyContact'  } ] }
+            identification: [ { position: 10, importance: #HIGH, label: 'CaseFileid' },
+                              { label: 'Notify contact', type: #FOR_ACTION, dataAction: 'notifyContact'  } ] }
       @Search.defaultSearchElement: true
-      @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_COUNTY_M', element: 'CasefileID'  } }]
+//      @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_COUNTY_M', element: 'CasefileID'  } }]
       casefile_id                 as CasefileID,
+      
+//      @UI: {
+//          lineItem:       [ { position: 11, importance: #MEDIUM } ],
+//          identification: [ { position: 11, label: 'City' } ] }
+//      casefile_id                 as CasefileID2,
 
       @UI: {
           lineItem:       [ { position: 41, importance: #MEDIUM } ],
