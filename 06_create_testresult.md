@@ -16,7 +16,8 @@
 
 ### b) [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Action: 
 - [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Testergebnis eintragen + Datum/Zeit
-- [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Eingabe validieren
+- [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Eingabe validieren
+- [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Im positiven Fall: Anlegen eines Testcases
 
 ### c) [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Verschönern:
 - [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Icons hinzufügen
