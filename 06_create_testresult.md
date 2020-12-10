@@ -6,7 +6,6 @@
 - [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Mandant -> int
 - [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Test ID (key) -> int
 - [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Person ID -> int
-- [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Teststelle -> string/char *(optional/ Zuggerle)*
 - [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Testart -> data element
 - [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Employee ID -> int
 - [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Datum von Test -> date
