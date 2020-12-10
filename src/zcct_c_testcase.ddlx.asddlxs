@@ -43,14 +43,16 @@ annotate view ZCCT_C_TESTCASE with
 
   @UI: {
       lineItem:       [ { position: 20, importance: #HIGH , label: 'Mitarbeiter'} ],
-      identification: [ { position: 20, label: 'Zuständiger Mitarbeiter' } ] }
+      identification: [ { position: 20, label: 'Zuständiger Mitarbeiter' } ],
+      textArrangement: #TEXT_ONLY }
   @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_HealthDepEm', element: 'emplyee_id'  } }]
   @Search.defaultSearchElement: true
   employeeid;
 
   @UI: {
       lineItem:       [ { position: 30, importance: #HIGH, label: 'Testart'} ],
-      identification: [ { position: 30, label: 'Testart' } ] }
+      identification: [ { position: 30, label: 'Testart' } ],
+      textArrangement: #TEXT_ONLY }
   @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_TESTTYPE', element: 'testtypeid'  } }]
   @Search.defaultSearchElement: true
   testtype;
@@ -70,7 +72,8 @@ annotate view ZCCT_C_TESTCASE with
   @UI: {
       lineItem:       [ { position: 100, importance: #HIGH, label: 'Testergebnis', criticality: 'testresultcolor' },
                         { label: '🟢 Negativ', type: #FOR_ACTION, dataAction: 'setNegative' },
-                        { label: '🔴 Positiv', type: #FOR_ACTION, dataAction: 'setPositive' } ] }
+                        { label: '🔴 Positiv', type: #FOR_ACTION, dataAction: 'setPositive' } ],
+      textArrangement: #TEXT_ONLY }
   @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_TESTRESULT', element: 'testresultid'  } }]
   @Search.defaultSearchElement: true
   @UI.fieldGroup: [{ qualifier: 'testresults', position: 10, label: 'Testergebnis', criticality: 'testresultcolor' },
