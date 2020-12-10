@@ -2,7 +2,7 @@
 
 ## Created test result for test person
 
-### a) [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Erstellen eines Tests 
+### a) [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Erstellen eines Tests 
 - [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Mandant -> int
 - [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Test ID (key) -> int
 - [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Person ID -> int
