@@ -138,7 +138,6 @@ CLASS lhc_Contactlist IMPLEMENTATION.
                                                   severity = if_abap_behv_message=>severity-error )
                          %element-contact_lastname = if_abap_behv=>mk-on ) TO reported-ContactlistEntity.
       ENDIF.
-      "Methodeaufruf inset mit lt_contact
 
     ENDLOOP.
 
