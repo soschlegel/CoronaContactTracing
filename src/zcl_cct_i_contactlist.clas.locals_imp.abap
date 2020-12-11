@@ -115,8 +115,8 @@ CLASS lhc_Contactlist IMPLEMENTATION.
         APPEND VALUE #(  contactlist_id = lt_contact-contactlist_id ) TO failed-ContactlistEntity.
         APPEND VALUE #(  contactlist_id = lt_contact-contactlist_id
                          %msg      = new_message( id       = zif_cct_messages=>msgid
-                                                  number   = zif_cct_messages=>msgno-employee_not_found
-                                                  v1       = lt_contact-contactlist_id
+                                                  number   = zif_cct_messages=>msgno-associated_casefile_not_valid
+                                                  v1       = lt_contact-casefile_id
                                                   severity = if_abap_behv_message=>severity-error )
                          %element-casefile_id = if_abap_behv=>mk-on ) TO reported-ContactlistEntity.
       ENDIF.
@@ -125,8 +125,7 @@ CLASS lhc_Contactlist IMPLEMENTATION.
         APPEND VALUE #(  contactlist_id = lt_contact-contactlist_id ) TO failed-ContactlistEntity.
         APPEND VALUE #(  contactlist_id = lt_contact-contactlist_id
                          %msg      = new_message(  id       = zif_cct_messages=>msgid
-                                                  number   = zif_cct_messages=>msgno-employee_not_found
-                                                  v1       = lt_contact-contactlist_id
+                                                  number   = zif_cct_messages=>msgno-first_name_required
                                                   severity = if_abap_behv_message=>severity-error )
                          %element-contact_firstname = if_abap_behv=>mk-on ) TO reported-ContactlistEntity.
       ENDIF.
@@ -135,8 +134,7 @@ CLASS lhc_Contactlist IMPLEMENTATION.
         APPEND VALUE #(  contactlist_id = lt_contact-contactlist_id ) TO failed-ContactlistEntity.
         APPEND VALUE #(  contactlist_id = lt_contact-contactlist_id
                          %msg      = new_message(  id       = zif_cct_messages=>msgid
-                                                  number   = zif_cct_messages=>msgno-employee_not_found
-                                                  v1       = lt_contact-contactlist_id
+                                                  number   = zif_cct_messages=>msgno-last_name_required
                                                   severity = if_abap_behv_message=>severity-error )
                          %element-contact_lastname = if_abap_behv=>mk-on ) TO reported-ContactlistEntity.
       ENDIF.

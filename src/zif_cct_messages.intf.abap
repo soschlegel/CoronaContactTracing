@@ -10,6 +10,9 @@ INTERFACE zif_cct_messages
                name_is_empty TYPE symsgno VALUE '005',
                address_is_empty TYPE symsgno VALUE '006',
                casestatus_not_found TYPE symsgno VALUE '007',
+               associated_casefile_not_valid TYPE symsgno VALUE '008',
+               first_name_required TYPE symsgno VALUE '009',
+               last_name_required TYPE symsgno VALUE '010',
              END OF msgno.
 
 ENDINTERFACE.

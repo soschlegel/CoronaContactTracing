@@ -26,7 +26,7 @@ define root view entity ZCCT_C_CONTACTLIST
             lineItem:       [ { position: 10, importance: #HIGH, label: 'Casefile' },
                               { label: 'Notify contact',
                                 type: #FOR_ACTION, dataAction: 'notifyContact'  } ],
-            identification: [ { position: 10, importance: #HIGH, label: 'CaseFileid' },
+            identification: [ { position: 10, importance: #HIGH, label: 'CaseFileID' },
                               { label: 'Notify contact', type: #FOR_ACTION, dataAction: 'notifyContact'  } ] }
       @Search.defaultSearchElement: true
 //      @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCCT_I_COUNTY_M', element: 'CasefileID'  } }]
