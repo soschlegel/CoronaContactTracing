@@ -68,6 +68,18 @@
      <MSGNR>010</MSGNR>
      <TEXT>Last name required.</TEXT>
     </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCCT_MESSAGES</ARBGB>
+     <MSGNR>011</MSGNR>
+     <TEXT>Health Department &amp;1 not found.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCCT_MESSAGES</ARBGB>
+     <MSGNR>012</MSGNR>
+     <TEXT>Treatment can not end before it started.</TEXT>
+    </T100>
    </T100>
   </asx:values>
  </asx:abap>

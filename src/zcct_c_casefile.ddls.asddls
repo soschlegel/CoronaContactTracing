@@ -12,13 +12,14 @@ define root view entity ZCCT_C_CASEFILE
                       id:               'CaseFileHeader',
                       purpose:          #HEADER,
                       type:             #FIELDGROUP_REFERENCE,
+                      targetQualifier: 'header',
                       position:         10},
                       {
                       id:              'CaseFile',
                       purpose:         #STANDARD,
                       type:            #COLLECTION,
                       label:           'CaseFile',
-                      position:        10 
+                      position:        10
                       },
                       {
                       id:               'CaseFilePersons',
@@ -58,26 +59,25 @@ define root view entity ZCCT_C_CASEFILE
 
        @UI: {
            lineItem:       [ { position: 40, importance: #HIGH } ] }
-//           identification: [ { position: 40, label: 'Start' } ] }
-       @Search.defaultSearchElement: true
+       //           identification: [ { position: 40, label: 'Start' } ] }
        @UI.fieldGroup: [{ qualifier: 'casedetails', label: 'Start' }]
+       @Search.defaultSearchElement: true
        treatmentstart           as TreatmentStart,
 
        @UI: {
            lineItem:       [ { position: 50, importance: #HIGH } ] }
-//           identification: [ { position: 50, label: 'End' } ] }
-       @Search.defaultSearchElement: true
+       //           identification: [ { position: 50, label: 'End' } ] }
        @UI.fieldGroup: [{ qualifier: 'casedetails', label: 'Ende' }]
+       @Search.defaultSearchElement: true
        treatmentend             as TreatmentEnd,
 
        @UI: {
            selectionField: [{ position: 60 }],
            lineItem:       [ { position: 60, importance: #HIGH },
-                             { type: #FOR_ACTION, dataAction: 'resolveCase', label: 'Resolve Case' } ] }
-//           identification: [ { position: 60, label: 'Status O(pen)A(ctive)C(ancel)R(esolved)' },
-//                             { type: #FOR_ACTION, dataAction: 'resolveCase', label: 'Resolve Case' } ] }
-       @Search.defaultSearchElement: true
+                             { type: #FOR_ACTION, dataAction: 'resolveCase', label: 'Resolve Case' } ],
+           identification: [ { type: #FOR_ACTION, dataAction: 'resolveCase', label: 'Resolve Case' }]}
        @UI.fieldGroup: [{ qualifier: 'casedetails', label: 'Status O(pen)A(ctive)C(ancel)R(esolved)' }]
+       @Search.defaultSearchElement: true
        casestatus               as CaseStatus,
 
        @UI.hidden: true

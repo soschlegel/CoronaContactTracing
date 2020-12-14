@@ -7,11 +7,9 @@ lock master
 {
   field ( readonly, numbering : managed ) casefile_id;
 
-  field ( readonly: update, mandatory : create ) testcase_id;
+  field ( readonly : update, mandatory : create ) testcase_id;
 
-  field ( mandatory : create) healthdepem_id;
-
-  field ( mandatory ) treatmentstart, casestatus;
+  field ( mandatory : create ) healthdepem_id, treatmentstart, casestatus;
 
   create;
   update;
@@ -23,11 +21,13 @@ lock master
   // validations
   validation validateTestCase on save { field testcase_id; }
   validation validateHealthDepEm on save { field healthdepem_id; }
+  validation validateCaseStatus on save { field casestatus; }
+  validation validateDates on save { field treatmentstart; field treatmentend; }
 
-//  mapping for zcct_case_file {
-//    casefile_id = casefile_id;
-//    testcase_id = testcase_id;
-//    healthdepem_id = healthdepem_id;
-//    casestatus = casestatus;
-//  }
+  //  mapping for zcct_case_file {
+  //    casefile_id = casefile_id;
+  //    testcase_id = testcase_id;
+  //    healthdepem_id = healthdepem_id;
+  //    casestatus = casestatus;
+  //  }
 }

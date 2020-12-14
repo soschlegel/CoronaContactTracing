@@ -13,6 +13,8 @@ INTERFACE zif_cct_messages
                associated_casefile_not_valid TYPE symsgno VALUE '008',
                first_name_required TYPE symsgno VALUE '009',
                last_name_required TYPE symsgno VALUE '010',
+               department_not_found TYPE symsgno VALUE '011',
+               treatment_negative TYPE symsgno VALUE '012',
              END OF msgno.
 
 ENDINTERFACE.
