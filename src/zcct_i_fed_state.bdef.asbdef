@@ -1,7 +1,6 @@
 projection;
 
 define behavior for ZCCT_I_FED_STATE alias FedStateProcessor
-use etag
 {
   use create;
   use update;

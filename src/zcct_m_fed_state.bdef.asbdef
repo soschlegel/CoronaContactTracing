@@ -1,4 +1,5 @@
-managed;
+managed implementation in class ZCL_CCT_I_FED_STATE_M unique;
+//managed;
 
 define behavior for ZCCT_M_FED_STATE //alias <alias_name>
 persistent table zcct_fedstate
@@ -12,11 +13,18 @@ lock master
   field ( readonly ) last_changed_at, last_changed_by, created_at, created_by, local_last_changed_at;
 
   // mandatory fields that are required to create a fed state
-  field ( mandatory ) name, countryId;
+  field ( mandatory ) name;
+  field ( mandatory ) countryid;
 
 
   // standard operations for fed state entity
   create;
   update;
   delete;
+
+  validation validateCountryKey on save
+  { field countryId; }
+
+  validation validateFedStateName on save
+  { field name; }
 }
