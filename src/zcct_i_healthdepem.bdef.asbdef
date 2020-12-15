@@ -1,4 +1,4 @@
-managed; // implementation in class zbp_cct_i_healthdepem unique;
+managed implementation in class zbp_cct_i_healthdepem unique; // implementation in class zbp_cct_i_healthdepem unique;
 
 define behavior for ZCCT_I_HealthDepEm alias HealthDepEm
 persistent table zcct_healthdepem
@@ -13,11 +13,12 @@ etag master last_changed_at
   field ( readonly ) last_changed_at, last_changed_by, created_at, created_by;
 
   // mandatory fields that are required to create a travel
-  field ( mandatory ) firstname, lastname;
+  field ( mandatory : create ) firstname, lastname;
 
   field ( mandatory : create ) healthdep_id;
 
-  //  validation validateHealthDep on save { field healthdep_id; }
+  validation validateHealthDep on save { field healthdep_id; }
+
 
   create;
   update;
