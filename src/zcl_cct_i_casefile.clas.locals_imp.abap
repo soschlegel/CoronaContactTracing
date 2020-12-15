@@ -166,11 +166,13 @@ CLASS lhc_casefile IMPLEMENTATION.
     APPEND 'C' TO lt_casestatus.
     APPEND 'R' TO lt_casestatus.
 
-*    DATA lt_statusdomain type if_dd_types=>ty_t_domvalues.
-*
-*    CALL FUNCTION 'GET_FIXED_VALUES'
-*    exporting domain_name = 'ZCCT_CASESTATUS'
-*    importing lt_statusdomain = lt_statusdomain.
+*    CALL METHOD cl_domain=>get_fixed_values
+*      EXPORTING
+*        domain_name = 'ZCCT_CASESTATUS'
+**        language    =
+*      RECEIVING
+*        values      = DATA(lt_casestatus)
+*      .
 
 
     LOOP AT lt_casefile INTO DATA(ls_casefile).
