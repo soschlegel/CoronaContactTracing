@@ -4,10 +4,10 @@ define root view entity ZCCT_I_TESTCASE
   as select from zcct_testcase as testcase
 
   /* Association */
-  association [0..1] to zcct_testperson  as _testperson  on $projection.personid = _testperson.test_person_id
-  association [0..1] to zcct_healthdepem as _healthdepem on $projection.employeeid = _healthdepem.emplyee_id
-  association [0..1] to zcct_testtype    as _testtype    on $projection.testtype = _testtype.testtypeid
-  association [0..1] to zcct_testresult  as _testresult  on $projection.testresult = _testresult.testresultid
+  association [0..1] to ZCCT_I_TEST_PERSON as _testperson  on $projection.personid = _testperson.test_person_id
+  association [0..1] to ZCCT_I_HealthDepEm as _healthdepem on $projection.employeeid = _healthdepem.emplyee_id
+  association [0..1] to ZCCT_I_TESTTYPE    as _testtype    on $projection.testtype = _testtype.testtypeid
+  association [0..1] to ZCCT_I_TESTRESULT  as _testresult  on $projection.testresult = _testresult.testresultid
 
 {
   key testid,

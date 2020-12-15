@@ -7,9 +7,11 @@ lock master
 
 {
   field ( readonly ) testresult, testresultdate, testresulttime, last_changed_at, last_changed_by, created_at, created_by;
-  field ( mandatory ) employeeid, testtype, testdate, testtime;
+  field ( mandatory : create ) employeeid, testtype, testdate;
   field ( numbering : managed ) testid;
+
   field ( readonly : update ) personid;
+  field ( mandatory : create ) personid;
 
   create;
   update;
@@ -19,6 +21,10 @@ lock master
   action ( features : instance ) setNegative result [1] $self;
 
   validation validateTesttype on save { field testtype; }
+  validation validatePerson on save { field personid; }
+  validation validateEmployee on save { field employeeid; }
+//  validation validateTestResultDate on save { field testresultdate; }
+  validation validateTestDate on save { field testdate; }
 
   mapping for zcct_testcase
   {
@@ -26,6 +32,8 @@ lock master
     personid = personid;
     employeeid = employeeid;
     testresult = testresult;
+    testresultdate = testresultdate;
+    testresulttime = testresulttime;
     testdate = testdate;
     testtime = testtime;
     testtype = testtype;

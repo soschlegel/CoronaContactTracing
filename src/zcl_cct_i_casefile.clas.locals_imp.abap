@@ -9,6 +9,9 @@ CLASS lhc_casefile DEFINITION INHERITING FROM cl_abap_behavior_handler.
     METHODS get_instance_features FOR INSTANCE FEATURES
       IMPORTING keys REQUEST requested_features FOR casefile RESULT result.
 
+    METHODS validate_dates FOR VALIDATE ON SAVE
+      IMPORTING keys FOR casefile~validateDates.
+
     METHODS validateHealthDepEm FOR VALIDATE ON SAVE
       IMPORTING keys FOR casefile~validateHealthDepEm.
 
@@ -17,6 +20,9 @@ CLASS lhc_casefile DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
     METHODS resolveCase FOR MODIFY
       IMPORTING keys FOR ACTION CaseFile~resolveCase RESULT result.
+
+    METHODS validateCaseStatus FOR VALIDATE ON SAVE
+      IMPORTING keys FOR CaseFile~validateCaseStatus.
 
 ENDCLASS.
 
@@ -135,7 +141,6 @@ CLASS lhc_casefile IMPLEMENTATION.
     READ ENTITIES OF zcct_i_casefile IN LOCAL MODE ENTITY CaseFile
         FROM VALUE #( FOR keyval IN keys
                                                       (  %key                    = keyval-%key
-                                                       "  %control-travel_id      = if_abap_behv=>mk-on
                                                          %control-casestatus = if_abap_behv=>mk-on
                                                         ) )
                                 RESULT DATA(lt_casefiles).
@@ -146,6 +151,74 @@ CLASS lhc_casefile IMPLEMENTATION.
                          %features-%action-resolveCase = COND #( WHEN ls_casefile-casestatus = 'R'
                                                                     THEN if_abap_behv=>fc-o-disabled ELSE if_abap_behv=>fc-o-enabled   )
                       ) ).
+  ENDMETHOD.
+
+  METHOD validateCaseStatus.
+
+    READ ENTITIES OF zcct_i_casefile IN LOCAL MODE ENTITY CaseFile
+          FROM VALUE #( FOR <root_key> IN keys ( %key-casefile_id   = <root_key>-casefile_id
+                                     %control           = VALUE #( casestatus = if_abap_behv=>mk-on ) ) )
+            RESULT DATA(lt_casefile).
+
+    DATA lt_casestatus TYPE TABLE OF string.
+    APPEND 'O' TO lt_casestatus.
+    APPEND 'A' TO lt_casestatus.
+    APPEND 'C' TO lt_casestatus.
+    APPEND 'R' TO lt_casestatus.
+
+*    DATA lt_statusdomain type if_dd_types=>ty_t_domvalues.
+*
+*    CALL FUNCTION 'GET_FIXED_VALUES'
+*    exporting domain_name = 'ZCCT_CASESTATUS'
+*    importing lt_statusdomain = lt_statusdomain.
+
+
+    LOOP AT lt_casefile INTO DATA(ls_casefile).
+      IF ls_casefile-casestatus IS NOT INITIAL AND NOT line_exists( lt_casestatus[ table_line = ls_casefile-casestatus ] ).
+        APPEND VALUE #(  casefile_id = ls_casefile-casefile_id ) TO failed-casefile.
+        APPEND VALUE #(  casefile_id = ls_casefile-casefile_id
+                         %msg      = new_message( id       = zif_cct_messages=>msgid
+                                                  number   = zif_cct_messages=>msgno-casestatus_not_found
+                                                  v1       = ls_casefile-casestatus
+                                                  severity = if_abap_behv_message=>severity-error )
+                         %element-casestatus = if_abap_behv=>mk-on ) TO reported-casefile.
+      ENDIF.
+    ENDLOOP.
+
+  ENDMETHOD.
+
+  METHOD validate_dates.
+
+    READ ENTITY zcct_i_casefile FROM VALUE #(
+        FOR <root_key> IN keys ( %key-casefile_id     = <root_key>-casefile_id
+                                 %control = VALUE #( treatmentstart = if_abap_behv=>mk-on
+                                                     treatmentend   = if_abap_behv=>mk-on ) ) )
+        RESULT DATA(lt_casefile).
+
+    LOOP AT lt_casefile INTO DATA(ls_casefile).
+
+      IF ls_casefile-treatmentend > 0 AND ls_casefile-treatmentend < ls_casefile-treatmentstart.  "end_date before begin_date
+
+        APPEND VALUE #(  casefile_id = ls_casefile-casefile_id ) TO failed-casefile.
+        APPEND VALUE #(  casefile_id = ls_casefile-casefile_id
+                         %msg      = new_message( id       = zif_cct_messages=>msgid
+                                                  number   = zif_cct_messages=>msgno-treatment_negative
+                                                  severity = if_abap_behv_message=>severity-error )
+                         %element-treatmentend = if_abap_behv=>mk-on ) TO reported-casefile.
+
+*      ELSEIF ls_casefile-treatmentstart < cl_abap_context_info=>get_system_date( ).  "begin_date must be in the future
+*
+*        APPEND VALUE #(  casefile_id = ls_casefile-casefile_id ) TO failed-casefile.
+*        APPEND VALUE #(  casefile_id = ls_casefile-casefile_id
+*                         %msg      = new_message( id       = zif_cct_messages=>msgid
+*                                                  number   = zif_cct_messages=>msgno-treatment_past
+*                                                  v1       = ls_casefile-casestatus
+*                                                  severity = if_abap_behv_message=>severity-error )
+*                         %element-treatmentstart = if_abap_behv=>mk-on ) TO reported-casefile.
+      ENDIF.
+
+    ENDLOOP.
+
   ENDMETHOD.
 
 ENDCLASS.

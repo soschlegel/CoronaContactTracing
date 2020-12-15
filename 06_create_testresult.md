@@ -2,30 +2,32 @@
 
 ## Created test result for test person
 
-### a) [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Erstellen eines Tests 
-- [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Mandant -> int
-- [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Test ID (key) -> int
-- [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Person ID -> int
-- [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Teststelle -> string/char *(optional/ Zuggerle)*
-- [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Testart -> data element
-- [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Employee ID -> int
-- [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Datum von Test -> date
-- [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Zeit von Test -> time
-- [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Testergebnis -> data element/Ampel (Default=UNDEF)
-- [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Datum von Testergebnis -> date (Default=UNDEF)
-- [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Zeit von Testergebnis -> time (Default=UNDEF)
+In database **zcct_testcase** we created the following parameters:
 
-### b) [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Action: 
-- [![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/) Testergebnis eintragen + Datum/Zeit
-- [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Im positiven Fall: Anlegen eines Testcases
-- [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Eingabe validieren
+- key client            : abap.clnt not null; *-> in every database*
+- key testid            : sysuuid_x16 not null; *-> our key*
+These parameters can be created manuelly when creating a new testcase:
+- personid              : sysuuid_x16; *-> from view from database (zcct_i_testperson)*
+- employeeid            : sysuuid_x16; *-> from view from database (zcct_i_healthdepem)*
+- testtype              : zcct_de_testtype; *-> from view of our data element (zcct_i_testtype)*
+- testdate              : abap.dats;
+- testtime              : abap.tims;
+---
+These parameters were filled automatically when pressing the action button (🔴Positiv/🟢Negativ):
+- testresult            : zcct_de_testresult; *-> from view of our data element (zcct_i_testresult)*
+- testresultdate        : abap.dats;
+- testresulttime        : abap.tims;
+---
+These parameters were filled automatically when creating a new testcase or editing an existing testcase:
+- created_by            : syuname;
+- created_at            : timestampl;
+- last_changed_by       : syuname;
+- last_changed_at       : timestampl;
+- local_last_changed_at : timestampl;
+---
 
-### c) [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Verschönern:
-- [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Icons hinzufügen
-- [![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/) Allgemeine "Verschönerung"
+In the Cloud Application you can create new testcases by clicking on the 'create'-button. You have to fill the mandatory fields 'Testperson', 'Mitarbeiter', 'Testart' und 'Testdatum'. 'Testzeit' is an optional field. When all mandatory fields are filled you can pressed 'save' and a new testcase was created in the database. If any mandatory field isn't filled or wrong filled you will get an error message.
 
-AGENDA: 
+If you get the testresult you must select the given testcase and pressed 🔴Positiv/🟢Negativ depending on the result. In both cases the testresult changes to 🔴Positiv/🟢Negativ and the testresultdate and testresulttime are automatically changed to the current date and time. 
 
-[![Generic badge](https://img.shields.io/badge/Status-New-white.svg)](https://shields.io/)
-
-[![Generic badge](https://img.shields.io/badge/Status-Done-green.svg)](https://shields.io/)
+If the testresult is 🔴Positiv, a new entry is additionally created into the database zcct_i_casefile. Within this entry a new UUID for the key parameter casefile_id will be created. testcase_id, healthdepem_id, created_by, created_at, last_changed_by and last_changed_at will be filled with our parameters or the current timestamp/user.

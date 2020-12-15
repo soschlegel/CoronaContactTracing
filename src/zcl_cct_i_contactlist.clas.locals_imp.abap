@@ -22,6 +22,8 @@ CLASS lhc_Contactlist DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
   PRIVATE SECTION.
 
+    DATA: contactpersoncontacter TYPE REF TO zcl_test_contactperson.
+
     METHODS notifyContact FOR MODIFY
       IMPORTING keys FOR ACTION ContactlistEntity~notifyContact RESULT result.
     METHODS validate_contactlist        FOR VALIDATE ON SAVE
@@ -70,8 +72,15 @@ CLASS lhc_Contactlist IMPLEMENTATION.
                                                 %param    = contact ) ).
 
 
+    IF contactpersoncontacter IS NOT BOUND.
+      CREATE OBJECT contactpersoncontacter.
+    ENDIF.
     LOOP AT  lt_contact INTO DATA(con).
 *        CALL METHOD ... EXPORTING con
+      CALL METHOD contactpersoncontacter->notifycontactpersons
+*        EXPORTING
+*            contact = con
+            .
     ENDLOOP.
 
   ENDMETHOD.
@@ -106,8 +115,8 @@ CLASS lhc_Contactlist IMPLEMENTATION.
         APPEND VALUE #(  contactlist_id = lt_contact-contactlist_id ) TO failed-ContactlistEntity.
         APPEND VALUE #(  contactlist_id = lt_contact-contactlist_id
                          %msg      = new_message( id       = zif_cct_messages=>msgid
-                                                  number   = zif_cct_messages=>msgno-employee_not_found
-                                                  v1       = lt_contact-contactlist_id
+                                                  number   = zif_cct_messages=>msgno-associated_casefile_not_valid
+                                                  v1       = lt_contact-casefile_id
                                                   severity = if_abap_behv_message=>severity-error )
                          %element-casefile_id = if_abap_behv=>mk-on ) TO reported-ContactlistEntity.
       ENDIF.
@@ -116,8 +125,7 @@ CLASS lhc_Contactlist IMPLEMENTATION.
         APPEND VALUE #(  contactlist_id = lt_contact-contactlist_id ) TO failed-ContactlistEntity.
         APPEND VALUE #(  contactlist_id = lt_contact-contactlist_id
                          %msg      = new_message(  id       = zif_cct_messages=>msgid
-                                                  number   = zif_cct_messages=>msgno-employee_not_found
-                                                  v1       = lt_contact-contactlist_id
+                                                  number   = zif_cct_messages=>msgno-first_name_required
                                                   severity = if_abap_behv_message=>severity-error )
                          %element-contact_firstname = if_abap_behv=>mk-on ) TO reported-ContactlistEntity.
       ENDIF.
@@ -126,12 +134,11 @@ CLASS lhc_Contactlist IMPLEMENTATION.
         APPEND VALUE #(  contactlist_id = lt_contact-contactlist_id ) TO failed-ContactlistEntity.
         APPEND VALUE #(  contactlist_id = lt_contact-contactlist_id
                          %msg      = new_message(  id       = zif_cct_messages=>msgid
-                                                  number   = zif_cct_messages=>msgno-employee_not_found
-                                                  v1       = lt_contact-contactlist_id
+                                                  number   = zif_cct_messages=>msgno-last_name_required
                                                   severity = if_abap_behv_message=>severity-error )
                          %element-contact_lastname = if_abap_behv=>mk-on ) TO reported-ContactlistEntity.
       ENDIF.
-      "Methodeaufruf inset mit lt_contact
+
     ENDLOOP.
 
   ENDMETHOD.
