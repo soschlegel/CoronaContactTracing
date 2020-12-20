@@ -75,26 +75,26 @@ CLASS lhc_Contactlist IMPLEMENTATION.
 *    IF contactpersoncontacter IS NOT BOUND.
 *      CREATE OBJECT contactpersoncontacter.
 *    ENDIF.
-*    DATA container TYPE zcl_test_contactperson=>ty_struct.
-*    LOOP AT  lt_contact INTO DATA(con).
-*      container = VALUE zcl_test_contactperson=>ty_struct(
-*          contact_firstname = con-contact_firstname
-*          contact_lastname = con-contact_lastname
-*           contact_address_country = con-contact_address_country
-*           contact_address_city = con-contact_address_city
-*           contact_address_plz = con-contact_address_plz
-*           contact_address_street = con-contact_address_street
-*           contact_address_housenumber = con-contact_address_housenumber
-*           contact_mail_address = con-contact_mail_address
-*           contact_telephone_number_1 = con-contact_telephone_number_1
-*           contact_telephone_number_2 = con-contact_telephone_number_2
-*           contact_telephone_number_3 = con-contact_telephone_number_3
-*           contact_has_been_notified = con-contact_has_been_notified
-*      ).
-*
-*      zcl_test_contactperson=>notifyContactpersons( iv_struct = container ).
+    DATA container TYPE zcl_test_contactperson=>ty_struct.
+    LOOP AT  lt_contact INTO DATA(con).
+      container = VALUE zcl_test_contactperson=>ty_struct(
+          contact_firstname = con-contact_firstname
+          contact_lastname = con-contact_lastname
+           contact_address_country = con-contact_address_country
+           contact_address_city = con-contact_address_city
+           contact_address_plz = con-contact_address_plz
+           contact_address_street = con-contact_address_street
+           contact_address_housenumber = con-contact_address_housenumber
+           contact_mail_address = con-contact_mail_address
+           contact_telephone_number_1 = con-contact_telephone_number_1
+           contact_telephone_number_2 = con-contact_telephone_number_2
+           contact_telephone_number_3 = con-contact_telephone_number_3
+           contact_has_been_notified = con-contact_has_been_notified
+      ).
 
-*    ENDLOOP.
+      zcl_test_contactperson=>notifyContactpersons( iv_struct = container ).
+
+    ENDLOOP.
 
   ENDMETHOD.
 

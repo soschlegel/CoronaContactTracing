@@ -4,6 +4,9 @@ CLASS zcl_test_contactperson DEFINITION
   CREATE PUBLIC .
 
   PUBLIC SECTION.
+
+
+
     TYPES: BEGIN OF ty_struct,
              contact_firstname           TYPE string,
              contact_lastname            TYPE string,
@@ -21,13 +24,16 @@ CLASS zcl_test_contactperson DEFINITION
 
     DATA: iv_struct TYPE ty_struct.
 
-    CLASS-METHODS: class_constructor, notifyContactpersons IMPORTING iv_struct TYPE ty_struct RETURNING VALUE(r_json) TYPE string.
+    CLASS-METHODS:
+      class_constructor,
+      notifyContactpersons IMPORTING iv_struct TYPE ty_struct RETURNING VALUE(r_json) TYPE string.
 
   PROTECTED SECTION.
   PRIVATE SECTION.
 
-    CLASS-DATA: gv_url TYPE string VALUE 'https://coronanotifierheroku.herokuapp.com/notify'.
-    CLASS-DATA: go_http_client TYPE REF TO  if_web_http_client.
+    CLASS-DATA: gv_url         TYPE string VALUE 'https://coronanotifierheroku.herokuapp.com/notify',
+                go_http_client TYPE REF TO if_web_http_client.
+
 
 ENDCLASS.
 
@@ -35,15 +41,6 @@ ENDCLASS.
 
 CLASS zcl_test_contactperson IMPLEMENTATION.
 
-  METHOD class_constructor.
-    TRY.
-        go_http_client = cl_web_http_client_manager=>create_by_http_destination(
-                 i_destination = cl_http_destination_provider=>create_by_url( gv_url ) ).
-      CATCH cx_web_http_client_error cx_http_dest_provider_error.
-        "handle exception
-    ENDTRY.
-
-  ENDMETHOD.
 
   METHOD notifyContactpersons.
 
@@ -60,9 +57,9 @@ CLASS zcl_test_contactperson IMPLEMENTATION.
     lo_request->set_text( lv_json_str ).
     TRY.
 
-    DATA(lo_response) = go_http_client->execute( i_method = if_web_http_client=>post ).
+        DATA(lo_response) = go_http_client->execute( i_method = if_web_http_client=>post ).
 
-    CATCH cx_web_http_client_error.
+      CATCH cx_web_http_client_error.
     ENDTRY.
 
     DATA(lv_code) = lo_response->get_status( ).
@@ -72,7 +69,14 @@ CLASS zcl_test_contactperson IMPLEMENTATION.
   ENDMETHOD.
 
 
+  METHOD class_constructor.
 
+    TRY.
+        go_http_client = cl_web_http_client_manager=>create_by_http_destination(
+                  i_destination = cl_http_destination_provider=>create_by_url( gv_url ) ).
+      CATCH cx_web_http_client_error cx_http_dest_provider_error.
+        "handle exception
+    ENDTRY.
 
-
+  ENDMETHOD.
 ENDCLASS.
