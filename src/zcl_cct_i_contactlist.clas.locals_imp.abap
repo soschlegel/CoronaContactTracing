@@ -76,8 +76,10 @@ CLASS lhc_Contactlist IMPLEMENTATION.
       CREATE OBJECT contactpersoncontacter.
     ENDIF.
     LOOP AT  lt_contact INTO DATA(con).
+
+
 *        CALL METHOD ... EXPORTING con
-      CALL METHOD contactpersoncontacter->notifycontactpersons
+*      CALL METHOD contactpersoncontacter->notifycontactpersons
 *        EXPORTING
 *            contact = con
             .
