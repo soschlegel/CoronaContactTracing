@@ -1,36 +1,13 @@
 CLASS lhc_Contactlist DEFINITION INHERITING FROM cl_abap_behavior_handler.
   PUBLIC SECTION.
-    TYPES:
-      BEGIN OF tys_contact_information,
-*        client TYPE abap_client,
-        contactlist_id                  TYPE sysuuid_x16,
-        casefile_id                     TYPE sysuuid_x16,
-        contact_firstname(40)           TYPE  c,
-        contact_lastname(40)            TYPE c,
-        contact_telephone_number_1(30)  TYPE c,
-        contact_telephone_number_2(30)  TYPE c,
-        contact_telephone_number_3(30)  TYPE c,
-        contact_mail_address(40)        TYPE c,
-        contact_address_street(40)      TYPE c,
-        contact_address_plz(40)         TYPE c,
-        contact_address_city(40)        TYPE c,
-        contact_address_country(40)     TYPE c,
-        contact_address_housenumber(40) TYPE c,
-        contact_has_been_notified       TYPE abap_boolean,
-      END OF tys_contact_information.
-
 
   PRIVATE SECTION.
-
-*    DATA: contactpersoncontacter TYPE REF TO zcl_test_contactperson.
 
     METHODS notifyContact FOR MODIFY
       IMPORTING keys FOR ACTION ContactlistEntity~notifyContact RESULT result.
     METHODS validate_contactlist        FOR VALIDATE ON SAVE
       IMPORTING keys
                   FOR ContactlistEntity~validateContactlist.
-
-
 ENDCLASS.
 
 CLASS lhc_Contactlist IMPLEMENTATION.
@@ -72,11 +49,11 @@ CLASS lhc_Contactlist IMPLEMENTATION.
                                                 %param    = contact ) ).
 
 
-*    IF contactpersoncontacter IS NOT BOUND.
-*      CREATE OBJECT contactpersoncontacter.
-*    ENDIF.
     DATA container TYPE zcl_test_contactperson=>ty_struct.
     LOOP AT  lt_contact INTO DATA(con).
+      IF con-contact_has_been_notified = abap_true.
+        CONTINUE.
+      ENDIF.
       container = VALUE zcl_test_contactperson=>ty_struct(
           contact_firstname = con-contact_firstname
           contact_lastname = con-contact_lastname
