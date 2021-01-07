@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service definiton for report'
+define service ZSD_CCT_REPORT {
+  expose ZCCT_C_REPORT as Report;
+}

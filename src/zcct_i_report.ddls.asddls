@@ -1,35 +1,33 @@
-@AccessControl.authorizationCheck: #CHECK
+@AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'CDS view for report'
-define view entity ZCCT_I_REPORT
-  as select from ZCCT_I_TESTCASE
+@Analytics.query: true
 
+define view entity ZCCT_I_REPORT
+  as select from ZCCT_I_TESTCASE as testcase
+
+  /* Association */
+  association [0..1] to ZCCT_I_TESTTYPE    as _testtype    on $projection.testtype = _testtype.testtypeid
+  association [0..1] to ZCCT_I_TESTRESULT  as _testresult  on $projection.testresult = _testresult.testresultid
+  
 {
-      key ZCCT_I_TESTCASE.testid,
-          ZCCT_I_TESTCASE.personid,
-          ZCCT_I_TESTCASE.employeeid,
-          ZCCT_I_TESTCASE.testtype,
-          ZCCT_I_TESTCASE.testdate,
-          ZCCT_I_TESTCASE.testtime,
-          ZCCT_I_TESTCASE.testresult,
-          ZCCT_I_TESTCASE.testresultdate,
-          ZCCT_I_TESTCASE.testresulttime,
-          ZCCT_I_TESTCASE.personname,
-          ZCCT_I_TESTCASE.employeename,
-          ZCCT_I_TESTCASE.testtypename,
-          ZCCT_I_TESTCASE.testresultname,
-          ZCCT_I_TESTCASE.testresultcolor,
-          ZCCT_I_TESTCASE.created_by,
-          ZCCT_I_TESTCASE.created_at,
-          ZCCT_I_TESTCASE.last_changed_by,
-          ZCCT_I_TESTCASE.last_changed_at,
-          ZCCT_I_TESTCASE.local_last_changed_at,
-          /* Associations */
-          zcct_i_testcase._healthdepem,
-          zcct_i_testcase._testperson
-//          _healthdepem.
-          
+
+      key testcase.testid as  id,
+//      county.countyname as countyname, 
+      testcase.testresult as testresult,  
+      testtype as testtype,
+      testcase.testdate as testdate,
+      testcase.testresultdate as testresultdate,
+      _testperson._County._FEDERAL_STATE.countryid as country,
+      _testperson._County._FEDERAL_STATE.name as fedState,
+      _testperson._County.countyname as county,
+      _testperson._County.population as countyPopulation,
+      _testresult as result,
+       
 
 //      positive_cases_per_100000_res as PositiveCasesPer100000Res,
 //      risk_rating                   as RiskRating,
-      //    _association_name // Make association public
+
+      /* Public associations */
+      _testtype
+
 }
