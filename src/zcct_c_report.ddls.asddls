@@ -1,13 +1,13 @@
-//@AbapCatalog.viewEnhancementCategory: [#]
+@AbapCatalog.viewEnhancementCategory: [#NONE]
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Query view for report'
-//@Analytics.query: true
+@Analytics.query: true
 //@Metadata.ignorePropagatedAnnotations: true
-//@ObjectModel.usageType:{
-//    serviceQuality: #X,
-//    sizeCategory: #S,
-//    dataClass: #MIXED
-//}
+@ObjectModel.usageType:{
+    serviceQuality: #X,
+    sizeCategory: #S,
+    dataClass: #MIXED
+}
 @UI: {
  headerInfo: {
  typeName: 'Report',
@@ -18,19 +18,22 @@
 }
 
 @Search.searchable: true
+@ObjectModel.representativeKey: 'id'
+@Analytics.hidden: false
 
-//@UI.selectionPresentationVariant: [{qualifier: 'testresult', presentationVariantQualifier: 'testresult', selectionVariantQualifier: 'testresult'}]
-//@UI.presentationVariant: [{qualifier: 'testresult', text: 'Testresults', visualizations: [{type: #AS_CHART, qualifier: 'ChartTestResults' }] }]
-//@UI.selectionVariant: [{qualifier: 'testresult', text: 'testresults by country' }]
-//@UI.chart: [{
-//    title: 'Test results by country',
-//    description: 'Shows the test results sorted by countries.' ,
-//    chartType: #COLUMN,
-//    measures: ['testresult'],
-//    measureAttributes: [{ measure: 'testresult', role: #AXIS_1 }],
-//    dimensions: ['country'],
-//    dimensionAttributes: [{ dimension: 'country', role: #CATEGORY }]
-//}]
+
+@UI.selectionPresentationVariant: [{qualifier: 'testresult', presentationVariantQualifier: 'testresult', selectionVariantQualifier: 'testresult'}]
+@UI.presentationVariant: [{qualifier: 'testresult', text: 'Testresults', visualizations: [{type: #AS_CHART, qualifier: 'ChartTestResults' }] }]
+@UI.selectionVariant: [{qualifier: 'testresult', text: 'testresults by country' }]
+@UI.chart: [{
+    title: 'Test results by country',
+    description: 'Shows the test results sorted by countries.' ,
+    chartType: #COLUMN,
+    measures: ['testresult'],
+    measureAttributes: [{ measure: 'testresult', role: #AXIS_1 }],
+    dimensions: ['country'],
+    dimensionAttributes: [{ dimension: 'country', role: #CATEGORY }]
+}]
 
 
 define view entity ZCCT_C_REPORT
@@ -51,75 +54,81 @@ define view entity ZCCT_C_REPORT
       @UI.hidden: false
       @Search.defaultSearchElement: true
       @EndUserText.label: 'Country'
-//      @AnalyticsDetails.query.display: #KEY_TEXT
-//      @AnalyticsDetails.query.axis: #FREE
+      @AnalyticsDetails.query.display: #KEY_TEXT
+      @AnalyticsDetails.query.axis: #ROWS
       country,
 
       @UI: {
-      lineItem:       [ { position: 11, importance: #MEDIUM, label: 'Federal State' } ]}
+      lineItem:       [ { position: 20, importance: #HIGH, label: 'Federal State' } ]}
       @UI.hidden: false
       @Search.defaultSearchElement: true
       @EndUserText.label: 'Federal State'
-      //      @AnalyticsDetails.query.display: #KEY_TEXT
-      //      @AnalyticsDetails.query.axis: #FREE
+      @AnalyticsDetails.query.display: #KEY_TEXT
+      @AnalyticsDetails.query.axis: #ROWS
       fedState,
 
       @UI: {
-      lineItem:       [ { position: 12, importance: #MEDIUM, label: 'County' } ],
-      identification: [ { position: 10, label: 'County ID [1,...,99999999]' } ]}
+      lineItem:       [ { position: 30, importance: #HIGH, label: 'County' } ],
+      identification: [ { position: 30, label: 'County ID [1,...,99999999]' } ]}
       @UI.hidden: false
       @Search.defaultSearchElement: true
       @EndUserText.label: 'County'
-      //      @AnalyticsDetails.query.display: #KEY_TEXT
-      //      @AnalyticsDetails.query.axis: #FREE
+      @AnalyticsDetails.query.display: #KEY_TEXT
+      @AnalyticsDetails.query.axis: #ROWS
       county,
 
       @UI: {
-      lineItem:       [ { position: 13, importance: #MEDIUM, label: 'County population' } ]}
+      lineItem:       [ { position: 40, importance: #HIGH, label: 'County population' } ]}
+      @UI.hidden: false
       @EndUserText.label: 'Population of county'
-      //      @AnalyticsDetails.query.display: #KEY_TEXT
-      //      @AnalyticsDetails.query.axis: #FREE
+      @AnalyticsDetails.query.display: #KEY_TEXT
+      @AnalyticsDetails.query.axis: #ROWS
       countyPopulation,
 
       @UI: {
-      lineItem:       [ { position: 14, importance: #HIGH, label: 'Test result' } ]}
+      lineItem:       [ { position: 50, importance: #HIGH, label: 'Test result' } ]}
+      @UI.hidden: false
       @Search.defaultSearchElement: true
       @EndUserText.label: 'Test result'
-      //      @AnalyticsDetails.query.display: #KEY_TEXT
+      @AnalyticsDetails.query.display: #KEY_TEXT
       @UI.dataPoint.title: 'TestResult'
-      //      @AnalyticsDetails.query.axis: #FREE
+      @AnalyticsDetails.query.axis: #ROWS
       testresult,
 
       @UI: {
-      lineItem:       [ { position: 15, importance: #MEDIUM, label: 'Test type'  } ]}
+      lineItem:       [ { position: 60, importance: #HIGH, label: 'Test type'  } ]}
+      @UI.hidden: false
       @Search.defaultSearchElement: true
       @EndUserText.label: 'Test type'
-      //      @AnalyticsDetails.query.display: #KEY_TEXT
+      @AnalyticsDetails.query.display: #KEY_TEXT
       @UI.dataPoint.title: 'TestType'
-      //      @AnalyticsDetails.query.axis: #FREE
+      @AnalyticsDetails.query.axis: #ROWS
 
       testtype,
 
       @UI: {
-      lineItem:       [ { position: 16, importance: #MEDIUM, label: 'Test date' } ]}
+      lineItem:       [ { position: 70, importance: #HIGH, label: 'Test date' } ]}
+      @UI.hidden: false
       @EndUserText.label: 'Test date'
-      //      @AnalyticsDetails.query.display: #KEY_TEXT
-      //      @AnalyticsDetails.query.axis: #FREE
+      @AnalyticsDetails.query.display: #KEY_TEXT
+      @AnalyticsDetails.query.axis: #ROWS
       testdate,
 
       @UI: {
-      lineItem:       [ { position: 17, importance: #MEDIUM, label: 'Test result date' } ]}
+      lineItem:       [ { position: 80, importance: #HIGH, label: 'Test result date' } ]}
+      @UI.hidden: false
       @EndUserText.label: 'Test result date'
-      //      @AnalyticsDetails.query.display: #KEY_TEXT
-      //      @AnalyticsDetails.query.axis: #FREE
+      @AnalyticsDetails.query.display: #KEY_TEXT
+      @AnalyticsDetails.query.axis: #ROWS
       testresultdate,
 
       @Aggregation.referenceElement: ['id']
       @Aggregation.default: #COUNT_DISTINCT
       @UI: {
-      lineItem:       [ { position: 18, importance: #MEDIUM, label: 'Total' } ]}
-      //      @AnalyticsDetails.query.display: #KEY_TEXT
-      //      @AnalyticsDetails.query.axis: #FREE
+      lineItem:       [ { position: 90, importance: #HIGH, label: 'Total' } ]}
+      @UI.hidden: false
+      @AnalyticsDetails.query.display: #KEY_TEXT
+      @AnalyticsDetails.query.axis: #ROWS
       cast( 18 as abap.int4 ) as total
 
 }

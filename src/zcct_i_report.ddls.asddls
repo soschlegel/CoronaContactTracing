@@ -1,15 +1,16 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'CDS view for report'
 @Analytics.dataCategory: #DIMENSION
+@ObjectModel.representativeKey: 'id'
 
-define view entity ZCCT_I_REPORT
+define view entity ZCCT_I_REPORT 
   as select from ZCCT_I_TESTCASE as testcase
 
   /* Association */
   //  association [0..1] to ZCCT_I_TESTTYPE    as _testtype    on $projection.testtype = _testtype.testtypeid
   //  association [0..1] to ZCCT_I_TESTRESULT  as _testresult  on $projection.testresult = _testresult.testresultid
-  association [1..1] to ZCCT_I_TESTTYPE   as _TestType   on testcase.testtype = _TestType.testtypeid
-  association [1..1] to ZCCT_I_TESTRESULT as _TestResult on testcase.testresult = _TestResult.testresultid
+  association [0..1] to ZCCT_I_TESTTYPE   as _TestType   on testcase.testtype = _TestType.testtypeid
+  association [0..1] to ZCCT_I_TESTRESULT as _TestResult on testcase.testresult = _TestResult.testresultid
 
 {
 
