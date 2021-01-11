@@ -33,5 +33,6 @@ define view entity ZCCT_I_REPORT
      /* Public associations */
       _TestType,
       _TestResult
+//      _TestPerson._County as County
 
 }
