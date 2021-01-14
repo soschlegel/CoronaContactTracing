@@ -14,15 +14,6 @@ CLASS lhc_Contactlist IMPLEMENTATION.
 
   METHOD notifyContact.
 
-    " Modify in local mode: BO-related updates that are not relevant for authorization checks
-    MODIFY ENTITIES OF zcct_i_contactlist IN LOCAL MODE
-           ENTITY ContactlistEntity
-              UPDATE FIELDS ( contact_has_been_notified )
-                 WITH VALUE #( FOR key IN keys ( contactlist_id      = key-contactlist_id
-                                       contact_has_been_notified = 'X'          ) ) " Accepted
-           FAILED   failed
-           REPORTED reported.
-
     " Read changed data for action result
     READ ENTITIES OF zcct_i_contactlist IN LOCAL MODE
          ENTITY ContactlistEntity
@@ -57,21 +48,32 @@ CLASS lhc_Contactlist IMPLEMENTATION.
       container = VALUE zcl_test_contactperson=>ty_struct(
           contact_firstname = con-contact_firstname
           contact_lastname = con-contact_lastname
-           contact_address_country = con-contact_address_country
-           contact_address_city = con-contact_address_city
-           contact_address_plz = con-contact_address_plz
-           contact_address_street = con-contact_address_street
-           contact_address_housenumber = con-contact_address_housenumber
-           contact_mail_address = con-contact_mail_address
-           contact_telephone_number_1 = con-contact_telephone_number_1
-           contact_telephone_number_2 = con-contact_telephone_number_2
-           contact_telephone_number_3 = con-contact_telephone_number_3
-           contact_has_been_notified = con-contact_has_been_notified
+          contact_address_country = con-contact_address_country
+          contact_address_city = con-contact_address_city
+          contact_address_plz = con-contact_address_plz
+          contact_address_street = con-contact_address_street
+          contact_address_housenumber = con-contact_address_housenumber
+          contact_mail_address = con-contact_mail_address
+          contact_telephone_number_1 = con-contact_telephone_number_1
+          contact_telephone_number_2 = con-contact_telephone_number_2
+          contact_telephone_number_3 = con-contact_telephone_number_3
+          contact_has_been_notified = COND i( WHEN con-contact_has_been_notified = abap_true THEN 0
+                                            ELSE 0 )
       ).
 
       zcl_test_contactperson=>notifyContactpersons( iv_struct = container ).
 
     ENDLOOP.
+
+        " Modify in local mode: BO-related updates that are not relevant for authorization checks
+    MODIFY ENTITIES OF zcct_i_contactlist IN LOCAL MODE
+           ENTITY ContactlistEntity
+              UPDATE FIELDS ( contact_has_been_notified )
+                 WITH VALUE #( FOR key IN keys ( contactlist_id      = key-contactlist_id
+                                       contact_has_been_notified = 'X'          ) ) " Accepted
+           FAILED   failed
+           REPORTED reported.
+
 
   ENDMETHOD.
 
