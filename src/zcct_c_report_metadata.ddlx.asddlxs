@@ -12,21 +12,47 @@
 
 
 @UI.chart: [
+ {
+        //Filter0 attributes
+        qualifier: 'Filter0Chart',
+        chartType: #BAR,
+        dimensions:  [ 'country' ],
+        measures:  [ 'total' ],
+
+        dimensionAttributes: [{dimension: 'country', role: #CATEGORY}],
+        measureAttributes: [{measure: 'total', role: #AXIS_1, asDataPoint: true }]
+    },
     {
         //Filter1 attributes
         qualifier: 'Filter1Chart',
         chartType: #BAR,
+        title: 'Test cases by federal state',
 
-        dimensions:  [ 'fedState' ],
+        dimensions:  [ 'fedstateid'],
         measures:  [ 'total' ],
 
-        dimensionAttributes: [{dimension: 'fedState', role: #CATEGORY}],
+        dimensionAttributes: [{dimension: 'fedstateid', role: #CATEGORY}],
         measureAttributes: [{measure: 'total', role: #AXIS_1, asDataPoint: true }]
+
     },
-        {
-        //Filter1 attributes
-        qualifier: 'Filter2Chart',
+    {
+        //Filter3 attributes
+        qualifier: 'Filter3Chart',
+        chartType: #PIE,
+        title: 'Test cases by test result',
+
+        dimensions:  [ 'testresult'],
+        measures:  [ 'total' ],
+
+        dimensionAttributes: [{dimension: 'testresult', role: #CATEGORY}],
+        measureAttributes: [{measure: 'total', role: #AXIS_1, asDataPoint: true }]
+
+    },
+    {
+        //Filter4 attributes
+        qualifier: 'Filter4Chart',
         chartType: #DONUT,
+        title: 'Test cases by test type',
 
         dimensions:  [ 'testtype' ],
         measures:  [ 'total' ],
@@ -36,28 +62,41 @@
     },
     {
         //Chart attributes
-        title: 'Test results by country',
-        description: 'Shows the test results sorted by countries.' ,
+        title: 'Test results by county',
         chartType: #COLUMN,
 
         dimensions: ['county'],
         measures: ['total'],
 
-        dimensionAttributes: [{ dimension: 'county', role: #CATEGORY }],
+        dimensionAttributes: [{ dimension: 'country', role: #CATEGORY }],
         measureAttributes: [{ measure: 'total', role: #AXIS_1, asDataPoint: true}]
     }
 ]
 
 @UI.presentationVariant: [
     {
+        qualifier: 'Filter0',
+        sortOrder: [{by: 'total', direction: #DESC }],
+        visualizations: [{type: #AS_CHART, qualifier: 'Filter0Chart' }]
+    },
+    {
         qualifier: 'Filter1',
         sortOrder: [{by: 'total', direction: #DESC }],
         visualizations: [{type: #AS_CHART, qualifier: 'Filter1Chart' }]
     },
     {
-        qualifier: 'Filter2', 
+        qualifier: 'Filter2',
+        sortOrder: [{by: 'total', direction: #DESC }]
+    },
+    {
+        qualifier: 'Filter3',
+        sortOrder: [{by: 'total', direction: #DESC }],
+        visualizations: [{type: #AS_CHART, qualifier: 'Filter3Chart' }]
+    },
+    {
+        qualifier: 'Filter4',
         sortOrder: [ { by: 'total', direction: #DESC } ],
-        visualizations: [{ type: #AS_CHART, qualifier: 'Filter2Chart' }]
+        visualizations: [{ type: #AS_CHART, qualifier: 'Filter4Chart' }]
     },
     {
         sortOrder: [{ by: 'total', direction: #DESC }],
@@ -73,54 +112,132 @@ annotate entity ZCCT_C_REPORT with
   id;
 
   @UI.lineItem: [ { position: 10, importance: #HIGH, label: 'Country'} ]
-  country;
-
-  @UI.lineItem: [ { position: 20, importance: #HIGH, label: 'Federal State' } ]
+  @UI.selectionField: [{ position: 10 }]
   @Consumption.valueHelpDefinition: [
       {
-          entity.name: 'zcct_i_county_m',
-          entity.element: 'countyname'
+          entity.name: 'I_Country',
+          entity.element: 'Country'
+      },
+      {
+          qualifier: 'VisualFilter0',
+          entity.name: 'ZCCT_C_REPORT',
+          entity.element: 'country',
+          additionalBinding: [
+              {
+                  localElement: 'country',
+                  element: 'country',
+                  parameter: 'country',
+                  usage: #FILTER_AND_RESULT
+              }
+          ],
+          presentationVariantQualifier: 'Filter0'
+      }
+  ]
+  country;
+
+
+  @UI.selectionField: [{ position: 20}]
+  @Consumption.valueHelpDefinition: [
+      {
+          entity.name: 'ZCCT_M_FED_STATE',
+          entity.element: 'id'
       },
       {
           qualifier: 'VisualFilter1',
           entity.name: 'ZCCT_C_REPORT',
-          entity.element: 'fedState',
+          entity.element: 'fedstateid',
           additionalBinding: [
               {
-                  localElement: 'fedState',
-                  element: 'fedState',
+                  localElement: 'fedstateid',
+                  element: 'fedstateid',
+                  //parameter: 'fedstateid',
                   usage: #FILTER_AND_RESULT
               }
           ],
           presentationVariantQualifier: 'Filter1'
       }
-]
-  fedState;
+  ]
+  @EndUserText.label: 'Federal State'
+  fedstateid;
+
+  @UI.lineItem: [ { position: 20, importance: #HIGH, label: 'Federal State' } ]
+  fedstate;
+
+  @UI.selectionField: [{ position: 30 }]
+  @EndUserText.label: 'County'
+  @Consumption.valueHelpDefinition: [
+     {
+         entity.name: 'ZCCT_I_COUNTY_M',
+         entity.element: 'countyuuid'
+     },
+     {
+         qualifier: 'VisualFilter2',
+         entity.name: 'ZCCT_C_REPORT',
+         entity.element: 'countyid',
+         additionalBinding: [
+             {
+                 localElement: 'countyid',
+                 element: 'countyid',
+                 //parameter: 'fedstateid',
+                 usage: #FILTER_AND_RESULT
+             }
+         ],
+         presentationVariantQualifier: 'Filter2'
+     }
+ ]
+  countyid;
 
   @UI.lineItem: [ { position: 30, importance: #HIGH, label: 'County' } ]
-  @UI.selectionField: [{ position: 10 }]   
   county;
 
   @UI.lineItem: [ { position: 40, importance: #HIGH, label: 'County population' } ]
   countyPopulation;
 
   @UI.lineItem: [ { position: 50, importance: #HIGH, label: 'Test result' } ]
+  @UI.selectionField: [{ position: 40 }]
+  @Consumption.valueHelpDefinition: [
+     {
+          entity.name: 'ZCCT_I_TESTRESULT',
+          entity.element: 'testresultid'
+     },
+     {
+          qualifier: 'VisualFilter3',
+          entity.name: 'ZCCT_C_REPORT',
+          entity.element: 'testresult',
+          additionalBinding: [
+            {
+                localElement: 'testresult',
+                element: 'testresult',
+                usage: #FILTER_AND_RESULT
+            }
+          ],
+          presentationVariantQualifier: 'Filter3'
+     }
+  ]
   testresult;
 
   @UI.lineItem: [ { position: 60, importance: #HIGH, label: 'Test type'  } ]
+  @UI.selectionField: [{ position: 50 }]
+
   @Consumption.valueHelpDefinition: [
-       {
-            entity.name: 'zcct_i_testtype',
-            entity.element: 'testtypeid'
-       },
-       {
-            qualifier: 'VisualFilter2',
-            entity.name: 'ZCCT_C_REPORT',
-            entity.element: 'testtype',
-            additionalBinding: [{ localElement: 'testtype', element: 'testtype', usage: #FILTER_AND_RESULT }],              
-            presentationVariantQualifier: 'Filter2'
-       }
-      ]
+     {
+          entity.name: 'ZCCT_I_TESTTYPE',
+          entity.element: 'testtypeid'
+     },
+     {
+          qualifier: 'VisualFilter4',
+          entity.name: 'ZCCT_C_REPORT',
+          entity.element: 'testtype',
+          additionalBinding: [
+            {
+                localElement: 'testtype',
+                element: 'testtype',
+                usage: #FILTER_AND_RESULT
+            }
+          ],
+          presentationVariantQualifier: 'Filter4'
+     }
+  ]
   testtype;
 
   @UI.lineItem: [ { position: 70, importance: #HIGH, label: 'Test date' } ]

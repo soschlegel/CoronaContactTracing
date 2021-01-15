@@ -23,7 +23,9 @@ define view entity ZCCT_I_REPORT
       testcase.testresultdate                      as testresultdate,
       _TestResult                                  as result,
       _testperson._County._FEDERAL_STATE.countryid as country,
-      _testperson._County._FEDERAL_STATE.name      as fedState,
+      _testperson._County.federal_state_id         as fedstateid,
+      _testperson._County._FEDERAL_STATE.name      as fedstate,
+      _testperson._County.countyuuid               as countyid,
       _testperson._County.countyname               as county,
       _testperson._County.population               as countyPopulation,
 

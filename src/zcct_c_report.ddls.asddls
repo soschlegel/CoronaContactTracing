@@ -12,7 +12,7 @@
 @Metadata.allowExtensions: true
 
 
-@Search.searchable: true
+//@Search.searchable: true
 @ObjectModel.representativeKey: 'id'
 
 
@@ -27,10 +27,14 @@ define view entity ZCCT_C_REPORT
       @EndUserText.label: 'Country'
       country,
 
+      fedstateid,
+
       @Search.defaultSearchElement: true
       @EndUserText.label: 'Federal State'
-      fedState,
+      fedstate,
 
+      countyid,
+        
       @Search.defaultSearchElement: true
       @EndUserText.label: 'County'
       county,
@@ -52,8 +56,9 @@ define view entity ZCCT_C_REPORT
       @EndUserText.label: 'Test result date'
       testresultdate,
 
-      @Aggregation.referenceElement: ['testtype']
+      @Aggregation.referenceElement: ['id']
       @Aggregation.default: #COUNT_DISTINCT
+      @EndUserText.label: 'Total amount of test cases'
       cast( 18 as abap.int4 ) as total
 
 }
