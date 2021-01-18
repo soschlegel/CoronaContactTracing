@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service definition for county report'
+define service ZSD_CCT_REPORT_COUNTY {
+  expose ZCCT_C_REPORT_COUNTY;
+  expose ZCCT_I_COUNTY_M;
+}

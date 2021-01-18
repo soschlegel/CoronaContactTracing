@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service definition for country report'
+define service ZSD_CCT_REPORT_COUNTRY {
+  expose ZCCT_C_REPORT_COUNTRY;
+  expose ZCCT_I_COUNTY_M;
+}

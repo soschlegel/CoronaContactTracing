@@ -1,0 +1,221 @@
+@Metadata.layer: #CORE
+
+
+
+@UI.headerInfo: {
+     typeName: 'Report',
+     typeNamePlural: 'Reports',
+     title: { type: #STANDARD, value: 'country' },
+     description: { label: 'Federalstate', value: 'fedState' }
+}
+
+
+
+@UI.chart: [
+ {
+        //Filter0 attributes
+        qualifier: 'Filter0Chart',
+        chartType: #BAR,
+        dimensions:  [ 'country' ],
+        measures:  [ 'total' ],
+
+        dimensionAttributes: [{dimension: 'country', role: #CATEGORY}],
+        measureAttributes: [{measure: 'total', role: #AXIS_1, asDataPoint: true }]
+    },
+    {
+        //Filter1 attributes
+        qualifier: 'Filter1Chart',
+        chartType: #DONUT,
+        title: 'Test cases by federal state',
+
+        dimensions:  [ 'fedstateid'],
+        measures:  [ 'total' ],
+
+        dimensionAttributes: [{dimension: 'fedstateid', role: #CATEGORY}],
+        measureAttributes: [{measure: 'total', role: #AXIS_1, asDataPoint: true }]
+
+    },
+    {
+        //Filter3 attributes
+        qualifier: 'Filter3Chart',
+        chartType: #BAR,
+        title: 'Test cases by test result',
+
+        dimensions:  [ 'testresult'],
+        measures:  [ 'total' ],
+
+        dimensionAttributes: [{dimension: 'testresult', role: #CATEGORY}],
+        measureAttributes: [{measure: 'total', role: #AXIS_1, asDataPoint: true }]
+
+    },
+    {
+        //Filter4 attributes
+        qualifier: 'Filter4Chart',
+        chartType: #DONUT,
+        title: 'Test cases by test type',
+
+        dimensions:  [ 'testtype' ],
+        measures:  [ 'total' ],
+
+        dimensionAttributes: [{dimension: 'testtype', role: #CATEGORY}],
+        measureAttributes: [{measure: 'total', role: #AXIS_1, asDataPoint: true }]
+    },
+    {
+        //Chart attributes
+        title: 'Test results by county',
+        chartType: #COLUMN,
+
+        dimensions: ['fedstate'],
+        measures: ['total'],
+
+        dimensionAttributes: [{ dimension: 'fedstate', role: #CATEGORY }],
+        measureAttributes: [{ measure: 'total', role: #AXIS_1, asDataPoint: true}]
+    }
+]
+
+@UI.presentationVariant: [
+    {
+        qualifier: 'Filter0',
+        sortOrder: [{by: 'total', direction: #DESC }],
+        visualizations: [{type: #AS_CHART, qualifier: 'Filter0Chart' }]
+    },
+    {
+        qualifier: 'Filter1',
+        sortOrder: [{by: 'total', direction: #DESC }],
+        visualizations: [{type: #AS_CHART, qualifier: 'Filter1Chart' }]
+    },
+    {
+        qualifier: 'Filter2',
+        sortOrder: [{by: 'total', direction: #DESC }]
+    },
+    {
+        qualifier: 'Filter3',
+        sortOrder: [{by: 'total', direction: #DESC }],
+        visualizations: [{type: #AS_CHART, qualifier: 'Filter3Chart' }]
+    },
+    {
+        qualifier: 'Filter4',
+        sortOrder: [ { by: 'total', direction: #DESC } ],
+        visualizations: [{ type: #AS_CHART, qualifier: 'Filter4Chart' }]
+    },
+    {
+        sortOrder: [{ by: 'total', direction: #DESC }],
+        visualizations: [ { type: #AS_CHART }, { type: #AS_LINEITEM }]
+    }
+]
+
+
+annotate entity ZCCT_C_REPORT_FEDSTATE with
+{
+
+  @UI.hidden: true
+  id;
+
+  @UI.lineItem: [ { position: 10, importance: #HIGH, label: 'Country'} ]
+  @UI.selectionField: [{ position: 10 }]
+  @Consumption.valueHelpDefinition: [
+      {
+          entity.name: 'I_Country',
+          entity.element: 'Country'
+      },
+      {
+          qualifier: 'VisualFilter0',
+          entity.name: 'ZCCT_C_REPORT_FEDSTATE',
+          entity.element: 'country',
+          additionalBinding: [
+              {
+                  localElement: 'country',
+                  element: 'country',
+                  parameter: 'country',
+                  usage: #FILTER_AND_RESULT
+              }
+          ],
+          presentationVariantQualifier: 'Filter0'
+      }
+  ]
+  country;
+
+
+  @UI.selectionField: [{ position: 20}]
+  @Consumption.valueHelpDefinition: [
+      {
+          entity.name: 'ZCCT_M_FED_STATE',
+          entity.element: 'id'
+      },
+      {
+          qualifier: 'VisualFilter1',
+          entity.name: 'ZCCT_C_REPORT_FEDSTATE',
+          entity.element: 'fedstateid',
+          additionalBinding: [
+              {
+                  localElement: 'fedstateid',
+                  element: 'fedstateid',
+                  //parameter: 'fedstateid',
+                  usage: #FILTER_AND_RESULT
+              }
+          ],
+          presentationVariantQualifier: 'Filter1'
+      }
+  ]
+  @EndUserText.label: 'Federal State'
+  fedstateid;
+
+  @UI.lineItem: [ { position: 20, importance: #HIGH, label: 'Federal State' } ]
+  fedstate;
+
+  @UI.lineItem: [ { position: 50, importance: #HIGH, label: 'Test result' } ]
+  @UI.selectionField: [{ position: 40 }]
+  @Consumption.valueHelpDefinition: [
+     {
+          entity.name: 'ZCCT_I_TESTRESULT',
+          entity.element: 'testresultid'
+     },
+     {
+          qualifier: 'VisualFilter3',
+          entity.name: 'ZCCT_C_REPORT_FEDSTATE',
+          entity.element: 'testresult',
+          additionalBinding: [
+            {
+                localElement: 'testresult',
+                element: 'testresult',
+                usage: #FILTER_AND_RESULT
+            }
+          ],
+          presentationVariantQualifier: 'Filter3'
+     }
+  ]
+  testresult;
+
+  @UI.lineItem: [ { position: 60, importance: #HIGH, label: 'Test type'  } ]
+  @UI.selectionField: [{ position: 50 }]
+
+  @Consumption.valueHelpDefinition: [
+     {
+          entity.name: 'ZCCT_I_TESTTYPE',
+          entity.element: 'testtypeid'
+     },
+     {
+          qualifier: 'VisualFilter4',
+          entity.name: 'ZCCT_C_REPORT_FEDSTATE',
+          entity.element: 'testtype',
+          additionalBinding: [
+            {
+                localElement: 'testtype',
+                element: 'testtype',
+                usage: #FILTER_AND_RESULT
+            }
+          ],
+          presentationVariantQualifier: 'Filter4'
+     }
+  ]
+  testtype;
+
+  @UI.lineItem: [ { position: 70, importance: #HIGH, label: 'Test date' } ]
+  testdate;
+
+  @UI.lineItem: [ { position: 80, importance: #HIGH, label: 'Test result date' } ]
+  testresultdate;
+
+  @UI.lineItem: [ { position: 90, importance: #HIGH, label: 'Total' } ]
+  total;
+}

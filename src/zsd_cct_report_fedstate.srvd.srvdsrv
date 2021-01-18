@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service definition for fedstate report'
+define service ZSD_CCT_REPORT_FEDSTATE {
+  expose ZCCT_C_REPORT_FEDSTATE;
+  expose ZCCT_I_COUNTY_M;
+}
