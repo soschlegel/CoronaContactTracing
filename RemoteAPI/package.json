@@ -1,0 +1,23 @@
+{
+  "name": "coronanotifier",
+  "version": "1.0.0",
+  "description": "An app that automatically notifies people who had been recently in contact with persons that have been tested positively for covid-19.",
+  "main": "notifierapp.js",
+  "scripts": {
+    "start": "node notifierapp.js",
+    "dev": "nodemon index"
+  },
+  "author": "Patrick Deck",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "sqlite3": "^5.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
+  "engines": {
+    "node": "12.x"
+  }
+}
