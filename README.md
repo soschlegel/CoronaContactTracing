@@ -5,7 +5,7 @@ Es soll eine API bereitgestellt werden, die über eine ABAP Schnittstelle eine i
 die anschließend in eine Datenbank abgelegt werden.
 
 
-##Voraussetzungen:
+## Voraussetzungen:
 - Fertige Node.js Anwendung (node und npm installiert)
 - git installiert
 
