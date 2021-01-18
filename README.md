@@ -1,82 +1,44 @@
-# Corona Contact Tracing
+# Aufgabe 9 - API & Benachrichtigung der Nutzer
+Dieser Guide erläutert die einzelnen Schritte , die zum Deployment einer eigenen Node.js Anwendung mit Heroku erforderlich sind.
+## Aufgabenstellung:
+Es soll eine API bereitgestellt werden, die über eine ABAP Schnittstelle eine interne Tabelle in Form von JSON übergeben bekommt,
+die anschließend in eine Datenbank abgelegt werden.
 
-Corona Contact Tracing with SAP RAP on Steampunk
 
-## Story and Use-Case
+##Voraussetzungen:
+- Fertige Node.js Anwendung (node und npm installiert)
+- git installiert
 
-To be defined
+## Umsetzung:
+Für das Hosten der API auf einem Cloud-Server wurde Heroku gewählt, weil es im kleinen Rahmen zum prototypischen Testen kostenfrei nutzbar ist.
+Heroku ist auf allen gängigen Betriebssystemen (Windows, Mac, Linux) verfügbar und kann unter folgendem Link heruntergeladen, bzw. installiert werden: https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up.
+Für die Nutzung von Heroku wird ein kostenloser Account vorausgesetzt. Genannter Link stellt ebenfalls die Grundlage dieses Guides dar.
 
-## Relevant Processes
+Sobald Heroku installiert ist, kann Heroku gestartet werden. Dafür loggt man sich über die Command Line zunächst ein:
 
-1. Maintenance of federal states **(Group 04)**
-   1. Re-Use **I_Country** in the federal state definition
-2. Maintenance of counties **(Group 02)**
-   1. Assign a county to a federal state
-3. Maintenance of public health departments **(Group 03)**
-   1. To clarify: Do we have one health department per county?
-4. Add an Health Department Employee **(Group 09)**
-5. Add a test person **(Group 10)**
-   1. Assignment of county and health department
-6. Created test result for a test person **(Group 07)**
-   1. Test is positive
-   2. Created a case file as an action
-7. For each positive Test, we have a case file **(Group 08)**
-   1. Assign an employee to a case
-8. Part of the case file is a contact list **(Group 01)**
-   1. Persons can be added
-   2. An action can change the status
-9. Notify "contact person" **(Group 05)**
-    1. Call any external web-API
-10. Reporting on country-level **(Group 06)**
-11. Reporting on federal state level **(Group 06)**
-12. Reporting on county level **(Group 06)**
-
-## Data-Model
-
-- Federal-State
-  - Table-Name: ZCCT_FedState
-  - CDS_View: ZCCT_I_FED_STATE
-- County
-  - Table-Name: ZCCT_County
-- Health-Department
-  - Table-Name: ZCCT_HealthDep
-- Health-Department-Employee
-  - Table-Name: ZCCT_HealthDepEm
-- Tested-Person
-  - Table-Name: ZCCT_TestPerson
-- Test-Case
-  - Table-Name: ZCCT_TestCase
-- Case-File
-  - Table-Name: ZCCT_CaseFile
-- Contact-List
-  - Table-Name: ZCCT_ContactList
-  - Fields:
-    - Key: GUID
-    - Foreign-Key: CaseFileGUID
-
-## Hints
-
-### Links
-
-- [Tutorial by Soeren](https://github.com/soschlegel/abap.livecoding)
-
-### Struct for administrative Data on Table-Level:
-
-```abap
-  created_by            : syuname;  
-  created_at            : timestampl;
-  last_changed_by       : syuname;
-  last_changed_at       : timestampl;
-  local_last_changed_at : timestampl;
+```shell
+heroku login
 ```
+Im Normalfall sollte der obige Befehl ein Browserfenster öffnen, in dem man die Authentifizierung des Logins abläuft.
 
-## Naming Conventions
 
-- Table: ZCCT_>>DESCR<<
-- Classes: ZCL_CCT_>>DESCR<< &rarr; first **CL** then **CCT** is correct!
-- View: ZCCT_I_>>DECSR<<
-- Projection-View: ZCCT_C_>>DECSR<<
-- Behavior-Definition: same like View
-- Service-Definition: ZSD_CCT_>>DESCR<<
-- Service-Binding: ZSB_CCT_>>DESCR<<
-- Data-Elements: ZCCT_>>DESCR<< 
+Im nächsten Schritt wird die App erstellt und deployed. Dafür wechselt man in der Konsole in das Wurzelverzeichnis der Node.js Anwendung ('RemoteAPI' in diesem Fall) und startet folgenden Befehl:
+```shell
+heroku create
+```
+Dieser Befehl erstellt eine neue Heroku App mit einem zufälligen Namen. Optional kann auch noch ein weiterer Parameter als Name der Heroku App übergeben werden.
+
+Gleichzeitig wird ein neues Remote-Repository mit dem gleichen Namen erstellt, das mit dem lokalen Repository der Node.js Anwendung verbunden ist.
+Um den Code nun auf Heroku zu deployen muss das lokale Repository nur noch auf das Heroku Remote-Repository gepushed werden:
+```shell
+git push heroku main
+```
+Zum Sicherstellen, dass mindestens eine Instanz der Anwendung läuft:
+
+```shell
+heroku ps:scale web=1
+```
+Um die deployte Anwendung auf der Webseite zu öffnen:
+```shell
+heroku open
+```
