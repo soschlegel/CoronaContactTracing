@@ -1,13 +1,14 @@
 # Aufgabe 9 - API & Benachrichtigung der Nutzer
 Dieser Guide erläutert die einzelnen Schritte , die zum Deployment einer eigenen Node.js Anwendung mit Heroku erforderlich sind.
+
+Voraussetzungen:
+- Fertige Node.js Anwendung (node und npm installiert)
+- git installiert
+
+
 ## Aufgabenstellung:
 Es soll eine API bereitgestellt werden, die über eine ABAP Schnittstelle eine interne Tabelle in Form von JSON übergeben bekommt,
 die anschließend in eine Datenbank abgelegt werden.
-
-
-## Voraussetzungen:
-- Fertige Node.js Anwendung (node und npm installiert)
-- git installiert
 
 ## Umsetzung:
 Für das Hosten der API auf einem Cloud-Server wurde Heroku gewählt, weil es im kleinen Rahmen zum prototypischen Testen kostenfrei nutzbar ist.
