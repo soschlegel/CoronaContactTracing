@@ -1,0 +1,72 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/sap/ZSB_CCT_REPORT_COUNTRY/$metadata">
+        <edmx:Include Namespace="cds_zsd_cct_report_country"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="alp">
+            <Annotations Target="cds_zsd_cct_report_country.ZCCT_C_REPORT_COUNTRYType/testtype">
+                <Annotation Term="com.sap.vocabularies.Common.v1.ValueList" Qualifier="VisualFilter4">
+                    <Record>
+                        <PropertyValue Property="CollectionPath" String="ZCCT_C_REPORT_COUNTRY"/>
+                        <PropertyValue Property="PresentationVariantQualifier" String="Filter4"/>
+                        <PropertyValue Property="Label" String="Value help for test type" />
+                        <PropertyValue Property="SearchSupported" Bool="false" />
+                        <PropertyValue Property="Parameters" >
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="testtype"/>
+                                    <PropertyValue Property="ValueListProperty" String="testtype"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_cct_report_country.ZCCT_C_REPORT_COUNTRYType/testresult">
+                <Annotation Term="com.sap.vocabularies.Common.v1.ValueList" Qualifier="VisualFilter3">
+                    <Record>
+                        <PropertyValue Property="CollectionPath" String="ZCCT_C_REPORT_COUNTRY"/>
+                        <PropertyValue Property="PresentationVariantQualifier" String="Filter3"/>
+                        <PropertyValue Property="Label" String="Value help for test result" />
+                        <PropertyValue Property="SearchSupported" Bool="false" />
+                        <PropertyValue Property="Parameters" >
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="testresult"/>
+                                    <PropertyValue Property="ValueListProperty" String="testresult"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_cct_report_country.ZCCT_C_REPORT_COUNTRYType/country">
+                <Annotation Term="com.sap.vocabularies.Common.v1.ValueList" Qualifier="VisualFilter0"> 
+                    <Record>
+                        <PropertyValue Property="CollectionPath" String="ZCCT_C_REPORT_COUNTRY"/>
+                        <PropertyValue Property="PresentationVariantQualifier" String="Filter0"/>
+                        <PropertyValue Property="Label" String="Value help for country" />
+                        <PropertyValue Property="SearchSupported" Bool="false" />
+                        <PropertyValue Property="Parameters" >
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="country"/> 
+                                    <PropertyValue Property="ValueListProperty" String="country"/> 
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
