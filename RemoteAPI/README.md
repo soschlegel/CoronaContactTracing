@@ -3,7 +3,7 @@ Dieser Guide erläutert die einzelnen Schritte , die zum Deployment einer eigene
 ## Aufgabenstellung:
 Es soll eine API bereitgestellt werden, die über eine ABAP Schnittstelle eine interne Tabelle in Form von JSON übergeben bekommt, die anschließend in eine Datenbank abgelegt werden.
 
-##Voraussetzungen:
+## Voraussetzungen:
 - Fertige Node.js Anwendung (node und npm installiert)
 - git installiert
 ## Umsetzung:
