@@ -14,8 +14,10 @@
 
 //@Search.searchable: true
 @ObjectModel.representativeKey: 'id'
-define view entity ZCCT_C_REPORT_COUNTRY as select from ZCCT_I_REPORT {
-    key id,
+define view entity ZCCT_C_REPORT_COUNTRY
+  as select from ZCCT_I_REPORT
+{
+  key id,
 
 
       @Search.defaultSearchElement: true
@@ -28,8 +30,14 @@ define view entity ZCCT_C_REPORT_COUNTRY as select from ZCCT_I_REPORT {
 
       @Search.defaultSearchElement: true
       @EndUserText.label: 'Test type'
+      @ObjectModel.text.element: ['testtypename']
+      @UI.textArrangement: #TEXT_ONLY
       testtype,
-      
+
+      @Search.defaultSearchElement: true
+      @EndUserText.label: 'Test type'
+      testtypename,
+
       @EndUserText.label: 'Test date'
       testdate,
 

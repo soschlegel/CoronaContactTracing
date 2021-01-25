@@ -22,7 +22,7 @@
         dimensionAttributes: [{dimension: 'country', role: #CATEGORY}],
         measureAttributes: [{measure: 'total', role: #AXIS_1, asDataPoint: true }]
     },
-    {
+        {
         //Filter1 attributes
         qualifier: 'Filter1Chart',
         chartType: #DONUT,
@@ -51,10 +51,11 @@
     {
         //Filter4 attributes
         qualifier: 'Filter4Chart',
+
         chartType: #DONUT,
         title: 'Test cases by test type',
 
-        dimensions:  [ 'testtype' ],
+        dimensions:  [ 'testtype'] ,
         measures:  [ 'total' ],
 
         dimensionAttributes: [{dimension: 'testtype', role: #CATEGORY}],
@@ -158,7 +159,9 @@ annotate entity ZCCT_C_REPORT_FEDSTATE with
       }
   ]
   @EndUserText.label: 'Federal State'
+  @UI.textArrangement: #TEXT_ONLY
   fedstateid;
+
 
   @UI.lineItem: [ { position: 20, importance: #HIGH, label: 'Federal State' } ]
   fedstate;
@@ -186,7 +189,7 @@ annotate entity ZCCT_C_REPORT_FEDSTATE with
   ]
   testresult;
 
-  @UI.lineItem: [ { position: 60, importance: #HIGH, label: 'Test type'  } ]
+
   @UI.selectionField: [{ position: 50 }]
 
   @Consumption.valueHelpDefinition: [
@@ -209,6 +212,9 @@ annotate entity ZCCT_C_REPORT_FEDSTATE with
      }
   ]
   testtype;
+
+  @UI.lineItem: [ { position: 60, importance: #HIGH, label: 'Test type'  } ]
+  testtypename;
 
   @UI.lineItem: [ { position: 70, importance: #HIGH, label: 'Test date' } ]
   testdate;

@@ -21,9 +21,10 @@ define view entity ZCCT_C_REPORT_FEDSTATE
 
 
       @Search.defaultSearchElement: true
-      @EndUserText.label: 'Country'
+      @EndUserText.label: 'Country' 
       country,
-
+    
+      @ObjectModel.text.element: ['fedstate']
       fedstateid,
 
       @Search.defaultSearchElement: true
@@ -36,7 +37,13 @@ define view entity ZCCT_C_REPORT_FEDSTATE
 
       @Search.defaultSearchElement: true
       @EndUserText.label: 'Test type'
+      @ObjectModel.text.element: ['testtypename']
+      @UI.textArrangement: #TEXT_ONLY
       testtype,
+      
+      @Search.defaultSearchElement: true
+      @EndUserText.label: 'Test type'
+      testtypename,
 
       @EndUserText.label: 'Test date'
       testdate,

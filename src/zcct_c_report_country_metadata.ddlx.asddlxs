@@ -136,7 +136,7 @@ annotate entity ZCCT_C_REPORT_COUNTRY with
   ]
   testresult;
 
-  @UI.lineItem: [ { position: 60, importance: #HIGH, label: 'Test type'  } ]
+
   @UI.selectionField: [{ position: 50 }]
 
   @Consumption.valueHelpDefinition: [
@@ -146,7 +146,7 @@ annotate entity ZCCT_C_REPORT_COUNTRY with
      },
      {
           qualifier: 'VisualFilter4',
-          entity.name: 'ZCCT_C_REPORT_COUNTRY',
+          entity.name: 'ZCCT_C_REPORT_COUNTRY', 
           entity.element: 'testtype',
           additionalBinding: [
             {
@@ -157,8 +157,11 @@ annotate entity ZCCT_C_REPORT_COUNTRY with
           ],
           presentationVariantQualifier: 'Filter4'
      }
-  ]
+  ] 
   testtype;
+
+  @UI.lineItem: [ { position: 60, importance: #HIGH, label: 'Test type'  } ]
+  testtypename;
 
   @UI.lineItem: [ { position: 70, importance: #HIGH, label: 'Test date' } ]
   testdate;

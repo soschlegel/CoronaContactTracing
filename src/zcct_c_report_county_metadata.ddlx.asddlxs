@@ -184,7 +184,7 @@ annotate entity ZCCT_C_REPORT_COUNTY with
          ],
          presentationVariantQualifier: 'Filter2'
      }
- ]
+  ]
   countyid;
 
   @UI.lineItem: [ { position: 30, importance: #HIGH, label: 'County' } ]
@@ -202,7 +202,7 @@ annotate entity ZCCT_C_REPORT_COUNTY with
      },
      {
           qualifier: 'VisualFilter3',
-          entity.name: 'ZCCT_C_REPORT_COUNTY',
+          entity.name: 'ZCCT_C_REPORT_COUNTY', 
           entity.element: 'testresult',
           additionalBinding: [
             {
@@ -216,7 +216,7 @@ annotate entity ZCCT_C_REPORT_COUNTY with
   ]
   testresult;
 
-  @UI.lineItem: [ { position: 60, importance: #HIGH, label: 'Test type'  } ]
+
   @UI.selectionField: [{ position: 50 }]
 
   @Consumption.valueHelpDefinition: [
@@ -240,6 +240,9 @@ annotate entity ZCCT_C_REPORT_COUNTY with
   ]
   testtype;
 
+  @UI.lineItem: [ { position: 60, importance: #HIGH, label: 'Test type'  } ]
+  testtypename;
+  
   @UI.lineItem: [ { position: 70, importance: #HIGH, label: 'Test date' } ]
   testdate;
 
