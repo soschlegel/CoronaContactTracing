@@ -25,7 +25,7 @@ A Fiori application for Corona country reports.
 -   Since the modules are not present, first run the following from the app root folder:
     
     ```
-    npm isntall
+    npm install
     ```
 
 ### Starting the generated app
